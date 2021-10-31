@@ -78,6 +78,7 @@ $mint: #00ff90;
             font-size: 20px;
             margin-bottom: 15px;
           }
+
           .upload-section {
             display: flex;
             margin-bottom: 15px;
@@ -101,6 +102,9 @@ $mint: #00ff90;
             font-size: 18px;
             width: 350px;
             margin-right: 15px;
+            &.address {
+              width: 715px;
+            }
           }
         }
         &.secure {
