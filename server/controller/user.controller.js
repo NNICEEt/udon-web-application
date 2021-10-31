@@ -13,7 +13,7 @@ const methods = {
     async onLogin(req, res) {
         try {
             const user = await Services.login(req.body);
-            res.status(200).json({user: user._id});
+            res.status(200).json(user);
         } catch (err) {
             res.status(400).json(err.message);
         }

@@ -9,11 +9,14 @@ const userSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
+            minlength: [6, 'minlength']
         },
         password: {
             type: String,
-            required: true
+            required: true,
+            minlength: [8, 'minlength'],
+            maxlength: [16, 'maxlength']
         },
         firstname: {
             type: String,
@@ -31,7 +34,9 @@ const userSchema = new mongoose.Schema(
         phone: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
+            minlength: [10, 'length'],
+            maxlength: [10, 'length']
         },
         birthday: {
             type: Date,
@@ -40,9 +45,12 @@ const userSchema = new mongoose.Schema(
         isAdmin: {
             type: Boolean,
             default: false
+        },
+        createdAt: {
+            type: Date,
+            default: new Date().getTime() + (7*60*60*1000)
         }
     },
-    { timestamps: true }
 );
 
 userSchema.plugin(uniqueValidator);
@@ -62,6 +70,8 @@ userSchema.methods.passwordHash = async function (password) {
 
 userSchema.pre('save', async function (next) {
     this.password = await this.passwordHash(this.password);
+    this.birthday = new Date(this.birthday);
+    // this.createdAt = new Date(this.createdAt);
     next();
 });
 
