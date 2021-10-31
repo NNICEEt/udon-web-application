@@ -1,0 +1,58 @@
+<nav>
+  <a routerLink="" routerLinkActive="active"
+    ><img [src]="imgUrl" (error)="(doSomethingOnError)" height="60"
+  /></a>
+
+  <div class="search-section">
+    <div class="search">
+      <fa-icon class="faSearch" [icon]="faSearch"></fa-icon>
+      <input type="text" placeholder="ค้นหา" />
+    </div>
+    <button mat-flat-button class="butto search" color="accent">ค้นหา</button>
+  </div>
+
+  <div class="button">
+    <div class="auth-button" *ngIf="slogin">
+      <button
+        mat-stroked-button
+        class="btn login"
+        (click)="openLogin()"
+        color="primary"
+      >
+        เข้าสู่ระบบ
+      </button>
+      <button
+        mat-stroked-button
+        class="btn signup"
+        (click)="openSignup()"
+        color="warn"
+      >
+        ลงทะเบียน
+      </button>
+    </div>
+
+    <div class="auth-button" *ngIf="!slogin">
+      <button
+        mat-flat-button
+        class="btn login"
+        color="accent"
+        routerLink="edit-profile"
+        routerLinkActive="active"
+      >
+        <fa-icon class="faBars" [icon]="faBars"></fa-icon>
+      </button>
+    </div>
+
+    <button
+      mat-flat-button
+      class="btn cart"
+      color="primary"
+      matBadge="1"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+    >
+      <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon>
+      ตะกร้า
+    </button>
+  </div>
+</nav>

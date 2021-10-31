@@ -1,0 +1,121 @@
+<div class="container">
+  <aside class="page-leftbar">
+    <strong>หมวดหมู่ (Category)</strong>
+    <div class="boxin">
+      <ul>
+        <li><span>การ์ตูน</span></li>
+        <mat-divider></mat-divider>
+        <li><span>นิยาย</span></li>
+        <mat-divider></mat-divider>
+        <li><span>วารสาร</span></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="page-main" *ngIf="page">
+    <div class="box-header">
+      <div class="head">BROWSE BOOKS</div>
+      <span class="see-all">(ดูทั้งหมด)</span>
+      <div class="page-ginate">Page: 1|2|3|4|5</div>
+    </div>
+    <div class="cards">
+      <mat-card class="card" *ngFor="let product of booklist">
+        <img
+          mat-card-image
+          src="{{ product.imgUrl }}"
+          (error)="(doSomethingOnError)"
+          alt="รูปขั้นเทพ"
+        />
+        <div class="bottom">
+          <mat-card-content>
+            <p
+              class="book-name"
+              title='{{ product.name }}'
+              routerLink="Bookdetail"
+              routerLinkActive="active"
+              (click)="hide()"
+            >
+              {{ product.name }}
+            </p>
+            <div class="price">{{ product.price }} บาท</div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-stroked-button class="btn addcart" color="primary">
+              <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon
+              ><span>เพิ่มเข้าตะกร้าสินค้า</span>
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+      <!-- <mat-card class="card">
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <div class="bottom">
+          <mat-card-content>
+            <p>หมานุ</p>
+            <div class="price">255 บาท</div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-stroked-button
+              class="btn addcart"
+              color="primary"
+            >
+              <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon
+              ><span>เพิ่มเข้าตะกร้าสินค้า</span>
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card> -->
+    </div>
+    <div class="box-footer">
+      <div class="page-ginate">Page: 1|2|3|4|5</div>
+    </div>
+  </main>
+
+  <div class="page-detail" *ngIf="!page">
+    <div class="box-header">
+      <div class="head">BOOK DETAIL</div>
+      <span class="sub-header">(รายละเอียดของหนังสือ)</span>
+    </div>
+    <div class="books">
+      <div class="leftpicture">
+        <img [src]="imgUrl" (error)="(doSomethingOnError)" height="300" />
+      </div>
+      <div class="book-information">
+        <div class="book-tags">นิยาย</div>
+        <div class="bookname-holder">
+          <div class="book-name">เกิดชาตินี้พี่ต้องเทพ เล่ม 12</div>
+        </div>
+        <div class="book-price">279 บาท</div>
+        <div class="amount-section">
+          <div class="inputstepper">
+            <button class="decrease" (click)="decrease()">-</button>
+            <input type="text" [value]="counter" readonly="readonly" />
+            <button class="increase" (click)="increase()">+</button>
+          </div>
+          <button
+            mat-flat-button
+            class="addcart"
+            color="primary"
+            (click)="addcart()"
+          >
+            เพิ่ม
+          </button>
+        </div>
+        <div class="abstract">
+          <div class="head">เรื่องย่อ</div>
+          <div class="sub">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

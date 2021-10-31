@@ -1,0 +1,138 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+* {
+  font-family: "Kanit", sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.edit-profile {
+  min-height: 100vh;
+  position: relative;
+
+  app-contact {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  .container {
+    padding: 30px;
+    padding-bottom: 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    aside {
+      strong {
+        font-size: 24px;
+        display: block;
+        padding: 10px;
+        text-decoration: underline;
+        margin-bottom: 5px;
+        cursor: default;
+      }
+      .boxin {
+        height: 100%;
+        padding: 20px;
+        border: $light-grey 1px solid;
+        border-radius: 10px;
+        span {
+          font-size: 17px;
+          cursor: pointer;
+          margin-bottom: 15px;
+          &:hover {
+            color: $margenta;
+            transition: 0.2s;
+          }
+        }
+        .mat-divider {
+          margin: 10px;
+          width: 100%;
+        }
+        .fa {
+          margin-right: 10px;
+        }
+      }
+    }
+    main {
+      .boxs {
+        max-width: 700px;
+        min-width: 1000px;
+        max-height: 850px;
+        min-height: 850px;
+
+        padding: 2rem;
+        border: $light-grey 1px solid;
+        border-radius: 10px;
+        &.detail {
+          .head {
+            color: $face-blue;
+            font-size: 24px;
+            margin-bottom: 1rem;
+          }
+          .sub-header {
+            color: $light-grey;
+            font-size: 20px;
+            margin-bottom: 15px;
+          }
+          .upload-section {
+            display: flex;
+            margin-bottom: 15px;
+            .updesc {
+              align-self: flex-end;
+              display: block;
+              margin-left: 15px;
+              .upload {
+                background-color: $mint;
+                margin: 5px;
+                height: 40px;
+                width: 100px;
+                border: none;
+              }
+              .description {
+                color: red;
+              }
+            }
+          }
+          .mat-form-field {
+            font-size: 18px;
+            width: 350px;
+            margin-right: 15px;
+          }
+        }
+        &.secure {
+          .head {
+            color: $face-blue;
+            font-size: 24px;
+            margin-bottom: 1rem;
+          }
+          .sub-header {
+            color: $light-grey;
+            font-size: 20px;
+            margin-bottom: 15px;
+          }
+          .mat-form-field {
+            font-size: 18px;
+            width: 350px;
+            margin-right: 15px;
+          }
+        }
+        &.myorder {
+          .head {
+            color: $face-blue;
+            font-size: 24px;
+            margin-bottom: 1rem;
+          }
+          .sub-header {
+            color: $light-grey;
+            font-size: 20px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}
