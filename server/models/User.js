@@ -69,11 +69,11 @@ const userSchema = new mongoose.Schema(
         },
         createdAt: {
             type: Date,
-            default: new Date().getTime() + (7 * 60 * 60 * 1000)
+            default: config.timezone
         },
         updatedAt: {
             type: Date,
-            default: new Date().getTime() + (7 * 60 * 60 * 1000)
+            default: config.timezone
         }
     },
 );
@@ -88,7 +88,7 @@ userSchema.methods.userInfoJSON = function () {
         lastname: this.lastname,
         phone: this.phone,
         address: this.address,
-        photoURL: this.photoURL || __basedir+'/users/user_default.png'
+        photoURL: this.photoURL || __basedir + '/users/user_default.png'
     }
 }
 
@@ -97,10 +97,6 @@ userSchema.methods.genJWT = function (user) {
         expiresIn: config.tokenExp
     })
     return accessToken;
-}
-
-userSchema.methods.validPassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
 }
 
 userSchema.methods.passwordHash = async function (password) {

@@ -1,19 +1,37 @@
 const jwt = require('jsonwebtoken');
 const config = require('../configs/app.config');
 
-const auth = (req, res, next) => {
+const verifyAccessToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
-  if(!token) return res.status(401).send("Unauthorized")
+  if (!token) return res.status(401).send("Unauthorized");
 
-  try {
-    const decoded = jwt.verify(token, config.accessToken);
-    req.user = decoded;
-    next()
-  } catch (err) {
-    res.status(403).send('Forbidden');
-  }
+  jwt.verify(token, config.accessToken, (err, user) => {
+    if (err) res.status(403).send('Forbidden');
+    req.user = user;
+    next();
+  });
 }
 
-module.exports = auth;
+const auth = (req, res, next) => {
+  verifyAccessToken(req, res, () => {
+    if (/*req.user.id === req.params.id || req.user.isAdmin*/true) {
+      next();
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  });
+}
+
+const authAdmin = (req, res, next) => {
+  verifyAccessToken(req, res, () => {
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  });
+}
+
+module.exports = { auth, authAdmin };
