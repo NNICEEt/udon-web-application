@@ -17,10 +17,19 @@ const methods = {
         } catch (err) {
             res.status(400).json(err.message);
         }
-        
+
     },
 
-    async onUpdate(req,res) {
+    async onGetUserInfo(req,res) {
+        try {
+            const user = await Services.getUserInfo(req.params.id)
+            res.status(200).json(user)
+        } catch (err) {
+            res.status(400).json(err.message);
+        }
+    },
+
+    async onUpdate(req, res) {
         try {
             const user = await Services.update(req.params.id, req.body);
             res.status(200).json(user);
@@ -29,10 +38,10 @@ const methods = {
         }
     },
 
-    async onDelete(req,res) {
+    async onDelete(req, res) {
         try {
-            const user = await Services.delete(req.params.id);
-            res.status(204).json('success');
+            await Services.delete(req.params.id);
+            res.status(204).json('User has been deleted...');
         } catch (err) {
             res.status(400).json(err.message);
         }
@@ -40,10 +49,9 @@ const methods = {
 
     async onRefreshToken(req, res) {
         try {
-            const result = await Services.refreshToken(req.body.accessToken);
-            res.status()
+            
         } catch (err) {
-            res.send(err);
+            
         }
     }
 }

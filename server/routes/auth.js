@@ -1,24 +1,19 @@
-const jwt = require('express-jwt'),
-      secret = require('../configs/app').accessToken
+const jwt = require('jsonwebtoken');
+const config = require('../configs/app.config');
 
-const getTokenFromHeader = (req) => {
-  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token' ||
-    req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-    return req.headers.authorization.split(' ')[1];
+const auth = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if(!token) return res.status(401).send("Unauthorized")
+
+  try {
+    const decoded = jwt.verify(token, config.accessToken);
+    req.user = decoded;
+    next()
+  } catch (err) {
+    res.status(403).send('Forbidden');
   }
-  return null;
 }
-
-const auth = {
-  required: jwt({
-    secret: secret,
-    getToken: getTokenFromHeader
-  }),
-  optional: jwt({
-    secret: secret,
-    credentialsRequired: false,
-    getToken: getTokenFromHeader
-  })
-};
 
 module.exports = auth;

@@ -42,11 +42,32 @@ const userSchema = new mongoose.Schema(
             type: Date,
             required: true
         },
+        address: {
+            mainAddress: {
+                type: String
+            },
+            district: {
+                type: String
+            },
+            province: {
+                type: String
+            },
+            postcode: {
+                type: String
+            }
+        },
+        photoURL: {
+            type: String
+        },
         isAdmin: {
             type: Boolean,
             default: false
         },
         createdAt: {
+            type: Date,
+            default: new Date().getTime() + (7*60*60*1000)
+        },
+        updatedAt: {
             type: Date,
             default: new Date().getTime() + (7*60*60*1000)
         }
@@ -55,12 +76,27 @@ const userSchema = new mongoose.Schema(
 
 userSchema.plugin(uniqueValidator);
 
-userSchema.methods.validPassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+userSchema.methods.userInfoJSON = function() {
+    return {
+        username: this.username,
+        email: this.email,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        phone: this.phone,
+        address: this.address,
+        photoURL: this.photoURL || 'https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png'
+    }
 }
 
-userSchema.methods.generateAccessToken = function (user) {
-    return jwt.sign(user, config.accessToken, { expiresIn: '15s' });
+userSchema.methods.genJWT = function (user) {
+    const accessToken = jwt.sign(user, config.accessToken, { 
+        expiresIn: config.tokenExp
+    })
+    return accessToken;
+}
+
+userSchema.methods.validPassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
 }
 
 userSchema.methods.passwordHash = async function (password) {
@@ -71,7 +107,6 @@ userSchema.methods.passwordHash = async function (password) {
 userSchema.pre('save', async function (next) {
     this.password = await this.passwordHash(this.password);
     this.birthday = new Date(this.birthday);
-    // this.createdAt = new Date(this.createdAt);
     next();
 });
 

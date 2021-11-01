@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
 
 const methods = {
 
@@ -8,7 +7,7 @@ const methods = {
             try {
                 const userObj = new User(data);
                 await userObj.save();
-                resolve({result: "Created"});
+                resolve({ result: "Created" });
             } catch (err) {
                 reject(err);
             }
@@ -18,12 +17,11 @@ const methods = {
     update(id, data) {
         return new Promise(async (resolve, reject) => {
             try {
-                const userObj = await User.findById(id);
-                if (!userObj) reject(new Error('id: not found'));
-                await User.updateOne({ _id: id }, data);
-                resolve(Object.assign(userObj, data));
+                const oldUser = await User.findByIdAndUpdate(id, data);
+                const { password, ...user } = Object.assign(oldUser, data)._doc;
+                resolve({ ...user });
             } catch (err) {
-                reject(err);
+                reject(new Error('id: not found'));
             }
         });
     },
@@ -31,12 +29,21 @@ const methods = {
     delete(id) {
         return new Promise(async (resolve, reject) => {
             try {
-                const userObj = await User.findById(id);
-                if (!userObj) reject(new Error('id: not found'));
-                await User.deleteOne({ _id: id});
-                resolve(userObj);
+                await User.findByIdAndDelete(id);
+                resolve();
             } catch (err) {
-                reject(err);
+                reject(new Error('id: not found'));
+            }
+        });
+    },
+
+    getUserInfo(id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const userData = await User.findById(id);
+                resolve(await userData.userInfoJSON());
+            } catch (err) {
+                reject(new Error('id: not found'))
             }
         });
     },
@@ -44,16 +51,21 @@ const methods = {
     login(data) {
         return new Promise(async (resolve, reject) => {
             try {
-                const userObj = await User.findOne({ username: data.username });
-                if (!userObj) reject(new Error('incorrect username'));
-                const auth = await userObj.validPassword(data.password);
-                if (!auth) reject(new Error('incorrect password'));
-                resolve(userObj)
+                const userData = await User.findOne({ username: data.username });
+                if (!userData) reject(new Error('incorrect username'));
+                if (!userData.validPassword(data.password)) reject(new Error('incorrect password'));
+                const { username, isAdmin } = userData;
+                const user = { username, isAdmin };
+                const { password, ...others } = userData._doc;
+                const accessToken = userData.genJWT(user);
+                resolve({ ...others, accessToken: accessToken });
             } catch (err) {
                 reject(err);
             }
         });
     }
+
+    // refreshToken
 
 
 }

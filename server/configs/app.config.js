@@ -7,6 +7,6 @@ module.exports = {
     dbPassword: process.env.DB_PASSWORD,
     dbEndpoint: process.env.DB_ENDPOINT,
     dbName: process.env.DB_NAME,
-    accessToken: process.env.ACCESS_TOKEN_SECRET,
-    tokenExpDays: process.env.TOKEN_EXP_DAYS
+    accessToken: process.env.ACCESS_TOKEN,
+    tokenExp: process.env.TOKEN_EXP
 }
