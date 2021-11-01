@@ -44,16 +44,20 @@ const userSchema = new mongoose.Schema(
         },
         address: {
             mainAddress: {
-                type: String
+                type: String,
+                default: ''
             },
             district: {
-                type: String
+                type: String,
+                default: ''
             },
             province: {
-                type: String
+                type: String,
+                default: ''
             },
             postcode: {
-                type: String
+                type: String,
+                default: ''
             }
         },
         photoURL: {
@@ -65,18 +69,18 @@ const userSchema = new mongoose.Schema(
         },
         createdAt: {
             type: Date,
-            default: new Date().getTime() + (7*60*60*1000)
+            default: new Date().getTime() + (7 * 60 * 60 * 1000)
         },
         updatedAt: {
             type: Date,
-            default: new Date().getTime() + (7*60*60*1000)
+            default: new Date().getTime() + (7 * 60 * 60 * 1000)
         }
     },
 );
 
 userSchema.plugin(uniqueValidator);
 
-userSchema.methods.userInfoJSON = function() {
+userSchema.methods.userInfoJSON = function () {
     return {
         username: this.username,
         email: this.email,
@@ -84,12 +88,12 @@ userSchema.methods.userInfoJSON = function() {
         lastname: this.lastname,
         phone: this.phone,
         address: this.address,
-        photoURL: this.photoURL || 'https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png'
+        photoURL: this.photoURL || __basedir+'/users/user_default.png'
     }
 }
 
 userSchema.methods.genJWT = function (user) {
-    const accessToken = jwt.sign(user, config.accessToken, { 
+    const accessToken = jwt.sign(user, config.accessToken, {
         expiresIn: config.tokenExp
     })
     return accessToken;

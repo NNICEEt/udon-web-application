@@ -63,6 +63,16 @@ const methods = {
                 reject(err);
             }
         });
+    },
+
+    logout(accessToken) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 
     // refreshToken

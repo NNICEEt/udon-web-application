@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const controllers = require('../../controllers/product.controller');
+const auth = require('../auth');
 
-router.get('/', (req,res) => {
-    res.send("Product List");
-})
+router.post('/', auth, controllers.insert);
 
 module.exports = router;

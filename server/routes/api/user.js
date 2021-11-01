@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controllers = require('../../controller/user.controller');
+const controllers = require('../../controllers/user.controller');
 const auth = require('../auth');
 
 router.get('/welcome', auth, (req,res) => {
@@ -13,6 +13,7 @@ router.delete('/:id', auth, controllers.onDelete);
 
 router.post("/register", controllers.onRegister);
 router.post('/login', controllers.onLogin);
-router.post('/refresh-token', controllers.onRefreshToken);
+router.delete('/logout', controllers.onLogout);
+router.post('/refresh-token', controllers.onLogout);
 
 module.exports = router;

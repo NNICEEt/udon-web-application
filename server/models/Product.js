@@ -10,4 +10,9 @@ const productSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+productSchema.pre('save', async function(next) {
+    
+    next();
+});
+
 module.exports = mongoose.model("Product", productSchema);
