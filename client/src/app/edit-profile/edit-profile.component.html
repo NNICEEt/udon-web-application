@@ -37,9 +37,9 @@
             <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" />
           </div>
           <div class="updesc">
-            <input type="file" (change)="onFileSelected($event)" style="display: none" #fileInput>
+            <input type="file" name="image" multiple (change)="selectImage($event)" style="display: none" #fileInput>
             <button mat-stroked-button class="pick" (click)="fileInput.click()">เลือกไฟล์</button>
-            <button mat-stroked-button class="upload" (click)="onUpload()">อัพโหลดไฟล์</button>
+            <button mat-stroked-button class="upload" (click)="onSubmit()">อัพโหลดไฟล์</button>
             <div class="description">
               Acceptable formats: jpg, png only
             </div>
