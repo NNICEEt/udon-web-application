@@ -19,7 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ContactComponent } from './contact/contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
 
@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     HomeComponent,
     BookdetailComponent,
-    EditProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     MatDividerModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

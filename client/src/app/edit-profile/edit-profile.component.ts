@@ -1,4 +1,4 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { faAddressBook, faUserSecret, faArchive } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,20 +8,24 @@ import { faAddressBook, faUserSecret, faArchive } from '@fortawesome/free-solid-
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
+  //Usaged Icon
   faAddressBook = faAddressBook;
   faUserSecret = faUserSecret;
   faArchive = faArchive;
+  //Image URL
   imgUrl = '../../assets/images/userpic.png';
-  selectedFile: File = null as any;
-  percent = 0;
-
+  //Change Page Boolean
   @Input() userdetail:boolean = true;
   @Input() secure:boolean = false;
   @Input() myorder:boolean = false;
+  //Assign
+  title = 'fileUpload';
+
+  images: any;
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   doSomethingOnError(event:any) {
@@ -44,27 +48,20 @@ export class EditProfileComponent implements OnInit {
     this.myorder = true;
   }
   //Upload User Profile Section
-  onFileSelected(event: any) {
-    this.selectedFile = <File>event.target.files[0];
+  selectImage(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.images = file;
+    }
   }
-  onUpload() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.http.post('https://barbtood/upload', fd, {
-      reportProgress: true,
-      observe: 'events'
-    })
-    .subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        if (event.total) {
-          const total: number = event.total;
-          this.percent = Math.round(100 * event.loaded / total);
-      }
-        console.log('Upload Progress: ' + this.percent + '%');
-      } else if (event.type ===  HttpEventType.Response) {
-        console.log(event);
-      }
-      console.log(event);
-    });
+  onSubmit(){
+    const formData = new FormData();
+    formData.append('file', this.images);
+
+    //upload image api
+    this.http.post<any>('http://localhost:3000/file', formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 }
