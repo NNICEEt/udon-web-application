@@ -78,6 +78,7 @@ $mint: #00ff90;
             font-size: 20px;
             margin-bottom: 15px;
           }
+
           .upload-section {
             display: flex;
             margin-bottom: 15px;
@@ -85,12 +86,18 @@ $mint: #00ff90;
               align-self: flex-end;
               display: block;
               margin-left: 15px;
-              .upload {
-                background-color: $mint;
+              .upload, .pick {
                 margin: 5px;
                 height: 40px;
                 width: 100px;
                 border: none;
+                color: white;
+              }
+              .upload {
+                background-color: $face-blue;
+              }
+              .pick {
+                background-color: $margenta;
               }
               .description {
                 color: red;
@@ -101,6 +108,9 @@ $mint: #00ff90;
             font-size: 18px;
             width: 350px;
             margin-right: 15px;
+            &.address {
+              width: 715px;
+            }
           }
         }
         &.secure {

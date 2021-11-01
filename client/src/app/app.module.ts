@@ -18,7 +18,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { ContactComponent } from './contact/contact.component';
 import { MatCardModule } from '@angular/material/card';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -44,6 +44,7 @@ import { MatCardModule } from '@angular/material/card';
     MatBadgeModule,
     MatDividerModule,
     MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
