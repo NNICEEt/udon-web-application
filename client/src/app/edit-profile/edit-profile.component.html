@@ -37,9 +37,11 @@
             <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" />
           </div>
           <div class="updesc">
-            <button mat-raised-button class="upload">อัพโหลดไฟล์</button>
+            <input type="file" (change)="onFileSelected($event)" style="display: none" #fileInput>
+            <button mat-stroked-button class="pick" (click)="fileInput.click()">เลือกไฟล์</button>
+            <button mat-stroked-button class="upload" (click)="onUpload()">อัพโหลดไฟล์</button>
             <div class="description">
-              Acceptable formats: jpg, png only <br />Max file size: 5mb
+              Acceptable formats: jpg, png only
             </div>
           </div>
         </div>
@@ -116,7 +118,7 @@
           </table>
         </form>
         <button
-          mat-raised-button
+          mat-flat-button
           class="save-button"
           color="warn"
           style="width: 100px; font-size: 20px"
@@ -146,7 +148,7 @@
           </mat-form-field>
         </form>
         <button
-          mat-raised-button
+          mat-flat-button
           class="save-button"
           color="warn"
           style="width: 100px; font-size: 20px"
@@ -159,7 +161,7 @@
         <div class="sub-header">คำสั่งซื้อของฉัน</div>
 
         <button
-          mat-raised-button
+          mat-flat-button
           class="save-button"
           color="warn"
           style="width: 100px; font-size: 20px"

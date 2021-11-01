@@ -86,12 +86,18 @@ $mint: #00ff90;
               align-self: flex-end;
               display: block;
               margin-left: 15px;
-              .upload {
-                background-color: $mint;
+              .upload, .pick {
                 margin: 5px;
                 height: 40px;
                 width: 100px;
                 border: none;
+                color: white;
+              }
+              .upload {
+                background-color: $face-blue;
+              }
+              .pick {
+                background-color: $margenta;
               }
               .description {
                 color: red;
