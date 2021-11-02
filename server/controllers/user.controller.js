@@ -12,9 +12,8 @@ const methods = {
 
     async onLogin(req, res) {
         try {
-            const user = await Services.login(req.body);
-            res.status(200).json(user);
-            console.log(req.body.accessToken);
+            const result = await Services.login(req.body);
+            res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err.message);
         }
@@ -23,19 +22,27 @@ const methods = {
 
     async onLoginAdmin(req, res) {
         try {
-            const user = await Services.loginAdmin(req.body);
-            res.status(200).json(user);
-            console.log(req.body.accessToken);
+            const result = await Services.loginAdmin(req.body);
+            res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err.message);
         }
 
     },
 
+    async onRefreshToken(req, res) {
+        try {
+            const result = await Services.refreshToken(req);
+            res.status(result.status).json(result);
+        } catch (err) {
+            res.json(err);
+        }
+    },
+
     async onGetUserInfo(req, res) {
         try {
-            const user = await Services.getUserInfo(req.params.id)
-            res.status(200).json(user)
+            const result = await Services.getUserInfo(req.user.id)
+            res.status(200).json(result)
         } catch (err) {
             res.status(400).json(err.message);
         }
@@ -43,8 +50,8 @@ const methods = {
 
     async onUpdate(req, res) {
         try {
-            const user = await Services.update(req.params.id, req.body);
-            res.status(200).json(user);
+            const result = await Services.update(req.user.id, req.body);
+            res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err.message);
         }
@@ -52,7 +59,7 @@ const methods = {
 
     async onUpdatePassword(req, res) {
         try {
-            await Services.updatePassword(req.params.id, req.body.password);
+            await Services.updatePassword(req.user.id, req.body.password);
             res.status(200).json("success");
         } catch (err) {
             res.status(400).json(err.message);
@@ -61,7 +68,7 @@ const methods = {
 
     async onDelete(req, res) {
         try {
-            await Services.delete(req.params.id);
+            await Services.delete(req.user.id);
             res.status(204).json('User has been deleted...');
         } catch (err) {
             res.status(400).json(err.message);
@@ -70,10 +77,10 @@ const methods = {
 
     async onLogout(req, res) {
         try {
-            await Services.logout(req.body.accessToken);
+            await Services.logout(req);
             res.sendStatus(204);
         } catch (err) {
-
+            res.json(err);
         }
     }
 }

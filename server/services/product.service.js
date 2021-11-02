@@ -15,10 +15,10 @@ const methods = {
         });
     },
 
-    update(id, data) {
+    update(productId, data) {
         return new Promise(async (resolve, reject) => {
             try {
-                const updatedProduct = await Product.findByIdAndUpdate(id, {
+                const updatedProduct = await Product.findByIdAndUpdate(productId, {
                     $set: { ...data, updatedAt: config.timezone }
                 }, { new: true });
                 resolve(updatedProduct);
@@ -28,10 +28,10 @@ const methods = {
         });
     },
 
-    delete(id) {
+    delete(productId) {
         return new Promise(async (resolve, reject) => {
             try {
-                await Product.findByIdAndDelete(id);
+                await Product.findByIdAndDelete(productId);
                 resolve();
             } catch (err) {
                 reject(new Error('id: not found'));
@@ -40,28 +40,23 @@ const methods = {
     },
 
     getProducts(req) {
+        const qPage = req.query.page || 1;
+        const qLimit = req.query.limit || 100;
+        const qCategory = req.query.category || '';
+        let products;
         return new Promise(async (resolve, reject) => {
-            const qPage = req.query.page || 1;
-            const qLimit = req.query.limit || 10;
-            const qCategory = req.query.category;
             try {
-                const countAllProducts = await Product.find().count();
-                let products = await Product.find();
-
-                if (countAllProducts > qLimit && qCategory) {
-                    products = await Product
-                        .find({ categories: qCategory })
-                        .skip((qPage - 1) * qLimit)
-                        .limit(qLimit);
-                } else if (countAllProducts > qLimit) {
-                    products = await Product
-                        .find()
-                        .skip((qPage - 1) * qLimit)
-                        .limit(qLimit);
-                } else if (qCategory) {
-                    products = await Product
-                        .find({ categories: qCategory });
-                }
+                products = await Product.aggregate([
+                    {
+                        $match: { categories: { $regex: qCategory, $options: "i" } }
+                    },
+                    {
+                        $skip: (+qPage - 1) * +qLimit
+                    },
+                    {
+                        $limit: +qLimit
+                    }
+                ])
                 resolve(products);
             } catch (err) {
                 reject(new Error('not found'))
@@ -69,10 +64,10 @@ const methods = {
         });
     },
 
-    getProduct(id) {
+    getProduct(productId) {
         return new Promise(async (resolve, reject) => {
             try {
-                const product = await Product.findById(id);
+                const product = await Product.findById(productId);
                 resolve(product);
             } catch (err) {
                 reject(new Error('id: not found'))

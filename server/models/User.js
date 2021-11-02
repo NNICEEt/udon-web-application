@@ -92,13 +92,6 @@ userSchema.methods.userInfoJSON = function () {
     }
 }
 
-userSchema.methods.genJWT = function (user) {
-    const accessToken = jwt.sign(user, config.accessToken, {
-        expiresIn: config.tokenExp
-    })
-    return accessToken;
-}
-
 userSchema.methods.passwordHash = async function (password) {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);

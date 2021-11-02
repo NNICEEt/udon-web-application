@@ -3,8 +3,8 @@ const { auth } = require('../auth');
 
 router.use('/users', require('./user'));
 router.use('/products', require('./product'));
-router.use('/cart', auth, require('./cart'));
-router.use('/order', auth, require('./order'));
+router.use('/carts', auth, require('./cart'));
+router.use('/orders', auth, require('./order'));
 
 router.get('/', (req, res) => {
     res.json({

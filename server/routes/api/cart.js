@@ -1,7 +1,10 @@
 const router = require('express').Router();
+const controllers = require('../../controllers/cart.controller');
+const { auth, authAdmin } = require('../auth');
 
-router.get('/', (req,res) => {
-    res.send("Cart List");
-})
+router.get('/', controllers.onGetCart);
+router.post('/', controllers.onInsert);
+router.put('/:cartId', controllers.onUpdate);
+router.delete('/:cartId', controllers.onDelete);
 
 module.exports = router;

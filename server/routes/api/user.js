@@ -7,15 +7,15 @@ router.get('/welcome', auth, (req, res) => {
     res.json(user);
 });
 
-router.get('/:id', auth, controllers.onGetUserInfo);
-router.put('/:id', auth, controllers.onUpdate);
-router.put('/password/:id', auth, controllers.onUpdatePassword);
-router.delete('/:id', auth, controllers.onDelete);
+router.get('/', auth, controllers.onGetUserInfo);
+router.put('/', auth, controllers.onUpdate);
+router.put('/password', auth, controllers.onUpdatePassword);
+router.delete('/delete', auth, controllers.onDelete);
 
 router.post("/register", controllers.onRegister);
 router.post('/login', controllers.onLogin);
 router.post('/login-admin', controllers.onLoginAdmin);
 router.delete('/logout', controllers.onLogout);
-router.post('/refresh-token', controllers.onLogout);
+router.post('/refresh-token', controllers.onRefreshToken);
 
 module.exports = router;

@@ -3,9 +3,9 @@ const controllers = require('../../controllers/product.controller');
 const { auth, authAdmin } = require('../auth');
 
 router.get('/', controllers.onGetProducts);
-router.get('/:id', controllers.onGetProduct);
-router.post('/', auth, controllers.onInsert);
-router.put('/:id', auth, controllers.onUpdate);
-router.delete('/:id', auth, controllers.onDelete);
+router.get('/:productId', controllers.onGetProduct);
+router.post('/', authAdmin, controllers.onInsert);
+router.put('/:productId', auth, controllers.onUpdate);
+router.delete('/:productId', authAdmin, controllers.onDelete);
 
 module.exports = router;

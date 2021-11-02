@@ -8,7 +8,7 @@ const verifyAccessToken = (req, res, next) => {
   if (!token) return res.status(401).send("Unauthorized");
 
   jwt.verify(token, config.accessToken, (err, user) => {
-    if (err) res.status(403).send('Forbidden');
+    if (err) return res.status(403).send('Forbidden');
     req.user = user;
     next();
   });
@@ -16,7 +16,7 @@ const verifyAccessToken = (req, res, next) => {
 
 const auth = (req, res, next) => {
   verifyAccessToken(req, res, () => {
-    if (/*req.user.id === req.params.id || req.user.isAdmin*/true) {
+    if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
     } else {
       res.status(403).send('Forbidden');

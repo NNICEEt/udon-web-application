@@ -1,6 +1,19 @@
 const User = require('../models/User');
 const config = require('../configs/app.config');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+let refreshTokens = [];
+
+const genAccessToken = (user) => {
+    return jwt.sign(user, config.accessToken, {
+        expiresIn: config.tokenExp
+    });
+}
+
+const genRefreshToken = (user) => {
+    return jwt.sign(user, config.accessTokenRefresh);
+}
 
 const methods = {
 
@@ -72,11 +85,12 @@ const methods = {
                 const userData = await User.findOne({ username: data.username });
                 if (!userData) reject(new Error('incorrect username'));
                 if (!await bcrypt.compare(data.password, userData.password)) reject(new Error('incorrect password'));
-                const { username, isAdmin } = userData;
-                const user = { username, isAdmin };
-                const { password, ...others } = userData._doc;
-                const accessToken = userData.genJWT(user);
-                resolve({ ...others, accessToken: accessToken });
+                const { _id, username, isAdmin } = userData;
+                const user = { id: _id, isAdmin };
+                const accessToken = genAccessToken(user);
+                const refreshToken = genRefreshToken(user);
+                refreshTokens.push(refreshToken);
+                resolve({ _id, username, isAdmin, accessToken, refreshToken });
             } catch (err) {
                 reject(err);
             }
@@ -89,30 +103,46 @@ const methods = {
                 const userData = await User.findOne({ username: data.username });
                 if (!userData) reject(new Error('incorrect username'));
                 if (!await bcrypt.compare(data.password, userData.password)) reject(new Error('incorrect password'));
-                const { username, isAdmin } = userData;
-                if(!isAdmin) reject(new Error('admin: permission error!!!'))
-                const user = { username, isAdmin };
-                const { password, ...others } = userData._doc;
-                const accessToken = userData.genJWT(user);
-                resolve({ ...others, accessToken: accessToken });
+                const { _id, username, isAdmin } = userData;
+                if (!isAdmin) reject(new Error('admin: permission error!!!'))
+                const user = { id: _id, isAdmin };
+                const accessToken = genAccessToken(user);
+                const refreshToken = genRefreshToken(user);
+                refreshTokens.push(refreshToken);
+                resolve({ _id, username, isAdmin, accessToken, refreshToken });
             } catch (err) {
                 reject(err);
             }
         });
     },
 
-    logout(accessToken) {
+    refreshToken(req) {
         return new Promise(async (resolve, reject) => {
             try {
+                const refreshToken = req.body.token;
+                if (refreshToken == null) resolve({ status: 401, message: 'Unauthorized' });
+                if (!refreshTokens.includes(refreshToken)) resolve({ status: 403, message: 'Forbidden' });
+                jwt.verify(refreshToken, config.accessTokenRefresh, (err, user) => {
+                    if (err) resolve({ status: 403, message: 'Forbidden' });
+                    const accessToken = genAccessToken({ id: user.id, isAdmin: user.isAdmin })
+                    resolve({ status: 200, accessToken });
+                });
+            } catch (err) {
+                reject(err);
+            }
+        })
+    },
 
+    logout(req) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                refreshTokens = refreshTokens.filter(token => token !== req.body.token);
+                resolve();
             } catch (err) {
                 reject(err);
             }
         });
     }
-
-    // refreshToken
-
 
 }
 
