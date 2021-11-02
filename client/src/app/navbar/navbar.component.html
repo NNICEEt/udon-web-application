@@ -4,11 +4,11 @@
   /></a>
 
   <div class="search-section">
-    <div class="search">
+    <div class="search-bar">
       <fa-icon class="faSearch" [icon]="faSearch"></fa-icon>
       <input type="text" placeholder="ค้นหา" />
     </div>
-    <button mat-flat-button class="butto search" color="accent">ค้นหา</button>
+    <button mat-flat-button class="search-btn" color="accent">ค้นหา</button>
   </div>
 
   <div class="button">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="auth-button" *ngIf="!slogin">
-      <button mat-flat-button class="btn login"
+      <button mat-flat-button class="btn menu"
       color="accent" [matMenuTriggerFor]="menu"><fa-icon class="faBars" [icon]="faBars"></fa-icon> เมนู</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="edit-profile" routerLinkActive="active">แก้ไขโปรไฟล์</button>

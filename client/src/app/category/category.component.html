@@ -18,13 +18,13 @@
       <span class="see-all">(ดูทั้งหมด)</span>
       <div class="page-ginate">Page: 1|2|3|4|5</div>
     </div>
-    <div class="cards">
+    <div class="card-section">
       <mat-card class="card" *ngFor="let product of booklist">
         <img
           mat-card-image
           src="{{ product.imgUrl }}"
           (error)="(doSomethingOnError)"
-          alt="รูปขั้นเทพ"
+          alt="{{ product.name }}"
         />
         <div class="bottom">
           <mat-card-content>
@@ -47,41 +47,19 @@
           </mat-card-actions>
         </div>
       </mat-card>
-      <!-- <mat-card class="card">
-        <img
-          mat-card-image
-          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-          alt="Photo of a Shiba Inu"
-        />
-        <div class="bottom">
-          <mat-card-content>
-            <p>หมานุ</p>
-            <div class="price">255 บาท</div>
-          </mat-card-content>
-          <mat-card-actions>
-            <button
-              mat-stroked-button
-              class="btn addcart"
-              color="primary"
-            >
-              <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon
-              ><span>เพิ่มเข้าตะกร้าสินค้า</span>
-            </button>
-          </mat-card-actions>
-        </div>
-      </mat-card> -->
     </div>
     <div class="box-footer">
       <div class="page-ginate">Page: 1|2|3|4|5</div>
     </div>
   </main>
 
-  <div class="page-detail" *ngIf="!page">
+  <!-- Book Detail Page -->
+  <div class="page-detail" *ngIf="!page" >
     <div class="box-header">
       <div class="head">BOOK DETAIL</div>
       <span class="sub-header">(รายละเอียดของหนังสือ)</span>
     </div>
-    <div class="books">
+    <div class="bookdetail-section">
       <div class="leftpicture">
         <img [src]="imgUrl" (error)="(doSomethingOnError)" height="300" />
       </div>
