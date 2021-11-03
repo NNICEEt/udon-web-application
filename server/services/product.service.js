@@ -27,7 +27,7 @@ const methods = {
             }
         });
     },
-
+    //test
     delete(productId) {
         return new Promise(async (resolve, reject) => {
             try {
