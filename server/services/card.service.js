@@ -6,9 +6,18 @@ const methods = {
     insert(userId, product) {
         return new Promise(async (resolve, reject) => {
             try {
-                const cartObj = new Cart({ userId, ...product });
-                await cartObj.save();
-                resolve(cartObj);
+                const oldCart = await Cart.findOne({ userId: userId, productId: product.productId });
+                let cartObj;
+                if (oldCart) {
+                    console.log('old cart');
+                    cartObj = await oldCart.updateOne({ quantity: oldCart.quantity + product.quantity });
+                    resolve();
+                } else {
+                    console.log('new cart');
+                    cartObj = new Cart({ userId, ...product });
+                    await cartObj.save();
+                    resolve(cartObj);
+                }
             } catch (err) {
                 reject(err);
             }
@@ -42,7 +51,31 @@ const methods = {
     getCart(userId) {
         return new Promise(async (resolve, reject) => {
             try {
-                const cart = await Cart.find({ userId: userId });
+                const cart = await Cart.aggregate([
+                    { $match: { userId: userId } },
+                    {
+                        $project: {
+                            productObjId: { $toObjectId: "$productId" }, quantity: 1
+                        }
+                    },
+                    {
+                        $lookup: {
+                            from: "products",
+                            localField: "productObjId",
+                            foreignField: "_id",
+                            as: "product"
+                        }
+                    },
+                    { $unwind: "$product" },
+                    {
+                        $project: {
+                            product: 1,
+                            quantity: 1,
+                            totalPrice: { $multiply: ["$quantity", "$product.price"] }
+                        }
+                    }
+                ]);
+                
                 resolve(cart);
             } catch (err) {
                 reject(new Error('id: not found'))
