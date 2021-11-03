@@ -9,15 +9,12 @@ const methods = {
                 const oldCart = await Cart.findOne({ userId: userId, productId: product.productId });
                 let cartObj;
                 if (oldCart) {
-                    console.log('old cart');
                     cartObj = await oldCart.updateOne({ quantity: oldCart.quantity + product.quantity });
-                    resolve();
                 } else {
-                    console.log('new cart');
                     cartObj = new Cart({ userId, ...product });
                     await cartObj.save();
-                    resolve(cartObj);
                 }
+                resolve();
             } catch (err) {
                 reject(err);
             }
