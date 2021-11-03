@@ -1,4 +1,4 @@
-const Order = require('../models/Order');
+const Cart = require('../models/Cart');
 const config = require('../configs/app.config');
 
 const methods = {
@@ -6,8 +6,14 @@ const methods = {
     insert(userId, product) {
         return new Promise(async (resolve, reject) => {
             try {
-                const orderObj = new Order({ userId, ...product });
-                await orderObj.save();
+                const oldCart = await Cart.findOne({ userId: userId, productId: product.productId });
+                let cartObj;
+                if (oldCart) {
+                    cartObj = await oldCart.updateOne({ quantity: oldCart.quantity + product.quantity });
+                } else {
+                    cartObj = new Cart({ userId, ...product });
+                    await cartObj.save();
+                }
                 resolve();
             } catch (err) {
                 reject(err);
@@ -15,23 +21,23 @@ const methods = {
         });
     },
 
-    update(orderId, data) {
+    update(cartId, data) {
         return new Promise(async (resolve, reject) => {
             try {
-                const updatedOrder = await Order.findByIdAndUpdate(orderId, {
+                const updatedCart = await Cart.findByIdAndUpdate(cartId, {
                     $set: { ...data, updatedAt: config.timezone }
                 }, { new: true });
-                resolve(updatedOrder);
+                resolve(updatedCart);
             } catch (err) {
                 reject(new Error('id: not found'));
             }
         });
     },
 
-    cancel(orderId) {
+    delete(cartId) {
         return new Promise(async (resolve, reject) => {
             try {
-                await Order.findByIdAndDelete(orderId);
+                await Cart.findByIdAndDelete(cartId);
                 resolve();
             } catch (err) {
                 reject(new Error('id: not found'));
@@ -39,7 +45,7 @@ const methods = {
         });
     },
 
-    getOrders(userId) {
+    getCart(userId) {
         return new Promise(async (resolve, reject) => {
             try {
                 const cart = await Cart.aggregate([
@@ -66,7 +72,7 @@ const methods = {
                         }
                     }
                 ]);
-
+                
                 resolve(cart);
             } catch (err) {
                 reject(new Error('id: not found'))

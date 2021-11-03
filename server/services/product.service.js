@@ -8,7 +8,7 @@ const methods = {
             try {
                 const productObj = new Product(data);
                 await productObj.save();
-                resolve(productObj);
+                resolve();
             } catch (err) {
                 reject(err);
             }

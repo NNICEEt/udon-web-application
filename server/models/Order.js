@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../configs/app.config');
 
 const orderSchema = new mongoose.Schema(
     {
@@ -6,14 +7,21 @@ const orderSchema = new mongoose.Schema(
         products: [
             {
                 productId: { type: String },
-                quantity: { type: Number, default: 1 }
+                quantity: { type: Number },
+                price: { type: Number }
             }
         ],
-        amount: { type: Number, required: true },
-        address: { type: Object, required: true},
-        status:  { type: String, default: "กำลังดำเนินการ"}
-    },
-    { timestamps: true }
+        totalPrice: { type: Number, required: true },
+        address: {
+            mainAddress: { type: String },
+            district: { type: String },
+            province: { type: String },
+            postcode: { type: String }
+        },
+        status: { type: String, default: "กำลังดำเนินการ" },
+        createdAt: { type: Date, default: config.timezone },
+        updatedAt: { type: Date, default: config.timezone }
+    }
 );
 
 module.exports = mongoose.model("Order", orderSchema);

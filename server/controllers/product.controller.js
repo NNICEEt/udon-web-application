@@ -4,8 +4,8 @@ const methods = {
 
     async onInsert(req, res) {
         try {
-            const result = await Services.insert(req.body);
-            res.status(201).json(result);
+            await Services.insert(req.body);
+            res.status(201).json("success");
         } catch (err) {
             res.status(400).json(err);
         }

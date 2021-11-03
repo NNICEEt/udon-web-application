@@ -36,7 +36,7 @@ const methods = {
                     $set: { ...data, updatedAt: config.timezone }
                 }, { new: true });
                 const { password, ...updatedOther } = updatedUser._doc;
-                resolve({ ...updatedOther });
+                resolve();
             } catch (err) {
                 reject(new Error('id: not found'));
             }
@@ -47,6 +47,7 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
                 const salt = await bcrypt.genSalt(10);
+                if(password.length < 8 || password.length > 16) reject(new Error('legnth'));
                 const passwordHash = await bcrypt.hash(password, salt);
                 const userObj = await User.findById(id);
                 await userObj.updateOne({ password: passwordHash })
@@ -90,7 +91,7 @@ const methods = {
                 const accessToken = genAccessToken(user);
                 const refreshToken = genRefreshToken(user);
                 refreshTokens.push(refreshToken);
-                resolve({ _id, username, isAdmin, accessToken, refreshToken });
+                resolve({ accessToken, refreshToken });
             } catch (err) {
                 reject(err);
             }
@@ -109,7 +110,7 @@ const methods = {
                 const accessToken = genAccessToken(user);
                 const refreshToken = genRefreshToken(user);
                 refreshTokens.push(refreshToken);
-                resolve({ _id, username, isAdmin, accessToken, refreshToken });
+                resolve({ accessToken, refreshToken });
             } catch (err) {
                 reject(err);
             }
