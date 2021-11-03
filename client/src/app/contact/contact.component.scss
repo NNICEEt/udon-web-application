@@ -1,3 +1,4 @@
+$face-blue: #3f51b5;
 * {
     font-family: 'Kanit', sans-serif;
     font-weight: 400;
@@ -6,13 +7,15 @@
         height: 150px;
         width: 100%;
         color: #ffffff;
-        background-color: red;
+        background-color: $face-blue;
+
     }
-    .Boxes{
-        margin-left: 20%;
+    .Outer-Section{
+      display: flex;
         padding-top: 20px;
+        justify-content: center;
     }
-    .box1,.box2{
+    .contact,.follow{
         display: inline-block;
         margin-right: 2%;
 

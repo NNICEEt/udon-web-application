@@ -37,12 +37,21 @@
             <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" />
           </div>
           <div class="updesc">
-            <input type="file" name="image" multiple (change)="selectImage($event)" style="display: none" #fileInput>
-            <button mat-stroked-button class="pick" (click)="fileInput.click()">เลือกไฟล์</button>
-            <button mat-stroked-button class="upload" (click)="onSubmit()">อัพโหลดไฟล์</button>
-            <div class="description">
-              Acceptable formats: jpg, png only
-            </div>
+            <input
+              type="file"
+              name="image"
+              multiple
+              (change)="selectImage($event)"
+              style="display: none"
+              #fileInput
+            />
+            <button mat-stroked-button class="pick" (click)="fileInput.click()">
+              เลือกไฟล์
+            </button>
+            <button mat-stroked-button class="upload" (click)="onSubmit()">
+              อัพโหลดไฟล์
+            </button>
+            <div class="description">Acceptable formats: jpg, png only</div>
           </div>
         </div>
         <div class="sub-header">รายละเอียดบัญชี</div>
@@ -52,13 +61,13 @@
               <td>
                 <mat-form-field class="fName" appearance="fill">
                   <mat-label>ชื่อจริง</mat-label>
-                  <input matInput placeholder="สมเกียรติ" />
+                  <input matInput #fName />
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="lName" appearance="fill">
                   <mat-label>นามสกุล</mat-label>
-                  <input matInput placeholder="รักชาติไทย" />
+                  <input matInput #lName />
                 </mat-form-field>
               </td>
             </tr>
@@ -68,13 +77,16 @@
               <td>
                 <mat-form-field class="uEmail" appearance="fill">
                   <mat-label>อีเมล</mat-label>
-                  <input matInput placeholder="example@gmail.com" />
+                  <input matInput #uEmail />
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="uPhone" appearance="fill">
                   <mat-label>เบอร์โทรศัพท์</mat-label>
-                  <input matInput placeholder="098-xxx-xxxx" />
+                  <input matInput type="tel" maxlength="10" #uPhone />
+                  <mat-hint align="end"
+                    >{{ uPhone.value.length }} / 10</mat-hint
+                  >
                 </mat-form-field>
               </td>
             </tr>
@@ -82,38 +94,30 @@
           <div class="sub-header">ที่อยู่</div>
           <p>
             <mat-form-field class="address" appearance="fill">
-              <input matInput placeholder="กรุณากรอกที่อยู่"/>
+              <mat-label>ที่อยู่หลัก</mat-label>
+              <input matInput #address />
             </mat-form-field>
           </p>
 
           <table class="group3" cellspacing="0">
+            <td>
+              <mat-form-field class="district" appearance="fill">
+                <mat-label>อำเภอ</mat-label>
+                <input matInput #district />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="province" appearance="fill">
+                <mat-label>จังหวัด</mat-label>
+                <input matInput #province />
+              </mat-form-field>
+            </td>
             <tr>
-              <td>
-                <mat-form-field class="district" appearance="fill">
-                  <mat-label>อำเภอ</mat-label>
-                  <input matInput />
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field class="province" appearance="fill">
-                  <mat-label>จังหวัด</mat-label>
-                  <input matInput placeholder="Ex. ขอนแก่น" />
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>รหัสไปรษณีย์</mat-label>
-                  <input
-                    matInput
-                    #postalCode
-                    maxlength="5"
-                    placeholder="Ex. 11120"
-                  />
-                  <mat-hint align="end"
-                    >{{ postalCode.value.length }} / 5</mat-hint
-                  >
-                </mat-form-field>
-              </td>
+              <mat-form-field class="postcode" appearance="fill">
+                <mat-label>รหัสไปรษณีย์</mat-label>
+                <mat-hint align="end">{{ postcode.value.length }} / 5</mat-hint>
+                <input matInput maxlength="5" #postcode />
+              </mat-form-field>
             </tr>
           </table>
         </form>
@@ -122,6 +126,18 @@
           class="save-button"
           color="warn"
           style="width: 100px; font-size: 20px"
+          (click)="
+            ProfileonSave(
+              fName.value,
+              lName.value,
+              uEmail.value,
+              uPhone.value,
+              address.value,
+              district.value,
+              province.value,
+              postcode.value
+            )
+          "
         >
           บันทึก
         </button>

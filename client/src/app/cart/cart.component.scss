@@ -1,0 +1,182 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+
+* {
+  font-family: "Kanit", sans-serif;
+  overflow: hidden;
+}
+app-contact {
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+.cart-page {
+  min-height: 100vh;
+  position: relative;
+
+  .cart-section {
+    display: flex;
+    margin: 1rem 0rem;
+    justify-content: center;
+    .cart-box {
+      display: flex;
+      padding: 2rem;
+      max-width: 1200px;
+      min-width: 1000px;
+      max-height: 1000px;
+      // min-height: 800px;
+      border: $light-grey 1px solid;
+      border-radius: 10px;
+      .groups {
+        display: flex;
+        .header {
+          color: $face-blue;
+          height: 24px;
+          font-size: 24px;
+          margin-bottom: 1rem;
+        }
+        &.cart {
+          margin-right: 5px;
+          display: block;
+          .inside-box {
+            display: flex;
+            background: $face-blue;
+            padding: 1rem;
+            border: $light-grey 1px solid;
+            .menu {
+              text-align: center;
+              padding: 0 3rem;
+              font-size: 1rem;
+              color: white;
+              &.name {
+                padding: 0 9.5rem;
+              }
+            }
+          }
+          .below-box {
+            display: flex;
+            margin-top: 5px;
+            padding: 1rem;
+            border: $light-grey 1px solid;
+            height: auto;
+            .book {
+              text-align: center;
+              &.name {
+                margin-right: 3.8rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 250px;
+                &:hover {
+                  text-decoration: underline;
+                  cursor: default;
+                }
+              }
+              &.price {
+                color: red;
+                margin-right: 2rem;
+                &:hover {
+                  cursor: default;
+                }
+              }
+              &.stepper {
+                margin-right: 2rem;
+              }
+              &.price-sum {
+                color: $face-blue;
+                margin-right: 20px;
+                &:hover {
+                  cursor: default;
+                }
+              }
+              &.stepper {
+                input {
+                  width: 100px;
+                  text-align: center;
+                  cursor: default;
+                }
+              }
+            }
+            .btn {
+              color: red;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            .mat-divider {
+              color: red;
+              width: 100%;
+              height: 100px;
+            }
+          }
+          .button-group {
+            display: flex;
+            margin-top: 15px;
+            .btn {
+              margin-right: 5px;
+            }
+          }
+        }
+        &.summary {
+          display: block;
+          .inside-box {
+            display: block;
+            padding: 1rem;
+            height: 155px;
+            width: 200px;
+            border: $light-grey 1px solid;
+            .text-group {
+              .row {
+                margin-bottom: 10px;
+                &.first,
+                &.second,
+                &.third {
+                  display: flex;
+                  .first-total,
+                  .second-ship,
+                  .third-total {
+                    margin-left: auto;
+                    margin-right: 0;
+                  }
+                }
+              }
+              .mat-divider {
+                opacity: 1;
+                background-color: red;
+                width: 100%;
+                margin-bottom: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .address-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    .address-box {
+      display: block;
+      padding: 2rem;
+      max-width: 1200px;
+      min-width: 1020px;
+      max-height: 1000px;
+      // min-height: 800px;
+      border: $light-grey 1px solid;
+      border-radius: 10px;
+      .header {
+        color: $face-blue;
+        margin-bottom: 15px;
+      }
+      .address-bar {
+        display: flex;
+        .mat-form-field {
+          width: 1000px;
+        }
+      }
+    }
+  }
+}
