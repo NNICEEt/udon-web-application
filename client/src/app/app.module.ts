@@ -21,6 +21,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
 
@@ -47,7 +48,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDividerModule,
     MatCardModule,
     HttpClientModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
