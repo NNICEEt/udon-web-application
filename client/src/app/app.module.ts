@@ -6,6 +6,7 @@ import { CategoryComponent } from './category/category.component';
 import { BannerComponent } from './banner/banner.component';
 import { BookdetailComponent } from './bookdetail/bookdetail.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CartComponent } from './cart/cart.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ContactComponent,
     HomeComponent,
     BookdetailComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

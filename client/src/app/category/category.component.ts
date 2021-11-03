@@ -66,6 +66,7 @@ booklist: any[] = [
 
 
   ngOnInit(): void {
+    console.log(this.booklist);
   }
 
   doSomethingOnError(event:any) {

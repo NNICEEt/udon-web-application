@@ -12,6 +12,7 @@ $mint: #00ff90;
 .edit-profile {
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 
   app-contact {
     width: 100%;
@@ -61,7 +62,7 @@ $mint: #00ff90;
       .boxs {
         max-width: 700px;
         min-width: 1000px;
-        max-height: 850px;
+        max-height: 1000px;
         min-height: 850px;
 
         padding: 2rem;
