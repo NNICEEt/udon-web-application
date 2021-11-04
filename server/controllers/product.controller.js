@@ -4,7 +4,7 @@ const methods = {
 
     async onInsert(req, res) {
         try {
-            await Services.insert(req.body);
+            await Services.insert(req.body, req.file);
             res.status(201).json("success");
         } catch (err) {
             res.status(400).json(err);

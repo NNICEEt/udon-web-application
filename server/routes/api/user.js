@@ -1,14 +1,10 @@
 const router = require('express').Router();
 const controllers = require('../../controllers/user.controller');
 const { auth } = require('../auth');
-
-router.get('/welcome', auth, (req, res) => {
-    const user = req.user;
-    res.json(user);
-});
+const { userUpload } = require('../uploadImage');
 
 router.get('/', auth, controllers.onGetUserInfo);
-router.put('/', auth, controllers.onUpdate);
+router.put('/', auth, userUpload, controllers.onUpdate);
 router.put('/password', auth, controllers.onUpdatePassword);
 router.delete('/delete', auth, controllers.onDelete);
 

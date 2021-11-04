@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const uniqueValidator = require('mongoose-unique-validator');
-const jwt = require('jsonwebtoken');
 const config = require('../configs/app.config');
 
 const userSchema = new mongoose.Schema(
@@ -61,7 +60,8 @@ const userSchema = new mongoose.Schema(
             }
         },
         photoURL: {
-            type: String
+            type: String,
+            default: ''
         },
         isAdmin: {
             type: Boolean,

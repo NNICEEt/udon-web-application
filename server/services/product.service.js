@@ -3,10 +3,11 @@ const config = require('../configs/app.config');
 
 const methods = {
 
-    insert(data) {
+    insert(data, file) {
         return new Promise(async (resolve, reject) => {
             try {
-                const productObj = new Product(data);
+                if(file == null) reject(new Error('image is required'))
+                const productObj = new Product({...data, image: `${__basedir}/users/${file.filename}` });
                 await productObj.save();
                 resolve();
             } catch (err) {
@@ -27,7 +28,7 @@ const methods = {
             }
         });
     },
-    //test
+
     delete(productId) {
         return new Promise(async (resolve, reject) => {
             try {

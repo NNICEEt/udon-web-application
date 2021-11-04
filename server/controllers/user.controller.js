@@ -50,7 +50,7 @@ const methods = {
 
     async onUpdate(req, res) {
         try {
-            const result = await Services.update(req.user.id, req.body);
+            const result = await Services.update(req.user.id, req.body, req.file);
             res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err.message);
