@@ -13,10 +13,10 @@ const orderSchema = new mongoose.Schema(
         ],
         totalPrice: { type: Number, required: true },
         address: {
-            mainAddress: { type: String },
-            district: { type: String },
-            province: { type: String },
-            postcode: { type: String }
+            mainAddress: { type: String, required: true },
+            district: { type: String, required: true },
+            province: { type: String, required: true },
+            postcode: { type: String, required: true }
         },
         status: { type: String, default: "กำลังดำเนินการ" },
         createdAt: { type: Date, default: config.timezone },
