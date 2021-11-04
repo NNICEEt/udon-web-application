@@ -5,6 +5,7 @@ import {
   faUserSecret,
   faArchive,
 } from '@fortawesome/free-solid-svg-icons';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,6 +26,8 @@ export class EditProfileComponent implements OnInit {
   //Assign
   title = 'fileUpload';
   images: any;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  phone = new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{9}')]);
 
   constructor(private http: HttpClient) {}
 
@@ -90,5 +93,11 @@ export class EditProfileComponent implements OnInit {
       },
     };
     console.log(Users);
+  }
+  getErrorMessage() {
+    if (this.email, this.phone.hasError('required')) {
+      return 'กรุณากรอกข้อมูลให้ครบ';
+    }
+    return '';
   }
 }

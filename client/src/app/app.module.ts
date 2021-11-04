@@ -21,7 +21,9 @@ import { ContactComponent } from './contact/contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ReactiveFormsModule} from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 
@@ -49,7 +51,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatCardModule,
     HttpClientModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
