@@ -1,0 +1,11 @@
+<div class="container">
+    <app-navbar></app-navbar>
+    <app-banner></app-banner>
+    <div class="profile-section">
+      <app-profile-panel (onSelect)="onChange($event)"></app-profile-panel>
+      <app-information-box *ngIf="page == 1"></app-information-box>
+      <app-secure-box *ngIf="page == 2"></app-secure-box>
+      <app-myorder-box *ngIf="page == 3"></app-myorder-box>
+    </div>
+    <app-contact></app-contact>
+</div>

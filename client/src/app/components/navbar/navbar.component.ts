@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faSearch, faShoppingCart, faBars  } from '@fortawesome/free-solid-svg-icons';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -30,6 +30,12 @@ export class NavbarComponent implements OnInit {
   form = new FormControl('', [Validators.required]);
 
   imgUrl = '../../assets/images/logo.png';
+
+  @Output() onSelect2 = new EventEmitter;
+
+  onSelectHomeIcon() {
+    this.onSelect2.emit(true);
+  }
 
 
   constructor() { }

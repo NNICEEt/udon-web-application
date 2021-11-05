@@ -1,0 +1,24 @@
+.home {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  app-contact {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  app-panel {
+    display: inline-block;
+  }
+
+  .sub-main {
+    padding: 30px;
+    padding-bottom: 200px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;    
+    
+  }
+}

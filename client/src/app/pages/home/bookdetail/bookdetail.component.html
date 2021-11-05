@@ -1,0 +1,41 @@
+<div class="page-detail">
+    <div class="box-header">
+      <div class="head">BOOK DETAIL</div>
+      <span class="sub-header">(รายละเอียดของหนังสือ)</span>
+    </div>
+    <div class="bookdetail-section">
+      <div class="leftpicture">
+        <img [src]="imgUrl" (error)="(doSomethingOnError)" height="300" />
+      </div>
+      <div class="book-information">
+        <div class="book-tags">นิยาย</div>
+        <div class="bookname-holder">
+          <div class="book-name">เกิดชาตินี้พี่ต้องเทพ เล่ม 12</div>
+        </div>
+        <div class="book-price">279 บาท</div>
+        <div class="amount-section">
+          <div class="inputstepper">
+            <app-counter></app-counter>
+          </div>
+          <button
+            mat-flat-button
+            class="addcart"
+            color="primary"
+            (click) = "onSelectAddCart()"
+
+          >
+            เพิ่ม
+          </button>
+        </div>
+        <div class="abstract">
+          <div class="head">เรื่องย่อ</div>
+          <div class="sub">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

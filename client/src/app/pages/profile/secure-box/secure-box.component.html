@@ -1,0 +1,36 @@
+<div class="boxs">
+    <div class="head">ความปลอดภัย</div>
+    <div class="sub-header">แก้ไขรหัสผ่าน</div>
+    <form class="form">
+      <tr>
+        <mat-form-field name="old_pass" appearance="fill">
+          <mat-label>รหัสผ่านเก่า</mat-label>
+          <input matInput type="password" maxlength="16" minlength="8" [formControl]="formOldPassword" [(ngModel)]="old_pass" required />
+          <mat-error *ngIf="formOldPassword.invalid">{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="formOldPassword.errors?.minlength">{{ getLengthError() }} </mat-error>
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field name="new_pass" appearance="fill">
+          <mat-label>รหัสผ่านเก่า</mat-label>
+          <input matInput type="password" maxlength="16" minlength="8" [formControl]="formNewPassword" [(ngModel)]="new_pass" required />
+          <mat-error *ngIf="formNewPassword.invalid">{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="formNewPassword.errors?.minlength">{{ getLengthError() }} </mat-error>
+        </mat-form-field>
+      </tr>
+      <mat-form-field name="confirm_pass" appearance="fill">
+        <mat-label>รหัสผ่านเก่า</mat-label>
+        <input matInput type="password" maxlength="16" minlength="8" [formControl]="formNewPassword" [(ngModel)]="confirm_pass" required />
+        <mat-error *ngIf="formNewPassword.invalid"> hh </mat-error>
+      </mat-form-field>
+    </form>
+    <button
+      mat-flat-button
+      class="save-button"
+      color="warn"
+      style="width: 100px; font-size: 20px"
+      [disabled]="formOldPassword.invalid || formNewPassword.invalid"
+    >
+      บันทึก
+    </button>
+</div>

@@ -1,0 +1,31 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+* {
+  font-family: "Kanit", sans-serif;
+}
+
+.container {
+ 
+  aside {
+    strong {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 15px;
+    }
+    .boxin {
+      width: 180px;
+      padding: 15px;
+      border: $light-grey 1px solid;
+      border-radius: 10px;
+      span {
+        color: $light-grey;
+        cursor: pointer;
+        &:hover {
+          color: $margenta;
+          transition: 0.2s;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<div class="boxs">
+  <div class="head">แก้ไขรายละเอียดบัญชี</div>
+  <div class="upload-section">
+    <div class="user-pic">
+      <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" />
+    </div>
+    <div class="updesc">
+      <input
+        type="file"
+        name="image"
+        multiple
+        (change)="selectImage($event)"
+        style="display: none"
+        #fileInput
+      />
+      <button mat-stroked-button class="pick" (click)="fileInput.click()">
+        เลือกไฟล์
+      </button>
+      <button mat-stroked-button class="upload" (click)="onSubmit()">
+        อัพโหลดไฟล์
+      </button>
+      <div class="description">Acceptable formats: jpg, png only</div>
+    </div>
+  </div>
+  <div class="sub-header">รายละเอียดบัญชี</div>
+  <form class="form">
+    <table class="group1" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field name="fName" appearance="fill">
+            <mat-label>ชื่อจริง</mat-label>
+            <input matInput type="text" readonly="readonly" [value]="fName"/>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field name="lName" appearance="fill">
+            <mat-label>นามสกุล</mat-label>
+            <input matInput type="text" readonly="readonly" [value]="lName"/>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="group2" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="email" appearance="fill">
+            <mat-label>อีเมลล์</mat-label>
+            <input matInput type="email" [formControl]="formEmail" [(ngModel)]="email" required />
+            <mat-error *ngIf="formEmail.invalid">{{ getErrorMessage() }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field name="phoneno" appearance="fill">
+            <mat-label>เบอร์โทร</mat-label>
+            <input matInput mask="000-000-0000" type="tel" maxlength="13" [formControl]="formPhone" [(ngModel)]="phoneno" placeholder="09x-xxx-xxxx" required />
+            <mat-error *ngIf="formPhone.invalid">{{ getErrorMessage() }}</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <div class="sub-header">ที่อยู่</div>
+    <p>
+      <mat-form-field class="address" appearance="fill">
+        <mat-label>ที่อยู่หลัก</mat-label>
+        <input matInput type="text" [formControl]="form" [(ngModel)]="main_address" required/>
+        <mat-error *ngIf="form.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <table class="group3" cellspacing="0">
+      <td>
+        <mat-form-field name="district" appearance="fill">
+          <mat-label>อำเภอ</mat-label>
+          <input matInput type="text" [formControl]="form" [(ngModel)]="district" required/>
+          <mat-error *ngIf="form.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field name="province" appearance="fill">
+          <mat-label>จังหวัด</mat-label>
+          <input matInput type="text" [formControl]="form" [(ngModel)]="province" required/>
+          <mat-error *ngIf="form.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </td>
+      <tr>
+        <mat-form-field name="postcode" appearance="fill">
+          <mat-label>รหัสไปรษณีย์</mat-label>
+          <mat-hint align="end"> {{ postcode.length }} / 5</mat-hint>
+          <input matInput type="text" maxlength="5" [formControl]="formPostCode" placeholder="Ex.11111" [(ngModel)]="postcode" required/>
+          <mat-error *ngIf="formPostCode.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </tr>
+    </table>
+  </form>
+  <button
+    mat-flat-button
+    class="save-button"
+    color="warn"
+    style="width: 100px; font-size: 20px"
+    [disabled]="form.invalid || formEmail.invalid || formPhone.invalid || formPostCode.invalid"
+  >
+    บันทึก
+  </button>
+  </div>

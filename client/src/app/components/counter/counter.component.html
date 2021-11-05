@@ -1,0 +1,14 @@
+<div class="inputstepper">
+  <button class="decrease" (click)="decrease()" [style.height]="counterHeight" [style.width]="btnWidth">-
+  </button>
+  <input
+    type="text"
+    [value]="num"
+    readonly="readonly"
+    [style.height]="counterHeight"
+    [style.width]="inputWidth"
+    [style.fontSize]="fontSize"
+  />
+  <button class="increase" (click)="increase()" [style.height]="counterHeight" [style.width]="btnWidth">+
+  </button>
+</div>

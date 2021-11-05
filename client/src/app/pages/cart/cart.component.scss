@@ -1,7 +1,15 @@
-.Books-Detail {
+.container {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+
+    app-navbar{
+        position: fixed;
+    }
+
+    main{
+        margin-top: 5rem;
+    }
 
     app-contact {
         width: 100%;

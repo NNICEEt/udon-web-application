@@ -1,0 +1,27 @@
+<div class="container">
+    <strong>เมนูของผู้ใช้</strong>
+    <div class="boxin">
+      <ul>
+        <li>
+          <span class="detail" (click)="onSelectInform()" 
+            ><fa-icon class="fa" [icon]="faAddressBook"></fa-icon
+            >แก้ไขรายละเอียดบัญชี</span
+          >
+        </li>
+        <mat-divider></mat-divider>
+        <li>
+          <span class="secure" (click)="onSelectSecure()"
+            ><fa-icon class="fa" [icon]="faUserSecret"></fa-icon
+            >ความปลอดภัย</span
+          >
+        </li>
+        <mat-divider></mat-divider>
+        <li>
+          <span class="order" (click)="onSelectOrder()"
+            ><fa-icon class="fa" [icon]="faArchive"></fa-icon
+            >จัดการคำสั่งซื้อ</span
+          >
+        </li>
+      </ul>
+    </div>
+</div>

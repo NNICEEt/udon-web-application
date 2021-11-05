@@ -1,0 +1,36 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+* {
+    font-family: "Kanit", sans-serif;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.boxs {
+    padding: 2rem;
+    border: $light-grey 1px solid;
+    border-radius: 10px;
+    min-width: 800px;
+    min-height: 925px;
+    .head {
+        color: $face-blue;
+        font-size: 24px;
+        margin-bottom: 1rem;
+      }
+      .sub-header {
+        color: $light-grey;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      .mat-form-field {
+        font-size: 18px;
+        width: 350px;
+        margin-right: 15px;
+        &.address {
+          width: 715px;
+        }
+      }
+}

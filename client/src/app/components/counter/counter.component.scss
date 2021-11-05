@@ -1,0 +1,21 @@
+.inputstepper {
+  display: flex;
+  margin: 0;
+  input {
+    border: #707070 1px solid;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-align: center;
+    cursor: default;
+  }
+  .decrease,
+  .increase {
+    // border: #707070 1px solid;
+    border: none;
+    align-self: center;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+  }
+}

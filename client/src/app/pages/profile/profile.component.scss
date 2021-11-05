@@ -1,0 +1,29 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+* {
+  font-family: "Kanit", sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    .profile-section {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0rem;
+    }
+    app-profile-panel {
+      margin-right: 1rem;
+    }
+    app-contact {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+}

@@ -1,0 +1,36 @@
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+.container {
+  strong {
+  font-size: 24px;
+  display: block;
+  padding: 10px;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  cursor: default;
+  }
+  .boxin {
+    padding: 20px;
+    border: $light-grey 1px solid;
+    border-radius: 10px;
+    width: auto;
+    span {
+      font-size: 17px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      &:hover {
+        color: $margenta;
+        transition: 0.2s;
+      }
+    }
+    .mat-divider {
+      margin: 10px;
+      width: 100%;
+    }
+    .fa {
+      margin-right: 10px;
+    }
+  }
+}
