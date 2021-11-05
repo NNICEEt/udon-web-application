@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CategoryComponent } from './category/category.component';
-import { BannerComponent } from './banner/banner.component';
-import { BookdetailComponent } from './bookdetail/bookdetail.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { CartComponent } from './cart/cart.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CategoryComponent } from './components/category/category.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { BookdetailComponent } from './components/bookdetail/bookdetail.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { CartComponent } from './components/cart/cart.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,11 +17,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './components/contact/contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ReactiveFormsModule} from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
 
@@ -49,7 +51,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatCardModule,
     HttpClientModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,20 +21,20 @@
       <mat-card class="card" *ngFor="let product of booklist">
         <img
           mat-card-image
-          src="{{ product.imgUrl }}"
+          src="../../assets/images/Book1.jfif"
           (error)="(doSomethingOnError)"
-          alt="{{ product.name }}"
+          alt="{{ product.title }}"
         />
         <div class="bottom">
           <mat-card-content>
             <p
               class="book-name"
-              title="{{ product.name }}"
+              title="{{ product.title }}"
               routerLink="Bookdetail"
               routerLinkActive="active"
               (click)="hide()"
             >
-              {{ product.name }}
+            [{{ product.categories }}] {{ product.title }}
             </p>
             <div class="price">{{ product.price }} บาท</div>
           </mat-card-content>
