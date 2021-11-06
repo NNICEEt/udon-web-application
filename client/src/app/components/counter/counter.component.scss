@@ -2,7 +2,7 @@
   display: flex;
   margin: 0;
   input {
-    border: #707070 1px solid;
+    border: #707070 2px solid;
     padding: 0;
     outline: none;
     border: none;
@@ -11,7 +11,7 @@
   }
   .decrease,
   .increase {
-    // border: #707070 1px solid;
+    border: #707070 1px solid;
     border: none;
     align-self: center;
     cursor: pointer;

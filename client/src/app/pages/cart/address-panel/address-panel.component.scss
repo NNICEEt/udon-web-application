@@ -1,0 +1,19 @@
+@use "../../../../styles.scss" as global;
+
+.container {
+  padding: 1rem 2rem;
+  border: global.$light-grey 1px solid;
+  border-radius: 0.5rem;
+  h1 {
+    color: global.$face-blue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 1rem 1rem;
+  }
+  .box {
+    background-color: #ddd;
+    border: global.$light-grey 1px solid;
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+  }
+}
