@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import { FormGroup, AbstractControl, ValidatorFn } from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service'
 
 @Component({
   selector: 'app-secure-box',
@@ -8,25 +8,32 @@ import { FormGroup, AbstractControl, ValidatorFn } from '@angular/forms';
   styleUrls: ['./secure-box.component.scss']
 })
 export class SecureBoxComponent implements OnInit {
-  formOldPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]);
-  formNewPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]);
-  formConfirmPass = new FormControl('', [Validators.required]);
   old_pass:String ='';
   new_pass:String ='';
   confirm_pass:String = '';
-  constructor() { }
+  public secureForm!: FormGroup;
+  constructor(private fb: FormBuilder, private customValidator: CustomvalidationService) { }
 
   ngOnInit(): void {
+    this.secureForm = this.fb.group ({
+      formOld: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
+      formNew: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
+      formConfirm: new FormControl('', [Validators.required])
+    },{
+      validator: this.customValidator.MatchPassword('formNew', 'formConfirm')
+    });
   }
-  getErrorMessage() {
-    if (this.formOldPassword, this.formNewPassword.hasError('required')) {
-      return 'กรอกข้อมูลให้ครบถ้วน';
-    }
-    return '';
+  get secureCt() {
+    return this.secureForm.controls;
   }
   getLengthError() {
     return 'รหัสผ่านต้องมีความยาวตั้งแต่ 8-16 ตัวอักษรขึ้นไป'
   }
-
+  misMatchError() {
+    return 'รหัสผ่านไม่ตรงกัน'
+  }
+  getRequiredError() {
+    return 'กรุณากรอกข้อมูล'
+  }
 }
 

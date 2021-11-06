@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,7 +47,6 @@ import { BookdetailComponent } from './pages/home/bookdetail/bookdetail.componen
     // CategoryComponent,
     // ContactComponent,
     // HomeComponent,
-    // EditProfileComponent,
     // CartComponent,
     // ProfileComponent
     AppComponent,

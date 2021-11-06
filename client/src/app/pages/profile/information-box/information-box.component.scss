@@ -14,7 +14,10 @@ $mint: #00ff90;
     border: $light-grey 1px solid;
     border-radius: 10px;
     min-width: 800px;
-    min-height: 925px;
+    min-height: 950px;
+    .form {
+      margin-bottom: 5px;
+    }
     .head {
         color: $face-blue;
         font-size: 24px;
@@ -25,12 +28,9 @@ $mint: #00ff90;
         font-size: 20px;
         margin-bottom: 15px;
       }
-      .form {
-        margin-bottom: 10px;
-      }
       .upload-section {
         display: flex;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         .updesc {
           align-self: flex-end;
           display: block;
@@ -59,6 +59,12 @@ $mint: #00ff90;
         margin-right: 15px;
         &.address {
           width: 715px;
+        }
+      }
+      .save-section {
+        display: flex;
+        .warn {
+          margin-left: 5px;
         }
       }
 }

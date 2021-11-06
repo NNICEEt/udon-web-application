@@ -14,7 +14,10 @@ $mint: #00ff90;
     border: $light-grey 1px solid;
     border-radius: 10px;
     min-width: 800px;
-    min-height: 925px;
+    min-height: 950px;
+    .form {
+      margin-bottom: 0.8rem;
+    }
     .head {
         color: $face-blue;
         font-size: 24px;
