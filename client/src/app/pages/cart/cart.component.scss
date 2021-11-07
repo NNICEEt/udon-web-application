@@ -1,14 +1,24 @@
+@use '../../../styles.scss';
+
 .container {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
-
     app-navbar{
         position: fixed;
     }
 
     main{
-        margin-top: 5rem;
+        margin: 0 auto;
+        margin-top: 7rem;
+        padding: 1rem;
+        max-width: 1000px;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding-bottom: 11rem;
     }
 
     app-contact {

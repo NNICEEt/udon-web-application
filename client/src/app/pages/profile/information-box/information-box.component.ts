@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service'
 
 @Component({
   selector: 'app-information-box',
@@ -12,11 +13,7 @@ export class InformationBoxComponent implements OnInit {
   //Assign
   title = 'fileUpload';
   images: any;
-  form = new FormControl('', [Validators.required]);
-  formPhone = new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{9}')]);
-  formPostCode = new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{4}')]);
-  formEmail = new FormControl('', [Validators.required, Validators.email]);
-
+  public informationForm!: FormGroup;
   //User Information Form
   fName:string= 'พีรยุทธ';
   lName:String= 'บางศรี';
@@ -27,9 +24,22 @@ export class InformationBoxComponent implements OnInit {
   province:String= '';
   postcode:String= '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder, private customValidator: CustomvalidationService) { }
 
   ngOnInit(): void {
+    this.informationForm = this.fb.group ({
+      formEmail: new FormControl('', [Validators.required, Validators.email]),
+      formPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{9}')]),
+      formAddress: new FormControl('', [Validators.required]),
+      formDistrict: new FormControl('', [Validators.required]),
+      formProvince: new FormControl('', [Validators.required]),
+      formPostCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{4}')])
+    },{
+      validator: this.customValidator.MatchPassword('formDistrict', 'formProvince')
+    });
+  }
+  get informCt() {
+    return this.informationForm.controls;
   }
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/userpic.png';
@@ -69,23 +79,14 @@ export class InformationBoxComponent implements OnInit {
     onSubmit() {
       const formData = new FormData();
       formData.append('file', this.images);
-  
+
       //upload image api
       this.http.post<any>('http://localhost:3000/file', formData).subscribe(
         (res) => console.log(res),
         (err) => console.log(err)
       );
     }
-    getErrorMessage() {
-      if (this.form.hasError('required')) {
-        return 'กรอกข้อมูลให้ครบถ้วน';
-      }
-      return '';
-    }
-    getError() {
-      if (this.formEmail, this.formPhone, this.formPostCode.hasError('required')) {
-        return 'ตรวจสอบรูปแบบของข้อมูล';
-      }
-      return '';
+    getRequiredError() {
+      return 'กรุณากรอกข้อมูล'
     }
 }

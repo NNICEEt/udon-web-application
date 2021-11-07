@@ -114,6 +114,8 @@ nav {
       margin-top: 10px;
       .btn {
         width: 100px;
+        font-size: 1rem;
+        width: auto;
       }
     }
     .img {
@@ -121,8 +123,9 @@ nav {
       align-self: center;
     }
     .form {
-      margin-bottom: 5px;
+      padding: 1rem;
       .mat-form-field {
+        font-size: 1rem;
         margin-bottom: 5px;
       }
     }
@@ -152,15 +155,22 @@ nav {
       margin-top: 10px;
       .btn {
         width: 100px;
+        font-size: 1rem;
+        width: auto;
       }
     }
     .img {
       margin-bottom: 1rem;
       align-self: center;
     }
+    span {
+      color: red;
+      align-self: center;
+    }
     .form {
-      margin-bottom: 5px;
+      padding: 1rem;
       .mat-form-field {
+        font-size: 1rem;
         margin-bottom: 5px;
       }
     }
