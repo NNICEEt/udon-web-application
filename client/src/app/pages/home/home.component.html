@@ -1,6 +1,7 @@
 <div class="home">
   <app-navbar
-  (onSelect2)="onChange($event)" ></app-navbar>
+  (onSelect2)="onChange($event)"
+  [islogin]="isLogin"></app-navbar>
   <main>
     <app-banner></app-banner>
     <div class="sub-main">

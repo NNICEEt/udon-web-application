@@ -12,34 +12,39 @@ export class AuthService {
 
   //Register
   register(data: object) {
-    const APL_URL = `${this.REST_API}/register`;
+    const API_URL = `${this.REST_API}/register`;
     return this.httpClient
-      .post(APL_URL, data, { headers: this.httpHeaders })
+      .post(API_URL, data, { headers: this.httpHeaders })
       .subscribe((res) => res);
   }
 
   //Login
   login(data: object) {
-    const APL_URL = `${this.REST_API}/login`;
+    const API_URL = `${this.REST_API}/login`;
     return this.httpClient
-      .post(APL_URL, data, { headers: this.httpHeaders })
+      .post(API_URL, data, { headers: this.httpHeaders })
       .subscribe((res) => res);
   }
 
   //Login (admin)
   loginAdmin(data: object) {
-    const APL_URL = `${this.REST_API}/login-admin`;
+    const API_URL = `${this.REST_API}/login-admin`;
     return this.httpClient
-      .post(APL_URL, data, { headers: this.httpHeaders })
+      .post(API_URL, data, { headers: this.httpHeaders })
       .subscribe((res) => res);
   }
 
   //Refrest AccessToken
   refrestAccessToken(token: string) {
-    const APL_URL = `${this.REST_API}/login-admin`;
+    const API_URL = `${this.REST_API}/login-admin`;
     return this.httpClient
-      .post(APL_URL, { token }, { headers: this.httpHeaders })
+      .post(API_URL, { token }, { headers: this.httpHeaders })
       .subscribe((res) => res);
   }
-  
+
+  //Check Logging in
+  isLogin() {
+    const API_URL = this.REST_API;
+    return this.httpClient.get(API_URL);
+  }
 }
