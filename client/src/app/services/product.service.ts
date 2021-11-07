@@ -9,13 +9,16 @@ export class ProductService {
 
   pageBookList: string = 'false';
 
+  limit:number = 12;
+  page:number = 1;
+
   REST_API: string = 'http://localhost:3000/api/v1/products/';
 
   constructor(private httpClient: HttpClient) { }
 
   //homeBook
   homeBook(){
-    return this.httpClient.get(this.REST_API)
+    return this.httpClient.get(this.REST_API+'?page='+this.page+'&limit='+this.limit+'&category=')
   }
   //bookDetail
   bookDetail(getProductId: String){
