@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'home/book/:productId', component: HomeComponent},
   {path: 'cart', component: CartComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: RegistPageComponent}
+  {path: 'home/login', component: LoginPageComponent},
+  {path: 'home/register', component: RegistPageComponent}
 
 ];
 

@@ -1,8 +1,9 @@
+@use '../../../styles.scss' as global;
 .login-page {
   min-width: 100vh;
   min-height: 100vh;
   display: flex;
-  background: linear-gradient(220deg, #3f51b5, #ff4081);
+  background: linear-gradient(220deg, global.$face-blue, global.$margenta);
   background-size: 400% 400%;
   -webkit-animation: login-page 10s ease infinite;
   -moz-animation: login-page 10s ease infinite;
