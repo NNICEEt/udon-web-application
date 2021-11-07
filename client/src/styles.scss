@@ -2,6 +2,17 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
+$margenta: #ff4081;
+$light-grey: #707070;
+$face-blue: #3f51b5;
+$mint: #00ff90;
+
+*{
+    box-sizing: border-box;
+	font-family: 'Kanit', sans-serif;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -48,4 +59,4 @@ table {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }

@@ -1,12 +1,24 @@
 const Services = require('../services/user.service');
 
+const handleErrors = (err) => {
+    let errors = {
+        username: '',
+        email: '',
+        phone: ''
+    }
+    Object.values(err.errors).forEach(({properties}) => {
+        errors[properties.path] = properties.value;
+    });
+    return errors;
+}
+
 const methods = {
     async onRegister(req, res) {
         try {
             const result = await Services.insert(req.body);
             res.status(201).json(result);
         } catch (err) {
-            res.status(400).json(err);
+            res.status(400).json({result:false, errors:handleErrors(err)});
         }
     },
 

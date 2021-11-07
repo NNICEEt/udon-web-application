@@ -1,61 +1,42 @@
 <div class="container">
-  <h1>ตะกร้าสินค้า</h1>
-  <table mat-table [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container matColumnDef="imgURL">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <img [src]="element.imgURL" height="100" />
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>ชื่อสินค้า</th>
-      <td mat-cell *matCellDef="let element"><span>{{ element.title }}</span></td>
-    </ng-container>
-
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>ราคา</th>
-      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="quantity">
-      <th mat-header-cell *matHeaderCellDef>จำนวน</th>
-      <td mat-cell *matCellDef="let element">
-        <app-counter [num]="element.quantity"></app-counter>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="total">
-      <th mat-header-cell *matHeaderCellDef>รวม</th>
-      <td mat-cell *matCellDef="let element">{{ element.total }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="btn">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <fa-icon class="faTrash" [icon]="faTrash"></fa-icon>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <!-- <table>
-    <tr>
-      <th class="tltle-lbl">ชื่อสินค้า</th>
-      <th class="price-lbl">ราคา</th>
-      <th class="amount-lbl">จำนวน</th>
-      <th class="total-lbl">รวม</th>
-      <th class="btn-lbl"></th>
-    </tr>
-    <tr>
-      <td><img src="../../../../../assets/images/Book1.jfif" alt="" [height]="100"/></td>
-      <td><span class="title">[นิยาย] เกิดชาตินี้พี่ต้องเทพ เล่ม 12</span></td>
-      <td><span class="price">279 บาท</span></td>
-      <td><app-counter></app-counter></td>
-      <td><fa-icon class="faTrash" [icon]="faTrash"></fa-icon></td>
-    </tr>
-  </table> -->
+  <div class="header">
+    <span class="img-lbl">รูปสินค้า</span>
+    <span class="tltle-lbl">ชื่อสินค้า</span>
+    <span class="price-lbl">ราคา</span>
+    <span class="amount-lbl">จำนวน</span>
+    <span class="total-lbl">รวม</span>
+    <span class="btn-lbl"></span>
+  </div>
+  <div class="items-cart">
+    <div class="item">
+      <img
+        src="../../../../../assets/images/Book1.jfif"
+        alt=""
+        [height]="100"
+      />
+      <span class="title">[นิยาย] เกิดชาตินี้พี่ต้องเทพ เล่ม 12</span>
+      <span class="price">279 บาท</span>
+      <app-counter [inputWidth]="'40px'" [counterHeight]="'30px'" [fontSize]="'14px'"></app-counter>
+      <span class="price">279 บาท</span>
+      <fa-icon class="faTrash" [icon]="faTrash"></fa-icon>
+    </div>
+  </div>
 </div>
+
+<!-- <tbody>
+      <tr>
+        <td>
+          <img
+            src="../../../../../assets/images/Book1.jfif"
+            alt=""
+            [height]="100"
+          />
+        </td>
+        <td>
+          <span class="title">[นิยาย] เกิดชาตินี้พี่ต้องเทพ เล่ม 12</span>
+        </td>
+        <td><span class="price">279 บาท</span></td>
+        <td><app-counter></app-counter></td>
+        <td><fa-icon class="faTrash" [icon]="faTrash"></fa-icon></td>
+      </tr>
+    </tbody> -->

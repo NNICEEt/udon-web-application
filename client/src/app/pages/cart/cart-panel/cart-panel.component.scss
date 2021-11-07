@@ -1,53 +1,25 @@
-$light-grey: #707070;
-$face-blue: #3f51b5;
+@use "../../../../styles.scss" as global;
 
 .container {
-  display: flex;
-  margin: 1rem 0rem;
-  justify-content: center;
-  .cart-box {
-    display: flex;
-    padding: 2rem;
-    max-width: 1200px;
-    min-width: 1000px;
-    max-height: 1000px;
-    // min-height: 800px;
-    border: $light-grey 1px solid;
-    border-radius: 10px;
-    .groups {
-      display: flex;
-      .header {
-        color: $face-blue;
-        height: 24px;
-        font-size: 24px;
-        margin-bottom: 1rem;
-      }
-      &.cart {
-        margin-right: 5px;
-        display: block;
-        .inside-box {
-          display: flex;
-          background: $face-blue;
-          padding: 1rem;
-          border: $light-grey 1px solid;
-          .menu {
-            text-align: center;
-            padding: 0 3rem;
-            font-size: 1rem;
-            color: white;
-            &.name {
-              padding: 0 9.5rem;
-            }
-          }
-        }
-        .button-group {
-          display: flex;
-          margin-top: 15px;
-          .btn {
-            margin-right: 5px;
-          }
-        }
-      }
+  border: global.$light-grey 1px solid;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  .cart-group {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 2fr 0.9fr;
+    grid-gap: 1rem;
+    justify-items: stretch;
+    strong{
+      margin-left: 1rem;
+      color: global.$face-blue;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+  .button-group {
+    button{
+      margin-right: 1rem;
     }
   }
 }

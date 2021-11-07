@@ -1,24 +1,26 @@
 <div class="container">
-    <div class="groups cart">
-      <app-product-panel></app-product-panel>
-      <app-summary-panel></app-summary-panel>
-      <div class="button-group">
-        <button mat-flat-button class="btn contipay" color="primary">
-          <fa-icon
-            class="faShoppingCart"
-            [icon]="faShoppingCart"
-            style="margin-right: 5px"
-          ></fa-icon
-          >ซื้อของต่อ
-        </button>
-        <button mat-flat-button class="btn clear" color="warn">
-          <fa-icon
-            class="faTrash"
-            [icon]="faTrash"
-            style="margin-right: 5px"
-          ></fa-icon
-          >ล้างตะกร้า
-        </button>
-      </div>
-    </div>
+  <div class="cart-group">
+    <strong class="cart-lbl">ตะกร้าสินค้า</strong>
+    <strong class="summary-lbl">สรุป</strong>
+    <app-product-panel></app-product-panel>
+    <app-summary-panel></app-summary-panel>
+  </div>
+  <div class="button-group">
+    <button mat-flat-button class="btn contipay" color="primary">
+      <fa-icon
+        class="faShoppingCart"
+        [icon]="faShoppingCart"
+        style="margin-right: 5px"
+      ></fa-icon
+      >ซื้อของต่อ
+    </button>
+    <button mat-flat-button class="btn clear" color="warn">
+      <fa-icon
+        class="faTrash"
+        [icon]="faTrash"
+        style="margin-right: 5px"
+      ></fa-icon
+      >ล้างตะกร้า
+    </button>
+  </div>
 </div>

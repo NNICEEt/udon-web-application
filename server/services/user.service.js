@@ -23,7 +23,7 @@ const methods = {
             try {
                 const userObj = new User(data);
                 await userObj.save();
-                resolve({ result: "Created" });
+                resolve({ result: true });
             } catch (err) {
                 reject(err);
             }
@@ -44,10 +44,6 @@ const methods = {
                 }
 
                 await userObj.updateOne({ ...dataToUpdate });
-                // const updatedUser = await User.findByIdAndUpdate(userId, {
-                //     $set: { ...data, updatedAt: config.timezone }
-                // }, { new: true });
-                // const { password, ...updatedOther } = updatedUser._doc;
                 resolve();
             } catch (err) {
                 reject(new Error('id: not found'));
@@ -96,14 +92,14 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
                 const userData = await User.findOne({ username: data.username });
-                if (!userData) reject(new Error('incorrect username'));
-                if (!await bcrypt.compare(data.password, userData.password)) reject(new Error('incorrect password'));
+                if (!userData) reject({ result: false, error: 'ไม่พบ username' });
+                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password ไม่ถูกต้อง' });
                 const { _id, username, isAdmin } = userData;
                 const user = { id: _id, isAdmin };
                 const accessToken = genAccessToken(user);
                 const refreshToken = genRefreshToken(user);
                 refreshTokens.push(refreshToken);
-                resolve({ accessToken, refreshToken });
+                resolve({ result: true, token: { accessToken, refreshToken } });
             } catch (err) {
                 reject(err);
             }
@@ -114,15 +110,15 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
                 const userData = await User.findOne({ username: data.username });
-                if (!userData) reject(new Error('incorrect username'));
-                if (!await bcrypt.compare(data.password, userData.password)) reject(new Error('incorrect password'));
+                if (!userData) reject({ result: false, error: 'ไม่พบ username' });
+                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password ไม่ถูกต้อง' });
                 const { _id, username, isAdmin } = userData;
-                if (!isAdmin) reject(new Error('admin: permission error!!!'))
+                if (!isAdmin) reject({ result: false, error: 'สำหรับ Admin เท่านั้น' })
                 const user = { id: _id, isAdmin };
                 const accessToken = genAccessToken(user);
                 const refreshToken = genRefreshToken(user);
                 refreshTokens.push(refreshToken);
-                resolve({ accessToken, refreshToken });
+                resolve({ result: true, token: { accessToken, refreshToken } });
             } catch (err) {
                 reject(err);
             }
