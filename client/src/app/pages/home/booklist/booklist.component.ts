@@ -14,14 +14,21 @@ export class BooklistComponent implements OnInit{
 
   @Output() onSelect1 = new EventEmitter();
   
+  
   counter: number = 1;
   booklist: any = [];
+  booklist2: any = [];
   constructor(private service: ProductService) {}
 
   ngOnInit(): void {
+    this.service.getNumberOfPages().subscribe((response) => {
+      this.booklist2 = response;
+      this.length = this.booklist2.length;
+      console.log(this.booklist2);
+    });
     this.service.homeBook().subscribe((response) => {
       this.booklist = response;
-      console.log(this.booklist);
+      // console.log(this.booklist);
     });
   }
 
@@ -39,9 +46,9 @@ export class BooklistComponent implements OnInit{
   }
 
   // MatPaginator Inputs
-  length = 100;
+  length!: number;
   pageSize = 10;
-  pageSizeOptions: number[] = [12,16,20];
+  pageSizeOptions: number[] = [10,20,25];
 
   // MatPaginator Output
   // MatPaginator Output

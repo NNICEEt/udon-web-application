@@ -43,6 +43,8 @@ $face-blue: #3f51b5;
           margin-bottom: 15px;
         }
         .bookname-holder {
+          align-items: center;
+          display: flex;
           height: 35px;
           width: 100%;
           background-color: red;

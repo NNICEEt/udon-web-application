@@ -6,8 +6,7 @@
     </div>
     <div class="card-section">
       <mat-card class="card" *ngFor="let product of booklist">
-        <img mat-card-image src="../../assets/images/Book1.jfif" (error)="(doSomethingOnError)"
-          alt="{{ product.title }}" />
+        <img mat-card-image src="{{ product.image}}" (error)="(doSomethingOnError)" alt="{{ product.title }}" />
         <div class="bottom">
           <mat-card-content>
             <p class="book-name" title="{{ product.title }}" routerLink="Bookdetail" routerLinkActive="active"
@@ -28,9 +27,11 @@
       <div class="page-ginate">
         <mat-paginator *ngIf="pageEvent" class="pginator" [length]="length" [pageSizeOptions]="pageSizeOptions"
           (page)="pageEvent = $event" aria-label="Select page"
-          (page)="getValueService(pageEvent.pageSize,pageEvent.pageIndex+1)" (page)="ngOnInit()">
+          (page)="getValueService(pageEvent.pageSize,pageEvent.pageIndex+1)"
+          (page)="ngOnInit()"
+           >
         </mat-paginator>
-
+        
 
       </div>
     </div>
