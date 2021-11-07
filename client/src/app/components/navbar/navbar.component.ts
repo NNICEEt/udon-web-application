@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faSearch, faShoppingCart, faBars  } from '@fortawesome/free-solid-svg-icons';
-import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service'
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +7,9 @@ import { CustomvalidationService } from 'src/app/services/customvalidation.servi
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private fb: FormBuilder, private customValidator: CustomvalidationService) { }
+  constructor() { }
 
   ngOnInit(): void {
-
   }
 
   faSearch = faSearch;
@@ -24,7 +21,6 @@ export class NavbarComponent implements OnInit {
   doSomethingOnError(event:any) {
     event.target.src = '../../assets/images/logo.png'
   }
-
   @Input() islogin:boolean = false;
   @Output() onSelect2 = new EventEmitter;
   onSelectHomeIcon() {

@@ -1,0 +1,243 @@
+<div class="register-page">
+  <div class="container">
+    <img class="img" src="../../../assets/images/logo.png" alt="" width="120" />
+    <form class="form" [formGroup]="RegisForm">
+      <tr>
+        <td>
+          <mat-form-field name="fName" appearance="fill" [style.width.px]="250">
+            <mat-label>ชื่อจริง</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="$any(RegisForm).get('formfName')"
+              [(ngModel)]="fName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formfName.touched &&
+                regforms.formfName.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field name="lName" appearance="fill" [style.width.px]="250">
+            <mat-label>นามสกุล</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="$any(RegisForm).get('formlName')"
+              [(ngModel)]="lName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formlName.touched &&
+                regforms.formlName.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field
+            class="username"
+            appearance="fill"
+            [style.width.px]="250"
+          >
+            <mat-label>ชื่อผู้ใช้</mat-label>
+            <input
+              matInput
+              minlength="5"
+              [formControl]="$any(RegisForm).get('formUsername')"
+              [(ngModel)]="username"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formUsername.touched &&
+                regforms.formUsername.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+            <mat-error
+              *ngIf="
+                regforms.formUsername.touched &&
+                regforms.formUsername.errors?.minlength
+              "
+              >{{ getUsernameLength() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field name="email" appearance="fill" [style.width.px]="250">
+            <mat-label>อีเมลล์</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="$any(RegisForm).get('formEmail')"
+              [(ngModel)]="email"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formEmail.touched &&
+                regforms.formEmail.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+            <mat-error
+              *ngIf="
+                regforms.formEmail.touched &&
+                regforms.formEmail.hasError('email')
+              "
+              >รูปแบบของอีเมลล์ไม่ถูกต้อง</mat-error
+            >
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field
+            name="password"
+            appearance="fill"
+            [style.width.px]="250"
+          >
+            <mat-label>รหัสผ่าน</mat-label>
+            <input
+              matInput
+              minlength="8"
+              maxlength="16"
+              type="password"
+              [formControl]="$any(RegisForm).get('formPassword')"
+              [(ngModel)]="password"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formPassword.touched &&
+                regforms.formPassword.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+            <mat-error
+              *ngIf="
+                regforms.formPassword.touched &&
+                regforms.formPassword.errors?.minlength
+              "
+              >{{ getLengthError() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field
+            name="confirm-password"
+            appearance="fill"
+            [style.width.px]="250"
+          >
+            <mat-label>ยืนยันรหัสผ่าน</mat-label>
+            <input
+              matInput
+              minlength="8"
+              maxlength="16"
+              type="password"
+              [formControl]="$any(RegisForm).get('formConfirm')"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formConfirm.touched &&
+                regforms.formConfirm.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+            <mat-error
+              *ngIf="
+                regforms.formConfirm.touched &&
+                regforms.formConfirm.hasError('passwordMismatch')
+              "
+              >รหัสผ่านไม่ตรงกัน</mat-error
+            >
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field
+            name="datebirth"
+            appearance="fill"
+            [style.width.px]="250"
+          >
+            <mat-label>วันเกิด</mat-label>
+            <input
+              matInput
+              mask="0000-00-00"
+              type="text"
+              [formControl]="$any(RegisForm).get('formDateBirth')"
+              placeholder="yyyy-MM-dd"
+              maxlength="10"
+              [(ngModel)]="datebirth"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formDateBirth.touched &&
+                regforms.formDateBirth.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field name="phoneno" appearance="fill" [style.width.px]=250>
+            <mat-label>เบอร์โทร</mat-label>
+            <input
+              matInput
+              mask="000-000-0000"
+              type="tel"
+              maxlength="13"
+              [formControl]="$any(RegisForm).get('formPhone')"
+              [(ngModel)]="phoneno"
+              placeholder="09x-xxx-xxxx"
+              required
+            />
+            <mat-error
+              *ngIf="
+                regforms.formPhone.touched &&
+                regforms.formPhone.hasError('required')
+              "
+              >{{ getRequiredMessage() }}</mat-error
+            >
+          </mat-form-field>
+        </td>
+      </tr>
+    </form>
+
+    <span>* กรุณากรอกข้อมูลที่จำเป็น</span>
+    <mat-divider></mat-divider>
+    <div class="btn-group">
+      <button
+        mat-flat-button
+        color="primary"
+        class="btn login"
+        [disabled]="$any(regforms).formConfirm.hasError('passwordMismatch')"
+        (click)="pressLogin()"
+      >
+        ลงทะเบียน
+      </button>
+      <button
+        mat-flat-button
+        color="warn"
+        class="btn back"
+        routerLink=""
+        routerLinkActive="active"
+      >
+        ย้อนกลับ
+      </button>
+    </div>
+  </div>
+</div>

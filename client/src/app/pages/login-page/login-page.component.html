@@ -1,0 +1,33 @@
+<div class="login-page">
+  <div class="container">
+    <img class="img" src="../../../assets/images/logo.png" alt="" width="120" />
+    <form class="form" [formGroup]="LoginForm">
+      <td>
+        <mat-form-field name="username" appearance="fill" [style.width.px]=327>
+          <mat-label>ชื่อผู้ใช้</mat-label>
+          <input matInput type="text" minlength="5" [formControl]="$any(LoginForm).get('lUsername')" [(ngModel)]="username"/>
+          <mat-error *ngIf=" logforms.lUsername.touched && logforms.lUsername.hasError('required')">{{ getRequiredMessage() }}</mat-error>
+          <mat-error *ngIf="logforms.lUsername.touched && logforms.lUsername.errors?.minlength">{{ getUsernameLength() }}</mat-error>
+        </mat-form-field>
+      </td>
+      <mat-form-field name="password" appearance="fill" [style.width.px]=327>
+        <mat-label>รหัสผ่าน</mat-label>
+        <input matInput type="password" minlength="8" maxlength="16" [formControl]="$any(LoginForm).get('lPassword')" [(ngModel)]="password"/>
+        <mat-error *ngIf=" logforms.lPassword.touched && logforms.lPassword.hasError('required')">{{ getRequiredMessage() }}</mat-error>
+        <mat-error *ngIf="logforms.lPassword.touched && logforms.lPassword.errors?.minlength">{{ getLengthError() }}</mat-error>
+        <mat-error *ngIf="logforms.lPassword.touched && logforms.lPassword.errors?.maxlength">{{ getLengthError() }}</mat-error>
+      </mat-form-field>
+    </form>
+    <mat-divider></mat-divider>
+    <div class="btn-group">
+      <button mat-flat-button color="primary" class="btn login" [disabled]="$any(LoginForm).touched && $any(LoginForm).invalid" (click)="pressLogin()"
+      >
+        เข้าสู่ระบบ
+      </button>
+      <button mat-flat-button color="warn" class="btn back" routerLink="" routerLinkActive="active"
+      >
+        ย้อนกลับ
+      </button>
+    </div>
+  </div>
+</div>
