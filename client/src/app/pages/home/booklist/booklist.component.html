@@ -6,29 +6,18 @@
     </div>
     <div class="card-section">
       <mat-card class="card" *ngFor="let product of booklist">
-        <img
-          mat-card-image
-          src="../../assets/images/Book1.jfif"
-          (error)="(doSomethingOnError)"
-          alt="{{ product.title }}"
-        />
+        <img mat-card-image src="{{ product.image}}" (error)="(doSomethingOnError)" alt="{{ product.title }}" />
         <div class="bottom">
           <mat-card-content>
-            <p
-              class="book-name"
-              title="{{ product.title }}"
-              routerLink="Bookdetail"
-              routerLinkActive="active"
-              (click)="onSelectBookList()"
-            >
+            <p class="book-name" title="{{ product.title }}" routerLink="Bookdetail" routerLinkActive="active"
+              (click)="onSelectBookList()">
               [{{ product.categories }}] {{ product.title }}
             </p>
             <div class="price">{{ product.price }} บาท</div>
           </mat-card-content>
           <mat-card-actions>
             <button mat-stroked-button class="btn addcart" color="primary">
-              <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon
-              ><span>เพิ่มเข้าตะกร้าสินค้า</span>
+              <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon><span>เพิ่มเข้าตะกร้าสินค้า</span>
             </button>
           </mat-card-actions>
         </div>
@@ -36,13 +25,14 @@
     </div>
     <div class="box-footer">
       <div class="page-ginate">
-        <mat-paginator
-          class="pginator"
-          [length]="200"
-          [pageSizeOptions]="[10, 50, 100]"
-          aria-label="Select page"
-        >
+        <mat-paginator *ngIf="pageEvent" class="pginator" [length]="length" [pageSizeOptions]="pageSizeOptions"
+          (page)="pageEvent = $event" aria-label="Select page"
+          (page)="getValueService(pageEvent.pageSize,pageEvent.pageIndex+1)"
+          (page)="ngOnInit()"
+           >
         </mat-paginator>
+        
+
       </div>
     </div>
   </main>

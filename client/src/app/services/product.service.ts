@@ -8,13 +8,20 @@ import { Book } from '../components/category/type';
 export class ProductService {
   pageBookList: string = 'false';
 
+  limit:number = 10;
+  page:number = 1;
+
   REST_API: string = 'http://localhost:3000/api/v1/products/';
 
   constructor(private httpClient: HttpClient) {}
 
   //homeBook
-  homeBook() {
-    return this.httpClient.get(this.REST_API);
+  homeBook(){
+    return this.httpClient.get(this.REST_API+'?page='+this.page+'&limit='+this.limit+'&category=')
+  }
+  //getNumberOfPages 
+  getNumberOfPages(){
+    return this.httpClient.get(this.REST_API+'?category=')
   }
   //bookDetail
   bookDetail(getProductId: String) {
