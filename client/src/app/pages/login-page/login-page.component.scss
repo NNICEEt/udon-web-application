@@ -1,0 +1,64 @@
+.login-page {
+  min-width: 100vh;
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(220deg, #3f51b5, #ff4081);
+  background-size: 400% 400%;
+  -webkit-animation: login-page 10s ease infinite;
+  -moz-animation: login-page 10s ease infinite;
+  -o-animation: login-page 10s ease infinite;
+  animation: login-page 10s ease infinite;
+  align-items: center;
+  justify-content: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    .btn-group {
+      display: flex;
+      gap: 5px;
+      align-self: center;
+      margin-top: 10px;
+      .btn {
+        width: 100px;
+        font-size: 1rem;
+        width: auto;
+      }
+    }
+    .img {
+      margin-bottom: 1rem;
+      align-self: center;
+    }
+    .form {
+      padding: 1rem;
+      .mat-form-field {
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+@-webkit-keyframes login-page {
+  0%{background-position:0% 32%}
+  50%{background-position:100% 69%}
+  100%{background-position:0% 32%}
+}
+@-moz-keyframes login-page {
+  0%{background-position:0% 32%}
+  50%{background-position:100% 69%}
+  100%{background-position:0% 32%}
+}
+@-o-keyframes login-page {
+  0%{background-position:0% 32%}
+  50%{background-position:100% 69%}
+  100%{background-position:0% 32%}
+}
+@keyframes login-page {
+  0%{background-position:0% 32%}
+  50%{background-position:100% 69%}
+  100%{background-position:0% 32%}
+}

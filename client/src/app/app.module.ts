@@ -37,6 +37,8 @@ import { MyorderBoxComponent } from './pages/profile/myorder-box/myorder-box.com
 import { ProductPanelComponent } from './pages/cart/cart-panel/product-panel/product-panel.component';
 import { SummaryPanelComponent } from './pages/cart/cart-panel/summary-panel/summary-panel.component';
 import { BookdetailComponent } from './pages/home/bookdetail/bookdetail.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 
 @NgModule({
 
@@ -67,7 +69,9 @@ import { BookdetailComponent } from './pages/home/bookdetail/bookdetail.componen
     MyorderBoxComponent,
     ProductPanelComponent,
     SummaryPanelComponent,
-    BookdetailComponent
+    BookdetailComponent,
+    LoginPageComponent,
+    RegistPageComponent
   ],
   imports: [
     BrowserModule,
