@@ -18,6 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule} from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -89,7 +91,9 @@ import { RegistPageComponent } from './pages/regist-page/regist-page.component';
     MatPaginatorModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

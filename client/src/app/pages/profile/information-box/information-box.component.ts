@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service'
+import { MustMatch } from 'src/app/services/MustMatch'
 
 @Component({
   selector: 'app-information-box',
@@ -24,7 +24,7 @@ export class InformationBoxComponent implements OnInit {
   province:String= '';
   postcode:String= '';
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private customValidator: CustomvalidationService) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.informationForm = this.fb.group ({
@@ -35,7 +35,7 @@ export class InformationBoxComponent implements OnInit {
       formProvince: new FormControl('', [Validators.required]),
       formPostCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{4}')])
     },{
-      validator: this.customValidator.MatchPassword('formDistrict', 'formProvince')
+      validator: MustMatch('formDistrict', 'formProvince')
     });
   }
   get informCt() {

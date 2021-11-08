@@ -158,7 +158,7 @@
             <mat-error
               *ngIf="
                 regforms.formConfirm.touched &&
-                regforms.formConfirm.hasError('passwordMismatch')
+                regforms.formConfirm.errors?.mustMatch
               "
               >รหัสผ่านไม่ตรงกัน</mat-error
             >
@@ -167,29 +167,14 @@
       </tr>
       <tr>
         <td>
-          <mat-form-field
-            name="datebirth"
-            appearance="fill"
-            [style.width.px]="250"
-          >
+          <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>วันเกิด</mat-label>
-            <input
-              matInput
-              mask="0000-00-00"
-              type="text"
-              [formControl]="$any(RegisForm).get('formDateBirth')"
-              placeholder="yyyy-MM-dd"
-              maxlength="10"
-              [(ngModel)]="datebirth"
-              required
-            />
-            <mat-error
-              *ngIf="
-                regforms.formDateBirth.touched &&
-                regforms.formDateBirth.hasError('required')
-              "
-              >{{ getRequiredMessage() }}</mat-error
-            >
+            <input matInput [matDatepicker]="picker" [formControl]="$any(RegisForm).get('formDateBirth')" [(ngModel)]="datebirth" required>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="regforms.formDateBirth.touched && regforms.formDateBirth.hasError('required')"
+              >{{ getRequiredMessage() }}</mat-error>
           </mat-form-field>
         </td>
         <td>
@@ -224,7 +209,7 @@
         mat-flat-button
         color="primary"
         class="btn login"
-        [disabled]="$any(regforms).formConfirm.hasError('passwordMismatch')"
+        [disabled]="(RegisForm).invalid"
         (click)="pressLogin()"
       >
         ลงทะเบียน
@@ -235,6 +220,7 @@
         class="btn back"
         routerLink=""
         routerLinkActive="active"
+        (click)="pressLogin()"
       >
         ย้อนกลับ
       </button>

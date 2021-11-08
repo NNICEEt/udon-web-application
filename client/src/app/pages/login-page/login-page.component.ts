@@ -5,7 +5,6 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,8 +13,7 @@ import { CustomvalidationService } from 'src/app/services/customvalidation.servi
 })
 export class LoginPageComponent implements OnInit {
   constructor(
-    private fb: FormBuilder,
-    private customValidator: CustomvalidationService
+    private fb: FormBuilder
   ) {}
   public LoginForm!: FormGroup;
   username: string = '';

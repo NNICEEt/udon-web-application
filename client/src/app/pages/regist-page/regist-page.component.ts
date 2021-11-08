@@ -5,7 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { MustMatch } from 'src/app/services/MustMatch';
 
 @Component({
   selector: 'app-regist-page',
@@ -15,15 +15,14 @@ import { CustomvalidationService } from 'src/app/services/customvalidation.servi
 export class RegistPageComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder,
-    private customValidator: CustomvalidationService
+    private fb: FormBuilder
   ) {}
   public RegisForm!: FormGroup;
   username:string = '';
   password:String = '';
   fName:string= '';
   lName:String= '';
-  datebirth:String= '';
+  datebirth!:Date;
   email:String= '';
   phoneno:String= '';
 
@@ -31,21 +30,21 @@ export class RegistPageComponent implements OnInit {
     this.RegisForm = this.fb.group ({
       formUsername: new FormControl('', [Validators.required, Validators.minLength(5)]),
       formPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-      formConfirm: new FormControl('', [Validators.required]),
+      formConfirm: new FormControl(''),
       formfName: new FormControl('', [Validators.required]),
       formlName: new FormControl('', [Validators.required]),
       formDateBirth: new FormControl('', [Validators.required]),
       formEmail: new FormControl('', [Validators.required, Validators.email]),
       formPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{9}')])
     },{
-      validator: this.customValidator.MatchPassword('formPassword', 'formConfirm')
+      validator: MustMatch('formPassword', 'formConfirm')
     });
   }
   get regforms() {
     return this.RegisForm.controls;
   }
   pressLogin() {
-    console.log(this.username);
+    console.log(this.datebirth);
   }
   //Error Messages
   getRequiredMessage() {

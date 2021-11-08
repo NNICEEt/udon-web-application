@@ -22,7 +22,7 @@
         <mat-label>ยืนยันรหัสผ่าน</mat-label>
         <input matInput type="password" maxlength="16" minlength="8" [formControl]="$any(secureForm).get('formConfirm')" [(ngModel)]="confirm_pass" required />
         <mat-error *ngIf="secureCt.formConfirm.touched && secureCt.formConfirm.hasError('required')">{{getRequiredError()}}</mat-error>
-        <mat-error *ngIf="secureCt.formConfirm.hasError('passwordMismatch')">{{misMatchError()}}</mat-error>
+        <mat-error *ngIf="secureCt.formConfirm.errors?.mustMatch">{{misMatchError()}}</mat-error>
       </mat-form-field>
     </form>
     <button
@@ -30,7 +30,7 @@
       class="save-button"
       color="warn"
       style="width: 100px; font-size: 20px"
-      [disabled]="$any(secureCt).formConfirm.hasError('passwordMismatch')"
+      [disabled]="(secureForm).invalid"
     >
       บันทึก
     </button>

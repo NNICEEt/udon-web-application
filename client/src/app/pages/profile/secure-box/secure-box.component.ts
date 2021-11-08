@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service'
+import { MustMatch } from 'src/app/services/MustMatch'
 
 @Component({
   selector: 'app-secure-box',
@@ -12,7 +12,7 @@ export class SecureBoxComponent implements OnInit {
   new_pass:String ='';
   confirm_pass:String = '';
   public secureForm!: FormGroup;
-  constructor(private fb: FormBuilder, private customValidator: CustomvalidationService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.secureForm = this.fb.group ({
@@ -20,7 +20,7 @@ export class SecureBoxComponent implements OnInit {
       formNew: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
       formConfirm: new FormControl('', [Validators.required])
     },{
-      validator: this.customValidator.MatchPassword('formNew', 'formConfirm')
+      validator: MustMatch('formNew', 'formConfirm')
     });
   }
   get secureCt() {
