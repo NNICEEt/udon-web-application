@@ -21,13 +21,7 @@ export class RegistPageComponent implements OnInit {
     private router: Router
   ) {}
   public RegisForm!: FormGroup;
-  username:string = '';
-  password:String = '';
-  fName:string= '';
-  lName:String= '';
-  datebirth!:Date;
-  email:String= '';
-  phoneno:String= '';
+
   registerBody = {
     username: '',
     password: '',
@@ -39,18 +33,31 @@ export class RegistPageComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.RegisForm = this.fb.group ({
-      formUsername: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      formPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-      formConfirm: new FormControl(''),
-      formfName: new FormControl('', [Validators.required]),
-      formlName: new FormControl('', [Validators.required]),
-      formDateBirth: new FormControl('', [Validators.required]),
-      formEmail: new FormControl('', [Validators.required, Validators.email]),
-      formPhone: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{9}')])
-    },{
-      validator: MustMatch('formPassword', 'formConfirm')
-    });
+    this.RegisForm = this.fb.group(
+      {
+        formUsername: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+        ]),
+        formPassword: new FormControl('', [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(16),
+        ]),
+        formConfirm: new FormControl(''),
+        formfName: new FormControl('', [Validators.required]),
+        formlName: new FormControl('', [Validators.required]),
+        formDateBirth: new FormControl('', [Validators.required]),
+        formEmail: new FormControl('', [Validators.required, Validators.email]),
+        formPhone: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]\\d{9}'),
+        ]),
+      },
+      {
+        validator: MustMatch('formPassword', 'formConfirm'),
+      }
+    );
   }
   get regforms() {
     return this.RegisForm.controls;
@@ -59,6 +66,7 @@ export class RegistPageComponent implements OnInit {
   async pressSignup() {
     console.log(this.registerBody);
     this.service.register(this.registerBody).subscribe((res) => {
+      console.log(res);
       if (res.result) {
         this.router.navigate(['/home']);
       } else {

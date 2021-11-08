@@ -21,7 +21,9 @@ const methods = {
     insert(data) {
         return new Promise(async (resolve, reject) => {
             try {
-                const userObj = new User(data);
+                const newBirthday = new Date(data.birthday).getTime() + (7 * 60 * 60 * 1000);
+                const { birthday, ...newData } = data;
+                const userObj = new User({ ...newData, birthday: newBirthday });
                 await userObj.save();
                 resolve({ result: true });
             } catch (err) {
@@ -92,8 +94,8 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
                 const userData = await User.findOne({ username: data.username });
-                if (!userData) reject({ result: false, error: 'ไม่พบ username' });
-                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password ไม่ถูกต้อง' });
+                if (!userData) resolve({ result: false, error: 'username' });
+                if (!await bcrypt.compare(data.password, userData.password)) resolve({ result: false, error: 'password' });
                 const { _id, username, isAdmin } = userData;
                 const user = { id: _id, isAdmin };
                 const accessToken = genAccessToken(user);
@@ -110,8 +112,8 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
                 const userData = await User.findOne({ username: data.username });
-                if (!userData) reject({ result: false, error: 'ไม่พบ username' });
-                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password ไม่ถูกต้อง' });
+                if (!userData) reject({ result: false, error: 'username' });
+                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password' });
                 const { _id, username, isAdmin } = userData;
                 if (!isAdmin) reject({ result: false, error: 'สำหรับ Admin เท่านั้น' })
                 const user = { id: _id, isAdmin };

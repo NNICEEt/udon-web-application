@@ -12,9 +12,6 @@ export class HomeComponent implements OnInit {
   constructor(private service: AuthService) {}
 
   ngOnInit(): void {
-    this.service.isLogin().subscribe((res) => {
-      this.isLogin = res != 'Unauthorized' && res != 'Forbidden' ;
-    });
   }
 
   onChange(value: boolean) {

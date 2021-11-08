@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MustMatch } from 'src/app/services/MustMatch';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -15,11 +16,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPageComponent implements OnInit {
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: AuthService,
+    private router: Router
   ) {}
   public LoginForm!: FormGroup;
-  username: string = '';
-  password: String = '';
+  loginBody = {
+    username: '',
+    password: '',
+  };
 
   ngOnInit(): void {
     //Validations Form
@@ -39,7 +44,15 @@ export class LoginPageComponent implements OnInit {
     return this.LoginForm.controls;
   }
   pressLogin() {
-    console.log(this.username);
+    this.service.login(this.loginBody).subscribe((res) => {
+      // console.log(res);
+      if (res.result) {
+        localStorage.setItem('token', res.token.accessToken);
+        this.router.navigate(['/home']);
+      } else {
+        console.log(res);
+      }
+    });
   }
   //Error Messages
   getRequiredMessage() {

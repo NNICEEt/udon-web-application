@@ -6,7 +6,7 @@ const handleErrors = (err) => {
         email: '',
         phone: ''
     }
-    Object.values(err.errors).forEach(({properties}) => {
+    Object.values(err.errors).forEach(({ properties }) => {
         errors[properties.path] = properties.path;
     });
     return errors;
@@ -18,7 +18,7 @@ const methods = {
             const result = await Services.insert(req.body);
             res.status(201).json(result);
         } catch (err) {
-            res.json({result:false, errors:handleErrors(err)});
+            res.json({ result: false, errors: handleErrors(err) });
         }
     },
 
@@ -27,7 +27,7 @@ const methods = {
             const result = await Services.login(req.body);
             res.status(200).json(result);
         } catch (err) {
-            res.status(400).json(err.message);
+            res.sendStatus(400);
         }
 
     },
@@ -37,7 +37,7 @@ const methods = {
             const result = await Services.loginAdmin(req.body);
             res.status(200).json(result);
         } catch (err) {
-            res.status(400).json(err.message);
+            res.sendStatus(400);
         }
 
     },

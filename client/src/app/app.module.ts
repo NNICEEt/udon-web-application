@@ -12,7 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule} from '@angular/forms';
@@ -41,18 +41,12 @@ import { SummaryPanelComponent } from './pages/cart/cart-panel/summary-panel/sum
 import { BookdetailComponent } from './pages/home/bookdetail/bookdetail.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistPageComponent } from './pages/regist-page/regist-page.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
 
   declarations: [
-    // AppComponent,
-    // NavbarComponent,
-    // BannerComponent,
-    // CategoryComponent,
-    // ContactComponent,
-    // HomeComponent,
-    // CartComponent,
-    // ProfileComponent
     AppComponent,
     NavbarComponent,
     ProfileComponent,
@@ -95,7 +89,11 @@ import { RegistPageComponent } from './pages/regist-page/regist-page.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

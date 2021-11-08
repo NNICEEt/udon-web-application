@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Register } from '../models/auth';
+import { Register, Login } from '../models/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -14,34 +14,51 @@ export class AuthService {
   //Register
   register(data: object) {
     const API_URL = `${this.REST_API}/register`;
-    return this.httpClient.post<Register>(API_URL, data, { headers: this.httpHeaders });
+    return this.httpClient.post<Register>(API_URL, data, {
+      headers: this.httpHeaders,
+    });
   }
 
   //Login
   login(data: object) {
     const API_URL = `${this.REST_API}/login`;
-    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders });
+    return this.httpClient.post<Login>(API_URL, data, {
+      headers: this.httpHeaders,
+    });
   }
 
   //Login (admin)
   loginAdmin(data: object) {
     const API_URL = `${this.REST_API}/login-admin`;
-    return this.httpClient
-      .post(API_URL, data, { headers: this.httpHeaders })
-      .subscribe((res) => res);
+    return this.httpClient.post<Login>(API_URL, data, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  //Logout
+  logout() {
+    localStorage.removeItem('token');
   }
 
   //Refrest AccessToken
   refrestAccessToken(token: string) {
     const API_URL = `${this.REST_API}/login-admin`;
-    return this.httpClient
-      .post(API_URL, { token }, { headers: this.httpHeaders })
-      .subscribe((res) => res);
+    let newToken;
+    this.httpClient.post(
+      API_URL,
+      { token },
+      { headers: this.httpHeaders }
+    );
+    return newToken;
   }
 
-  //Check Logging in
-  isLogin() {
-    const API_URL = this.REST_API;
-    return this.httpClient.get(API_URL);
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+
+  
+  getToken() {
+    return localStorage.getItem('token');
   }
 }

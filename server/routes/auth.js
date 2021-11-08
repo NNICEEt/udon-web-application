@@ -5,10 +5,10 @@ const verifyAccessToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
-  if (!token) return res.json("Unauthorized");
+  if (!token) return res.sendStatus(401);
 
   jwt.verify(token, config.accessToken, (err, user) => {
-    if (err) return res.json('Forbidden');
+    if (err) return res.sendStatus(403);
     req.user = user;
     next();
   });
@@ -19,7 +19,7 @@ const auth = (req, res, next) => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
     } else {
-      res.json('Forbidden');
+      res.sendStatus(403);
     }
   });
 }
