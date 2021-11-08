@@ -10,7 +10,7 @@
               matInput
               type="text"
               [formControl]="$any(RegisForm).get('formfName')"
-              [(ngModel)]="fName"
+              [(ngModel)]="registerBody.firstname"
               required
             />
             <mat-error
@@ -29,7 +29,7 @@
               matInput
               type="text"
               [formControl]="$any(RegisForm).get('formlName')"
-              [(ngModel)]="lName"
+              [(ngModel)]="registerBody.lastname"
               required
             />
             <mat-error
@@ -54,7 +54,7 @@
               matInput
               minlength="5"
               [formControl]="$any(RegisForm).get('formUsername')"
-              [(ngModel)]="username"
+              [(ngModel)]="registerBody.username"
               required
             />
             <mat-error
@@ -80,7 +80,7 @@
               matInput
               type="text"
               [formControl]="$any(RegisForm).get('formEmail')"
-              [(ngModel)]="email"
+              [(ngModel)]="registerBody.email"
               required
             />
             <mat-error
@@ -114,7 +114,7 @@
               maxlength="16"
               type="password"
               [formControl]="$any(RegisForm).get('formPassword')"
-              [(ngModel)]="password"
+              [(ngModel)]="registerBody.password"
               required
             />
             <mat-error
@@ -180,7 +180,7 @@
               [formControl]="$any(RegisForm).get('formDateBirth')"
               placeholder="yyyy-MM-dd"
               maxlength="10"
-              [(ngModel)]="datebirth"
+              [(ngModel)]="registerBody.birthday"
               required
             />
             <mat-error
@@ -201,7 +201,7 @@
               type="tel"
               maxlength="13"
               [formControl]="$any(RegisForm).get('formPhone')"
-              [(ngModel)]="phoneno"
+              [(ngModel)]="registerBody.phone"
               placeholder="09x-xxx-xxxx"
               required
             />
@@ -225,7 +225,7 @@
         color="primary"
         class="btn login"
         [disabled]="$any(regforms).formConfirm.hasError('passwordMismatch')"
-        (click)="pressLogin()"
+        (click)="pressSignup()"
       >
         ลงทะเบียน
       </button>

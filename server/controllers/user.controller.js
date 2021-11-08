@@ -7,7 +7,7 @@ const handleErrors = (err) => {
         phone: ''
     }
     Object.values(err.errors).forEach(({properties}) => {
-        errors[properties.path] = properties.value;
+        errors[properties.path] = properties.path;
     });
     return errors;
 }
@@ -18,7 +18,7 @@ const methods = {
             const result = await Services.insert(req.body);
             res.status(201).json(result);
         } catch (err) {
-            res.status(400).json({result:false, errors:handleErrors(err)});
+            res.json({result:false, errors:handleErrors(err)});
         }
     },
 

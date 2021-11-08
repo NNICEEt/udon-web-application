@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -26,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     this.LoginForm = this.fb.group({
       lUsername: new FormControl('', [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(6),
       ]),
       lPassword: new FormControl('', [
         Validators.required,
@@ -49,6 +50,6 @@ export class LoginPageComponent implements OnInit {
     return 'รหัสผ่านต้องมีความยาวตั้งแต่ 8-16 ตัวอักษรขึ้นไป';
   }
   getUsernameLength() {
-    return 'ต้องมีความยาวตั้งแต่ 5 ตัวอักษรขึ้นไป';
+    return 'ต้องมีความยาวตั้งแต่ 6 ตัวอักษรขึ้นไป';
   }
 }
