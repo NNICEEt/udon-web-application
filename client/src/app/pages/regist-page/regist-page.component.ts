@@ -5,17 +5,20 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/services/MustMatch';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-regist-page',
   templateUrl: './regist-page.component.html',
-  styleUrls: ['./regist-page.component.scss']
+  styleUrls: ['./regist-page.component.scss'],
 })
 export class RegistPageComponent implements OnInit {
-
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: AuthService,
+    private router: Router
   ) {}
   public RegisForm!: FormGroup;
   username:string = '';
@@ -25,6 +28,15 @@ export class RegistPageComponent implements OnInit {
   datebirth!:Date;
   email:String= '';
   phoneno:String= '';
+  registerBody = {
+    username: '',
+    password: '',
+    email: '',
+    firstname: '',
+    lastname: '',
+    phone: '',
+    birthday: '',
+  };
 
   ngOnInit(): void {
     this.RegisForm = this.fb.group ({
@@ -43,9 +55,28 @@ export class RegistPageComponent implements OnInit {
   get regforms() {
     return this.RegisForm.controls;
   }
-  pressLogin() {
-    console.log(this.datebirth);
+
+  async pressSignup() {
+    console.log(this.registerBody);
+    this.service.register(this.registerBody).subscribe((res) => {
+      if (res.result) {
+        this.router.navigate(['/home']);
+      } else {
+        const errors = res.errors;
+        if (errors.username !== '') {
+          // notify (username)
+          console.log('Username');
+        } else if (errors.email !== '') {
+          //notify (email)
+          console.log('email');
+        } else {
+          //notify (phone)
+          console.log('phone');
+        }
+      }
+    });
   }
+
   //Error Messages
   getRequiredMessage() {
     return 'กรุณากรอกข้อมูล';

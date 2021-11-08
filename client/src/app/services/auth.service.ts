@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Register } from '../models/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +14,13 @@ export class AuthService {
   //Register
   register(data: object) {
     const API_URL = `${this.REST_API}/register`;
-    return this.httpClient
-      .post(API_URL, data, { headers: this.httpHeaders })
-      .subscribe((res) => res);
+    return this.httpClient.post<Register>(API_URL, data, { headers: this.httpHeaders });
   }
 
   //Login
   login(data: object) {
     const API_URL = `${this.REST_API}/login`;
-    return this.httpClient
-      .post(API_URL, data, { headers: this.httpHeaders })
-      .subscribe((res) => res);
+    return this.httpClient.post(API_URL, data, { headers: this.httpHeaders });
   }
 
   //Login (admin)

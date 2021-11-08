@@ -10,5 +10,5 @@ module.exports = {
     accessToken: process.env.ACCESS_TOKEN,
     accessTokenRefresh: process.env.ACCESS_TOKEN_REFRESH,
     tokenExp: process.env.TOKEN_EXP,
-    timezone: new Date().getTime() + (7 * 60 * 60 * 1000)
+    timezone: Date.now() + (7 * 60 * 60 * 1000)
 }
