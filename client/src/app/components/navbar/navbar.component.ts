@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  data = 1;
   faSearch = faSearch;
   faShoppingCart = faShoppingCart;
   faBars = faBars;

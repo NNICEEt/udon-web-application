@@ -3,11 +3,14 @@
     <strong>หมวดหมู่ (Category)</strong>
     <div class="boxin">
       <ul>
-        <li><span>การ์ตูน</span></li>
+        <li><span class="boxin1"
+          routerLink="" [queryParams]="{'category': 'การ์ตูน'}">การ์ตูน</span></li>
         <mat-divider></mat-divider>
-        <li><span>นิยาย</span></li>
+        <li><span class="boxin2"
+          routerLink="" [queryParams]="{'category': 'นิยาย'}">นิยาย</span></li>
         <mat-divider></mat-divider>
-        <li><span>วารสาร</span></li>
+        <li><span class="boxin3"
+          routerLink="" [queryParams]="{'category': 'วารสาร'}">วารสาร</span></li>
       </ul>
     </div>
   </aside>
