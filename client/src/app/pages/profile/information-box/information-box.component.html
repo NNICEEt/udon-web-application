@@ -30,13 +30,13 @@
         <td>
           <mat-form-field name="fName" appearance="fill">
             <mat-label>ชื่อจริง</mat-label>
-            <input matInput type="text" readonly="readonly" [value]="firstname" />
+            <input matInput type="text" readonly="readonly" [value]="user.firstname" />
           </mat-form-field>
         </td>
         <td>
           <mat-form-field name="lName" appearance="fill">
             <mat-label>นามสกุล</mat-label>
-            <input matInput type="text" readonly="readonly" [value]="lastname" />
+            <input matInput type="text" readonly="readonly" [value]="user.lastname" />
           </mat-form-field>
         </td>
       </tr>
@@ -50,7 +50,7 @@
               matInput
               type="email"
               [formControl]="$any(informationForm).get('formEmail')"
-              [(ngModel)]="email"
+              [(ngModel)]="user.email"
               required
             />
             <mat-error
@@ -78,7 +78,7 @@
               type="tel"
               maxlength="13"
               [formControl]="$any(informationForm).get('formPhone')"
-              [(ngModel)]="phone"
+              [(ngModel)]="user.phone"
               placeholder="09x-xxx-xxxx"
               required
             />
@@ -102,7 +102,7 @@
           matInput
           type="text"
           [formControl]="$any(informationForm).get('formAddress')"
-          [(ngModel)]="mainAddress"
+          [(ngModel)]="user.address.mainAddress"
           required
         />
         <mat-error
@@ -123,7 +123,7 @@
             matInput
             type="text"
             [formControl]="$any(informationForm).get('formDistrict')"
-            [(ngModel)]="district"
+            [(ngModel)]="user.address.district"
             required
           />
           <mat-error
@@ -142,7 +142,7 @@
             matInput
             type="text"
             [formControl]="$any(informationForm).get('formProvince')"
-            [(ngModel)]="province"
+            [(ngModel)]="user.address.province"
             required
           />
           <mat-error
@@ -162,7 +162,7 @@
             maxlength="5"
             [formControl]="$any(informationForm).get('formPostCode')"
             placeholder="Ex.11111"
-            [(ngModel)]="postcode"
+            [(ngModel)]="user.address.postcode"
             required
           />
           <mat-error
@@ -183,6 +183,7 @@
       color="warn"
       style="width: 100px; font-size: 20px"
       [disabled]="(informationForm).invalid"
+      (click)="onSubmit()"
     >
       บันทึก
     </button>

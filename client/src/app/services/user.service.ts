@@ -9,6 +9,7 @@ export class UserService {
   REST_API: string = 'http://localhost:3000/api/v1/users';
 
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+  httpHeadersFile = new HttpHeaders().set('Content-Type', 'multipart/form-data;');
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,13 +20,14 @@ export class UserService {
     });
   }
 
-  updateUser(data: object, file: FormData) {
-    return this.httpClient.put(
-      this.REST_API,
-      {},
-      {
-        headers: this.httpHeaders,
-      }
-    );
+  updateUser(data: object) {
+    return this.httpClient.put(this.REST_API, data, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  uploadImg(file: FormData) {
+    const API_URL = `${this.REST_API}/file`;
+    return this.httpClient.put(API_URL, file);
   }
 }

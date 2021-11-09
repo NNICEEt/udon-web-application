@@ -30,23 +30,13 @@ const methods = {
         });
     },
 
-    update(userId, data, file) {
+    update(userId, body) {
         return new Promise(async (resolve, reject) => {
             try {
-                const userObj = await User.findById(userId);
-                let dataToUpdate;
-                if (file != null) {
-                    dataToUpdate = { photoURL: `${__basedir}/users/${file.filename}`, ...data }
-                    oldURL = userObj.photoURL;
-                    if (oldURL) fs.unlinkSync(oldURL);
-                } else {
-                    dataToUpdate = { ...data };
-                }
-
-                await userObj.updateOne({ ...dataToUpdate });
+                await User.findByIdAndUpdate(userId, body);
                 resolve();
             } catch (err) {
-                reject(new Error('id: not found'));
+                reject(err);
             }
         });
     },
@@ -61,7 +51,28 @@ const methods = {
                 await userObj.updateOne({ password: passwordHash })
                 resolve();
             } catch (err) {
-                reject(err)
+                reject(err);
+            }
+        });
+    },
+
+    upload(userId, file) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const user = await User.findById(userId);
+                if (file) {
+                    oldURL = user.photoURL || '';
+                    if (oldURL != '') {
+                        fs.unlinkSync(oldURL);
+                        console.log('remove');
+                    }
+                    await user.updateOne({
+                        photoURL: `${__basedir}/users/${file.filename}`
+                    });
+                }
+                resolve();
+            } catch (err) {
+                reject(err);
             }
         });
     },
