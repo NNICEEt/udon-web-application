@@ -9,22 +9,28 @@ import { MustMatch } from 'src/app/services/MustMatch'
   styleUrls: ['./information-box.component.scss']
 })
 export class InformationBoxComponent implements OnInit {
-  imgUrl = '../../assets/images/userpic.png';
   //Assign
   title = 'fileUpload';
   images: any;
+  imgUrl:string = '../../assets/images/userpic.png';
+  myForm: FormGroup;
   public informationForm!: FormGroup;
   //User Information Form
   fName:string= 'พีรยุทธ';
-  lName:String= 'บางศรี';
-  email:String= '';
-  phoneno:String= '';
-  main_address:String= '';
-  district:String= '';
-  province:String= '';
-  postcode:String= '';
+  lName:string= 'บางศรี';
+  email:string= '';
+  phoneno:string= '';
+  main_address:string= '';
+  district:string= '';
+  province:string= '';
+  postcode:string= '';
 
-  constructor(private http: HttpClient, private fb: FormBuilder) { }
+  constructor(private http: HttpClient, public fb: FormBuilder, ) {
+    this.myForm = this.fb.group({
+      img: [null],
+      filename: ['']
+    })
+   }
 
   ngOnInit(): void {
     this.informationForm = this.fb.group ({
@@ -34,22 +40,29 @@ export class InformationBoxComponent implements OnInit {
       formDistrict: new FormControl('', [Validators.required]),
       formProvince: new FormControl('', [Validators.required]),
       formPostCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]\\d{4}')])
-    },{
-      validator: MustMatch('formDistrict', 'formProvince')
-    });
+    })
   }
   get informCt() {
     return this.informationForm.controls;
   }
   doSomethingOnError(event: any) {
-    event.target.src = '../../assets/images/userpic.png';
+    event.target.src = this.imgUrl;
   }
     //Upload User Profile Section
-    selectImage(event: any) {
-      if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.images = file;
+    selectImage(e: any) {
+
+      const file = (e.target as HTMLInputElement).files![0];
+      this.myForm.patchValue({
+        img: file
+      });
+      this.myForm.get('img')!.updateValueAndValidity()
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imgUrl = reader.result as string;
       }
+      reader.readAsDataURL(file)
+      this.images = file;
     }
   //Save Button
   ProfileonSave(
