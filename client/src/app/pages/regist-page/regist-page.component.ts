@@ -21,7 +21,7 @@ export class RegistPageComponent implements OnInit {
     private router: Router
   ) {}
   public RegisForm!: FormGroup;
-
+  NotifyMessage: string = '* กรุณากรอกข้อมูลที่จำเป็น';
   registerBody = {
     username: '',
     password: '',
@@ -64,22 +64,20 @@ export class RegistPageComponent implements OnInit {
   }
 
   async pressSignup() {
-    console.log(this.registerBody);
     this.service.register(this.registerBody).subscribe((res) => {
-      console.log(res);
       if (res.result) {
         this.router.navigate(['/home']);
       } else {
         const errors = res.errors;
         if (errors.username !== '') {
           // notify (username)
-          console.log('Username');
+          this.NotifyMessage = 'Username นี้ถูกใช้ไปแล้ว กรุณาลองใหม่อีกครั้ง';
         } else if (errors.email !== '') {
           //notify (email)
-          console.log('email');
+          this.NotifyMessage = 'E-mail นี้ถูกใช้ไปแล้ว กรุณาลองใหม่อีกครั้ง';
         } else {
           //notify (phone)
-          console.log('phone');
+          this.NotifyMessage = 'เบอร์โทรศัพท์ นี้ถูกใช้ไปแล้ว กรุณาลองใหม่อีกครั้ง';
         }
       }
     });
