@@ -3,7 +3,7 @@ const app = express();
 const config = require('./configs/app.config');
 const cors = require('cors');
 
-global.__basedir = __dirname;
+global.__basedir = 'http://localhost:3000';
 
 app.use(cors());
 

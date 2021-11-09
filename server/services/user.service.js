@@ -7,9 +7,7 @@ const fs = require('fs');
 let refreshTokens = [];
 
 const genAccessToken = (user) => {
-    return jwt.sign(user, config.accessToken, {
-        expiresIn: config.tokenExp
-    });
+    return jwt.sign(user, config.accessToken);
 }
 
 const genRefreshToken = (user) => {

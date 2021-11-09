@@ -2,7 +2,7 @@
   <div class="head">แก้ไขรายละเอียดบัญชี</div>
   <div class="upload-section">
     <div class="user-pic">
-      <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" />
+      <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200">
     </div>
     <div class="updesc">
       <input
@@ -29,13 +29,13 @@
         <td>
           <mat-form-field name="fName" appearance="fill">
             <mat-label>ชื่อจริง</mat-label>
-            <input matInput type="text" readonly="readonly" [value]="fName" />
+            <input matInput type="text" readonly="readonly" [value]="firstname" />
           </mat-form-field>
         </td>
         <td>
           <mat-form-field name="lName" appearance="fill">
             <mat-label>นามสกุล</mat-label>
-            <input matInput type="text" readonly="readonly" [value]="lName" />
+            <input matInput type="text" readonly="readonly" [value]="lastname" />
           </mat-form-field>
         </td>
       </tr>
@@ -77,7 +77,7 @@
               type="tel"
               maxlength="13"
               [formControl]="$any(informationForm).get('formPhone')"
-              [(ngModel)]="phoneno"
+              [(ngModel)]="phone"
               placeholder="09x-xxx-xxxx"
               required
             />
@@ -101,7 +101,7 @@
           matInput
           type="text"
           [formControl]="$any(informationForm).get('formAddress')"
-          [(ngModel)]="main_address"
+          [(ngModel)]="mainAddress"
           required
         />
         <mat-error
