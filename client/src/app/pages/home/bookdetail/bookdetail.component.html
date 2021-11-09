@@ -5,10 +5,10 @@
     </div>
     <div class="bookdetail-section">
       <div class="leftpicture">
-        <img [src]="imgUrl" (error)="(doSomethingOnError)" height="300" />
+        <img src="{{ bookdetail.image}}" (error)="(doSomethingOnError)" height="300" />
       </div>
       <div class="book-information">
-        <div class="book-tags">นิยาย</div>
+        <div class="book-tags">{{ bookdetail.tag}}</div>
         <div class="bookname-holder">
           <div class="book-name">เกิดชาตินี้พี่ต้องเทพ เล่ม 12</div>
         </div>

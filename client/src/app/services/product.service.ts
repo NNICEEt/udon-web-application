@@ -10,21 +10,20 @@ export class ProductService {
 
   limit:number = 10;
   page:number = 1;
+  category:any = "";
+  
 
   REST_API: string = 'http://localhost:3000/api/v1/products/';
 
   constructor(private httpClient: HttpClient) {}
 
   //homeBook
-  homeBook(){
-    return this.httpClient.get(this.REST_API+'?page='+this.page+'&limit='+this.limit+'&category=')
+  getBooks(){
+    return this.httpClient.get<Book[]>(this.REST_API)
   }
-  //getNumberOfPages 
-  getNumberOfPages(){
-    return this.httpClient.get(this.REST_API+'?category=')
-  }
+  
   //bookDetail
-  bookDetail(getProductId: String) {
-    return this.httpClient.get(this.REST_API + getProductId);
+  bookDetail(productId : string) {
+    return this.httpClient.get<Book>(`${this.REST_API}${productId}`);
   }
 }

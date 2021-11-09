@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     this.islogin = this.authService.loggedIn();
   }
 
+  data = 1;
   faSearch = faSearch;
   faShoppingCart = faShoppingCart;
   faBars = faBars;
