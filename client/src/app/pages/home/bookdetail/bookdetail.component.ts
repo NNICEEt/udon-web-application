@@ -19,10 +19,11 @@ export class BookdetailComponent implements OnInit {
   constructor(
     private serviceCart: CartService,
     private service: ProductService,
-    private router: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.router.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       const id = params.productId;
       console.log(params);
       this.service.bookDetail(id).subscribe((response) => {
@@ -34,12 +35,12 @@ export class BookdetailComponent implements OnInit {
   }
 
   addCart(){
-    this.router.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       const id = params.productId;
       console.log(params);
-      this.serviceCart.addToCart(id, this.quantity).subscribe()
+      this.serviceCart.addToCart(id, this.quantity).subscribe();
     })
-
+    this.router.navigate(['cart']);
   }
 
   getCounter(counter : number){
