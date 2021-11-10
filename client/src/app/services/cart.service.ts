@@ -19,7 +19,7 @@ export class CartService {
 
   //Get Cart
   getCart() {
-    return this.httpClient.get<Carts>(this.REST_API);
+    return this.httpClient.get<Carts[]>(this.REST_API);
   }
 
   //Update Cart

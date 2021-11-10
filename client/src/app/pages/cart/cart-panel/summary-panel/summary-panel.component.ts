@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
+import { Carts } from 'src/app/models/cart';
 
 @Component({
   selector: 'app-summary-panel',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryPanelComponent implements OnInit {
 
-  constructor() { }
+  cartlist: Carts[] = [];
+  constructor(private service: CartService ) { }
 
   ngOnInit(): void {
+    this.service.getCart().subscribe(res => {
+      this.cartlist = [...res];
+    })
   }
 
 }

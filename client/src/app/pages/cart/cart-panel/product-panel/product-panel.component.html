@@ -8,16 +8,16 @@
     <span class="btn-lbl"></span>
   </div>
   <div class="items-cart">
-    <div class="item">
+    <div class="item" *ngFor="let product of cartlist">
       <img
-        src="../../../../../assets/images/Book1.jfif"
+        src="{{product.product.image}}"
         alt=""
         [height]="100"
       />
-      <span class="title">[นิยาย] เกิดชาตินี้พี่ต้องเทพ เล่ม 12</span>
-      <span class="price">279 บาท</span>
+      <span class="title">[{{product.product.categories}}] {{product.product.title}}</span>
+      <span class="price">{{product.product.price}} บาท</span>
       <app-counter [inputWidth]="'40px'" [counterHeight]="'30px'" [fontSize]="'14px'"></app-counter>
-      <span class="price">279 บาท</span>
+      <span class="price">{{product.product.price*product.quantity}} บาท</span>
       <fa-icon class="faTrash" [icon]="faTrash"></fa-icon>
     </div>
   </div>
