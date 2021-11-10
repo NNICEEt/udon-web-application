@@ -1,8 +1,5 @@
-$light-grey: #707070;
-* {
-  font-family: "Kanit", sans-serif;
-  font-weight: 400;
-}
+@use '../../../styles.scss' as global;
+
 nav {
   position: fixed;
   width: 100%;
@@ -14,7 +11,7 @@ nav {
   grid-template-columns: 1fr minmax(auto, 10fr) 1fr;
   grid-gap: 2rem;
   align-items: center;
-  justify-content: center;
+  justify-self: center;
   box-shadow: 0 2px 50px -2px rgba(0, 0, 0, 0.404);
   img {
     display: flex;
@@ -88,5 +85,18 @@ nav {
   }
   .text-box {
     width: 1000px;
+  }
+  @media (max-width: 768px) {
+    .search-bar {
+      input {
+        max-width: 300px;
+      }
+    }
+    .btn {
+      max-width: 81px;
+      padding: 0;
+    }
+  }
+  @media (max-width: 425px) {
   }
 }
