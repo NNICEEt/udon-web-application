@@ -3,11 +3,10 @@ const config = require('../configs/app.config');
 
 const methods = {
 
-    insert(data, file) {
+    insert(data) {
         return new Promise(async (resolve, reject) => {
             try {
-                if(file == null) reject(new Error('image is required'))
-                const productObj = new Product({...data, image: `${__basedir}/users/${file.filename}` });
+                const productObj = new Product(data);
                 await productObj.save();
                 resolve();
             } catch (err) {
@@ -27,6 +26,17 @@ const methods = {
                 reject(new Error('id: not found'));
             }
         });
+    },
+
+    upload(productId, file) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await Product.findByIdAndUpdate(productId, { image: `${__basedir}/users/${file.filename}` });
+                resolve();
+            } catch (err) {
+                reject(err);
+            }
+        })
     },
 
     delete(productId) {

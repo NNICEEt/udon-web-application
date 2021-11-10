@@ -16,18 +16,25 @@ const routes: Routes = [
   // {path: 'edit-profile', component: EditProfileComponent},
   // {path: 'cart', component: CartComponent}
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, children: [{ path: '', component: BooklistComponent }
-  ,{ path: 'book/:productId', component: BookdetailComponent }] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: '', component: BooklistComponent },
+      { path: 'book/:productId', component: BookdetailComponent },
+    ],
+  },
   // { path: 'home/book/:productId', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'home/login', component: LoginPageComponent },
-  { path: 'home/register', component: RegistPageComponent }
-
+  { path: 'home/register', component: RegistPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

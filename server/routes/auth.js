@@ -15,13 +15,7 @@ const verifyAccessToken = (req, res, next) => {
 }
 
 const auth = (req, res, next) => {
-  verifyAccessToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
-      next();
-    } else {
-      res.sendStatus(403);
-    }
-  });
+  verifyAccessToken(req, res, () => { next(); });
 }
 
 const authAdmin = (req, res, next) => {
