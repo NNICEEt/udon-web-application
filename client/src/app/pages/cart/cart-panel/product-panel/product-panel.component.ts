@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   faTrash,
   faShoppingCart,
@@ -17,11 +17,17 @@ import { Carts } from 'src/app/models/cart';
 export class ProductPanelComponent implements OnInit {
   faTrash = faTrash;
   cartlist: Carts[] = [];
+  @Output() totalPrice = new EventEmitter();
   constructor(private service: CartService ) { }
 
   ngOnInit(): void {
     this.service.getCart().subscribe(res => {
       this.cartlist = [...res];
+      let totalPrice = 0;
+      this.cartlist.forEach(item => {
+        totalPrice += item.totalPrice;
+      });
+      this.totalPrice.emit(totalPrice);
     })
   }
 }

@@ -2,8 +2,8 @@
   <div class="cart-group">
     <strong class="cart-lbl">ตะกร้าสินค้า</strong>
     <strong class="summary-lbl">สรุป</strong>
-    <app-product-panel></app-product-panel>
-    <app-summary-panel></app-summary-panel>
+    <app-product-panel (totalPrice)="getTotalPrice($event)"></app-product-panel>
+    <app-summary-panel [totalPrice]="totalPrice"></app-summary-panel>
   </div>
   <div class="button-group">
     <button mat-flat-button class="btn contipay" color="primary">
