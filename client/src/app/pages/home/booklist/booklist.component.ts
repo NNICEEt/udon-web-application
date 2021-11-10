@@ -19,46 +19,34 @@ import { Book } from 'src/app/components/category/type';
   templateUrl: './booklist.component.html',
   styleUrls: ['./booklist.component.scss'],
 })
-export class BooklistComponent implements OnInit,DoCheck{
+export class BooklistComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   imgUrl = '../../assets/images/Book1.jfif';
 
   @Output() onSelect1 = new EventEmitter();
 
-  @Input() getCate: string = '';
+  getCate: string = '';
   booklist: Book[] = [];
   constructor(
     private service: ProductService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      if(params.category) this.getCate = params.category;
-      console.log("getCate : "+this.getCate)
+      if (params.category && params.category != this.getCate) {
+        this.getCate = params.category;
+      }
     });
-    //
 
     this.service.getBooks().subscribe((res) => {
       this.booklist = [...res];
       this.length = this.booklist.length;
-      console.log(this.booklist);
+      this.booklist = this.booklist.filter((item) =>
+        item.categories.includes(this.getCate)
+      );
     });
-  }
-
-  ngDoCheck(): void {
-    this.booklist = this.booklist.filter((item,index)=>{
-      return item.categories.includes(this.getCate)
-      
-    })
-    // console.log("ttt")
-    // this.service.getBooks().subscribe((res) => {
-    //   this.booklist = [...res];
-    //   this.length = this.booklist.length;
-    //   console.log(this.booklist);
-    // });
   }
 
   doSomethingOnError(event: any) {

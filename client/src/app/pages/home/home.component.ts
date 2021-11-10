@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,24 +7,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  getPage: boolean = true;
-  isLogin: boolean = false;
-  cate:string ="";
-  constructor(private service: AuthService) {}
+
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  onChange(value: boolean) {
-    this.getPage = value;
-  }
 
-  onSet(cate: string){
-    this.cate = cate;
-    console.log("cate : "+this.cate)
-  }
-
-  test(){
-    console.log(this.cate)
-  }
 }
