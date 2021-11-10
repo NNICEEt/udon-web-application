@@ -7,7 +7,7 @@ router.get('/', auth, controllers.onGetUserInfo);
 router.put('/', auth, controllers.onUpdate);
 router.put('/password', auth, controllers.onUpdatePassword);
 router.delete('/delete', auth, controllers.onDelete);
-router.put('/file', auth, userUpload, controllers.onUpload);
+router.post('/file', auth, userUpload, controllers.onUpload);
 
 router.post("/register", controllers.onRegister);
 router.post('/login', controllers.onLogin);

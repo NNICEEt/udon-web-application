@@ -9,7 +9,6 @@ export class UserService {
   REST_API: string = 'http://localhost:3000/api/v1/users';
 
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  httpHeadersFile = new HttpHeaders().set('Content-Type', 'multipart/form-data;');
 
   constructor(private httpClient: HttpClient) {}
 
@@ -28,6 +27,6 @@ export class UserService {
 
   uploadImg(file: FormData) {
     const API_URL = `${this.REST_API}/file`;
-    return this.httpClient.put(API_URL, file);
+    return this.httpClient.post(API_URL, file);
   }
 }
