@@ -9,10 +9,6 @@
     bottom: 0;
   }
 
-  app-panel {
-    display: inline-block;
-  }
-
   .sub-main {
     justify-content: center;
     padding: 30px;
@@ -23,7 +19,15 @@
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-
+    app-panel {
+      display: block;
+    }
+  }
+  @media (max-width: 768px) {
+    .sub-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
-
