@@ -10,9 +10,9 @@
       <div class="book-information">
         <div class="book-tags">{{ bookdetail.tag}}</div>
         <div class="bookname-holder">
-          <div class="book-name">เกิดชาตินี้พี่ต้องเทพ เล่ม 12</div>
+          <div class="book-name">{{ bookdetail.title}}</div>
         </div>
-        <div class="book-price">279 บาท</div>
+        <div class="book-price">ราคา {{ bookdetail.price}} บาท</div>
         <div class="amount-section">
           <div class="inputstepper">
             <app-counter></app-counter>
@@ -30,10 +30,7 @@
         <div class="abstract">
           <div class="head">เรื่องย่อ</div>
           <div class="sub">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+            {{ bookdetail.description}}
           </div>
         </div>
       </div>

@@ -25,8 +25,12 @@ export class BooklistComponent implements OnInit {
 
   @Output() onSelect1 = new EventEmitter();
 
+  getIndex!: number;
   getCate: string = '';
   booklist: Book[] = [];
+  temp1: Book[] = [];
+  booklistCurrent: Book[] = [];
+
   constructor(
     private service: ProductService,
     private router: Router,
@@ -43,30 +47,56 @@ export class BooklistComponent implements OnInit {
     this.service.getBooks().subscribe((res) => {
       this.booklist = [...res];
       this.length = this.booklist.length;
-      this.booklist = this.booklist.filter((item) =>
-        item.categories.includes(this.getCate)
-      );
+      this.booklist = [
+        ...this.booklist.filter((item) =>
+          item.categories.includes(this.getCate)
+        ),
+      ];
+      this.filterBook();
     });
+  }
+
+  filterBook(getIndex: number = 10, pageIndex: number = 1) {
+    // this.temp1.push(...this.booklist);
+    // this.booklist = [];
+    // this.booklist = this.temp1;
+    // console.log(getIndex);
+    // this.booklist = this.booklist.filter((item, index) => {
+    //   if ((pageIndex == 1)) {
+    //     return index < getIndex * pageIndex;
+    //   } else if (pageIndex > 1) {
+    //     return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
+    //   } 
+    //   return 0;
+    // });
+    
+    this.booklistCurrent = this.booklist.filter((item, index) => {
+      if ((pageIndex == 1)) {
+        return index < getIndex * pageIndex;
+      } else if (pageIndex > 1) {
+        return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
+      } 
+      return 0;
+    });
+    console.log(this.booklistCurrent);
   }
 
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/Book1.jfif';
   }
 
-  onSelectBookList() {
-    this.onSelect1.emit(false);
+  test(vv: number){
+    console.log("ddd"+vv)
   }
 
-  getValueService(value1: any, value2: any) {
-    this.service.limit = value1;
-    this.service.page = value2;
-    console.log('1 :' + this.service.limit);
+  onSelectBookList() {
+    this.onSelect1.emit(false);
   }
 
   // MatPaginator Inputs
   length!: number;
   pageSize = 10;
-  pageSizeOptions: number[] = [100, 20, 25];
+  pageSizeOptions: number[] = [10, 15, 20];
 
   // MatPaginator Output
   // MatPaginator Output
