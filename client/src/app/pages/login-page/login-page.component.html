@@ -18,6 +18,7 @@
         <mat-error *ngIf="logforms.lPassword.touched && logforms.lPassword.errors?.maxlength">{{ getLengthError() }}</mat-error>
       </mat-form-field>
     </form>
+    <span>{{NotifyMessage}}</span>
     <mat-divider></mat-divider>
     <div class="btn-group">
       <button mat-flat-button color="primary" class="btn login" [disabled]="$any(LoginForm).invalid" (click)="pressLogin()"
