@@ -15,9 +15,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./secure-box.component.scss'],
 })
 export class SecureBoxComponent implements OnInit {
-  oldPass: string = '';
   newPass: string = '';
   confirmPass: string = '';
+  Notify: string = '';
   public secureForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -45,7 +45,7 @@ export class SecureBoxComponent implements OnInit {
   }
   pressUpdate() {
     this.service.updatePassword(this.newPass).subscribe((res) => {
-      console.log(res);
+      return this.Notify = 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว';
     })
   }
   getLengthError() {
