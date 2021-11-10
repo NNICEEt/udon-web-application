@@ -21,6 +21,7 @@ export class LoginPageComponent implements OnInit {
     private router: Router
   ) {}
   public LoginForm!: FormGroup;
+  NotifyMessage: string = '';
   loginBody = {
     username: '',
     password: '',
@@ -50,7 +51,7 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('token', res.token.accessToken);
         this.router.navigate(['/home']);
       } else {
-        console.log(res);
+        this.NotifyMessage = 'Username หรือ Password ไม่ถูกต้อง';
       }
     });
   }
