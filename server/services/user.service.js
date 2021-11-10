@@ -61,14 +61,13 @@ const methods = {
             try {
                 const user = await User.findById(userId);
                 if (file) {
+                    console.log(file.filename);
                     oldURL = user.photoURL || '';
+                    await user.updateOne({ photoURL: `${__basedir}/users/${file.filename}`});
                     if (oldURL != '') {
-                        fs.unlinkSync(oldURL);
+                        fs.unlink(oldURL);
                         console.log('remove');
                     }
-                    await user.updateOne({
-                        photoURL: `${__basedir}/users/${file.filename}`
-                    });
                 }
                 resolve();
             } catch (err) {
