@@ -1,39 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { MustMatch } from 'src/app/services/MustMatch'
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+import { MustMatch } from 'src/app/services/MustMatch';
+import { UserService } from 'src/app/services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-secure-box',
   templateUrl: './secure-box.component.html',
-  styleUrls: ['./secure-box.component.scss']
+  styleUrls: ['./secure-box.component.scss'],
 })
 export class SecureBoxComponent implements OnInit {
-  old_pass:String ='';
-  new_pass:String ='';
-  confirm_pass:String = '';
+  oldPass: string = '';
+  newPass: string = '';
+  confirmPass: string = '';
   public secureForm!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private service: UserService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    this.secureForm = this.fb.group ({
-      formOld: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-      formNew: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-      formConfirm: new FormControl('', [Validators.required])
-    },{
-      validator: MustMatch('formNew', 'formConfirm')
-    });
+    this.secureForm = this.fb.group(
+      {
+        formNew: new FormControl('', [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(16),
+        ]),
+        formConfirm: new FormControl('', [Validators.required]),
+      },
+      {
+        validator: MustMatch('formNew', 'formConfirm'),
+      }
+    );
   }
   get secureCt() {
     return this.secureForm.controls;
   }
+  pressUpdate() {
+    this.service.updatePassword(this.newPass).subscribe((res) => {
+      console.log(res);
+    })
+  }
   getLengthError() {
-    return 'รหัสผ่านต้องมีความยาวตั้งแต่ 8-16 ตัวอักษรขึ้นไป'
+    return 'รหัสผ่านต้องมีความยาวตั้งแต่ 8-16 ตัวอักษรขึ้นไป';
   }
   misMatchError() {
-    return 'รหัสผ่านไม่ตรงกัน'
+    return 'รหัสผ่านไม่ตรงกัน';
   }
   getRequiredError() {
-    return 'กรุณากรอกข้อมูล'
+    return 'กรุณากรอกข้อมูล';
   }
 }
-

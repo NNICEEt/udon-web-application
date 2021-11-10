@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { MustMatch } from 'src/app/services/MustMatch'
 
 @Component({
   selector: 'app-information-box',
@@ -16,8 +15,8 @@ export class InformationBoxComponent implements OnInit {
   myForm: FormGroup;
   public informationForm!: FormGroup;
   //User Information Form
-  fName:string= 'พีรยุทธ';
-  lName:string= 'บางศรี';
+  fName:string= '';
+  lName:string= '';
   email:string= '';
   phoneno:string= '';
   main_address:string= '';
