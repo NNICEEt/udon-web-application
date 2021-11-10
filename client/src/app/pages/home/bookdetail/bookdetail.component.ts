@@ -34,9 +34,7 @@ export class BookdetailComponent implements OnInit {
     event.target.src = '../../assets/images/Book1.jfif'
   }
 
-  onSelectAddCart() {
-    this.onSelect3.emit(true);
-  }
+  
 
 
 
