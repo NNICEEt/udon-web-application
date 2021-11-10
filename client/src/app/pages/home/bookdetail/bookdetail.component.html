@@ -8,20 +8,20 @@
         <img src="{{ bookdetail.image}}" (error)="(doSomethingOnError)" height="300" />
       </div>
       <div class="book-information">
-        <div class="book-tags">{{ bookdetail.tag}}</div>
+        <div class="book-tags">{{ bookdetail.categories}}</div>
         <div class="bookname-holder">
-          <div class="book-name">{{ bookdetail.title}}</div>
+          <div class="book-name">[{{ bookdetail.categories }}] {{ bookdetail.title }}</div>
         </div>
         <div class="book-price">ราคา {{ bookdetail.price}} บาท</div>
         <div class="amount-section">
           <div class="inputstepper">
-            <app-counter></app-counter>
+            <app-counter (counter)="getCounter($event)"></app-counter>
           </div>
           <button
             mat-flat-button
             class="addcart"
             color="primary"
-            (click) = "onSelectAddCart()"
+            (click)="addCart()"
 
           >
             เพิ่ม

@@ -13,6 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/booktype';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-booklist',
@@ -23,8 +24,6 @@ export class BooklistComponent implements OnInit {
   faShoppingCart = faShoppingCart;
   imgUrl = '../../assets/images/Book1.jfif';
 
-  @Output() onSelect1 = new EventEmitter();
-
   getIndex!: number;
   getCate: string = '';
   booklist: Book[] = [];
@@ -32,6 +31,7 @@ export class BooklistComponent implements OnInit {
   booklistCurrent: Book[] = [];
 
   constructor(
+    private serviceCart: CartService,
     private service: ProductService,
     private router: Router,
     private route: ActivatedRoute
@@ -71,10 +71,12 @@ export class BooklistComponent implements OnInit {
     // });
 
     this.booklistCurrent = this.booklist.filter((item, index) => {
-      if ((pageIndex == 1)) {
+      if (pageIndex == 1) {
         return index < getIndex * pageIndex;
       } else if (pageIndex > 1) {
-        return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
+        return (
+          index < getIndex * pageIndex && index >= getIndex * (pageIndex - 1)
+        );
       }
       return 0;
     });
@@ -83,14 +85,6 @@ export class BooklistComponent implements OnInit {
 
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/Book1.jfif';
-  }
-
-  test(vv: number){
-    console.log("ddd"+vv)
-  }
-
-  onSelectBookList() {
-    this.onSelect1.emit(false);
   }
 
   // MatPaginator Inputs
@@ -107,5 +101,9 @@ export class BooklistComponent implements OnInit {
   detailNavigate(productId: string) {
     this.router.navigate([`book`, productId], { relativeTo: this.route });
     console.log('value = ' + productId);
+  }
+
+  addCart(productId: string) {
+    this.serviceCart.addToCart(productId, 1).subscribe();
   }
 }

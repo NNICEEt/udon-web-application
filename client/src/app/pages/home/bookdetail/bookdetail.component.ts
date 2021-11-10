@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-bookdetail',
@@ -11,10 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class BookdetailComponent implements OnInit {
   imgUrl = '../../assets/images/Book1.jfif';
 
-  @Output() onSelect3 = new EventEmitter;
   bookdetail: any = {};
+  quantity: number = 1;
+
 
   constructor(
+    private serviceCart: CartService,
     private service: ProductService,
     private router: ActivatedRoute) { }
 
@@ -30,13 +33,24 @@ export class BookdetailComponent implements OnInit {
 
   }
 
+  addCart(){
+    this.router.params.subscribe(params => {
+      const id = params.productId;
+      console.log(params);
+      this.serviceCart.addToCart(id, this.quantity).subscribe()
+    })
+
+  }
+
+  getCounter(counter : number){
+    this.quantity = counter;
+  }
+
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/Book1.jfif'
   }
 
-  onSelectAddCart() {
-    this.onSelect3.emit(true);
-  }
+  
 
 
 
