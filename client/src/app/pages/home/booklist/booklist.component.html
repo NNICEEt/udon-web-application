@@ -26,7 +26,12 @@
             <div class="price">{{ product.price }} บาท</div>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-stroked-button class="btn addcart" color="primary">
+            <button
+              mat-stroked-button
+              class="btn addcart"
+              color="primary"
+              (click)="addCart(product._id)"
+            >
               <fa-icon class="faShoppingCart" [icon]="faShoppingCart"></fa-icon
               ><span>เพิ่มเข้าตะกร้าสินค้า</span>
             </button>
@@ -43,8 +48,7 @@
           [pageSizeOptions]="pageSizeOptions"
           (page)="pageEvent = $event"
           aria-label="Select page"
-          (page)="filterBook(pageEvent.pageSize,pageEvent.pageIndex+1)"
-          (page)="test(pageEvent.pageIndex+1)"
+          (page)="filterBook(pageEvent.pageSize, pageEvent.pageIndex + 1)"
         >
         </mat-paginator>
       </div>

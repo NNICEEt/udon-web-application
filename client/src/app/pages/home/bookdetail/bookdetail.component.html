@@ -15,13 +15,13 @@
         <div class="book-price">ราคา {{ bookdetail.price}} บาท</div>
         <div class="amount-section">
           <div class="inputstepper">
-            <app-counter></app-counter>
+            <app-counter (counter)="getCounter($event)"></app-counter>
           </div>
           <button
             mat-flat-button
             class="addcart"
             color="primary"
-            
+            (click)="addCart()"
 
           >
             เพิ่ม
