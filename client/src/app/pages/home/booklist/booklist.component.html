@@ -7,7 +7,7 @@
       >
     </div>
     <div class="card-section">
-      <mat-card class="card" *ngFor="let product of booklist">
+      <mat-card class="card" *ngFor="let product of booklistCurrent">
         <img
           mat-card-image
           src="{{ product.image }}"
@@ -43,7 +43,8 @@
           [pageSizeOptions]="pageSizeOptions"
           (page)="pageEvent = $event"
           aria-label="Select page"
-          (page)="getValueService(pageEvent.pageSize, pageEvent.pageIndex + 1)"
+          (page)="filterBook(pageEvent.pageSize,pageEvent.pageIndex+1)"
+          (page)="test(pageEvent.pageIndex+1)"
         >
         </mat-paginator>
       </div>
