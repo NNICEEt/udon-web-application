@@ -25,8 +25,8 @@ const routes: Routes = [
     ],
   },
   // { path: 'home/book/:productId', component: HomeComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home/login', component: LoginPageComponent },
   { path: 'home/register', component: RegistPageComponent },
 ];

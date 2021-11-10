@@ -104,6 +104,8 @@ export class BooklistComponent implements OnInit {
   }
 
   addCart(productId: string) {
-    this.serviceCart.addToCart(productId, 1).subscribe();
+    this.serviceCart.addToCart(productId, 1).subscribe(res=>{},err=>{
+      this.router.navigate(['cart']);
+    });
   }
 }
