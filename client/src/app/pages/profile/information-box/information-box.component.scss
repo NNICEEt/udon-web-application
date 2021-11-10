@@ -1,7 +1,4 @@
-$margenta: #ff4081;
-$light-grey: #707070;
-$face-blue: #3f51b5;
-$mint: #00ff90;
+@use '../../../../styles.scss' as global;
 * {
     font-family: "Kanit", sans-serif;
     overflow: hidden;
@@ -11,7 +8,7 @@ $mint: #00ff90;
   }
 .boxs {
     padding: 2rem;
-    border: $light-grey 1px solid;
+    border: global.$light-grey 1px solid;
     border-radius: 10px;
     min-width: 800px;
     min-height: 950px;
@@ -19,12 +16,12 @@ $mint: #00ff90;
       margin-bottom: 5px;
     }
     .head {
-        color: $face-blue;
+        color: global.$face-blue;
         font-size: 24px;
         margin-bottom: 1rem;
       }
       .sub-header {
-        color: $light-grey;
+        color: global.$light-grey;
         font-size: 20px;
         margin-bottom: 15px;
       }
@@ -43,10 +40,10 @@ $mint: #00ff90;
             color: white;
           }
           .upload {
-            background-color: $face-blue;
+            background-color: global.$face-blue;
           }
           .pick {
-            background-color: $margenta;
+            background-color: global.$margenta;
           }
           .description {
             color: red;

@@ -5,7 +5,8 @@ import {
   faHome,
   faCog,
 } from '@fortawesome/free-solid-svg-icons';
-
+import { CartService } from 'src/app/services/cart.service';
+import { Carts } from 'src/app/models/cart';
 
 @Component({
   selector: 'app-product-panel',
@@ -15,10 +16,12 @@ import {
 
 export class ProductPanelComponent implements OnInit {
   faTrash = faTrash;
+  cartlist: Carts[] = [];
+  constructor(private service: CartService ) { }
 
-  
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.getCart().subscribe(res => {
+      this.cartlist = [...res];
+    })
+  }
 }

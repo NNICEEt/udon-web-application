@@ -12,6 +12,11 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
+  //Update Password
+  updatePassword(password: string) {
+    const API_URL = `${this.REST_API}/password`;
+    return this.httpClient.put(API_URL, {password});
+  }
   // User Info
   getUserInfo() {
     return this.httpClient.get<User>(this.REST_API, {

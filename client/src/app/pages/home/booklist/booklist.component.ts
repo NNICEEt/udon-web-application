@@ -12,7 +12,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from 'src/app/services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Book } from 'src/app/components/category/type';
+import { Book } from 'src/app/models/booktype';
 
 @Component({
   selector: 'app-booklist',
@@ -66,16 +66,16 @@ export class BooklistComponent implements OnInit {
     //     return index < getIndex * pageIndex;
     //   } else if (pageIndex > 1) {
     //     return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
-    //   } 
+    //   }
     //   return 0;
     // });
-    
+
     this.booklistCurrent = this.booklist.filter((item, index) => {
       if ((pageIndex == 1)) {
         return index < getIndex * pageIndex;
       } else if (pageIndex > 1) {
         return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
-      } 
+      }
       return 0;
     });
     console.log(this.booklistCurrent);
