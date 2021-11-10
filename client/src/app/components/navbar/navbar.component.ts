@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   islogin: boolean = false;
-
   ngOnInit(): void {
     this.islogin = this.authService.loggedIn();
   }
@@ -43,4 +42,5 @@ export class NavbarComponent implements OnInit {
       window.location.reload();
     });
   }
+
 }

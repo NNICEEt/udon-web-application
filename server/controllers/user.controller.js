@@ -62,10 +62,19 @@ const methods = {
 
     async onUpdate(req, res) {
         try {
-            const result = await Services.update(req.user.id, req.body, req.file);
+            const result = await Services.update(req.user.id, req.body);
             res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err.message);
+        }
+    },
+
+    async onUpload(req,res) {
+        try {
+            await Services.upload(req.user.id, req.file);
+            res.json('OK');
+        } catch (err) {
+            res.json(err);
         }
     },
 

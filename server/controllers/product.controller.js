@@ -4,7 +4,7 @@ const methods = {
 
     async onInsert(req, res) {
         try {
-            await Services.insert(req.body, req.file);
+            await Services.insert(req.body);
             res.status(201).json("success");
         } catch (err) {
             res.status(400).json(err);
@@ -17,6 +17,15 @@ const methods = {
             res.status(200).json(result);
         } catch (err) {
             res.status(400).json(err);
+        }
+    },
+
+    async onUpload(req,res) {
+        try {
+            await Services.upload(req.params.productId, req.file);
+            res.json('OK');
+        } catch (err) {
+            res.json(err);
         }
     },
 
