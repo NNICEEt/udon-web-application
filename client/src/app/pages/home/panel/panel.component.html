@@ -4,13 +4,13 @@
     <div class="boxin">
       <ul>
         <li><span class="boxin1"
-          routerLink="" [queryParams]="{'category': 'การ์ตูน'}">การ์ตูน</span></li>
+          routerLink="" [queryParams]="{'category': 'การ์ตูน'}" (click)="reloadComponent()">การ์ตูน</span></li>
         <mat-divider></mat-divider>
         <li><span class="boxin2"
-          routerLink="" [queryParams]="{'category': 'นิยาย'}">นิยาย</span></li>
+          routerLink="" [queryParams]="{'category': 'นิยาย'}" (click)="reloadComponent()">นิยาย</span></li>
         <mat-divider></mat-divider>
         <li><span class="boxin3"
-          routerLink="" [queryParams]="{'category': 'วารสาร'}">วารสาร</span></li>
+          routerLink="" [queryParams]="{'category': 'วารสาร'}" (click)="reloadComponent()">วารสาร</span></li>
       </ul>
     </div>
   </aside>

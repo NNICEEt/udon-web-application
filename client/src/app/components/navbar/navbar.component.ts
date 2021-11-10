@@ -31,9 +31,10 @@ export class NavbarComponent implements OnInit {
     event.target.src = '../../assets/images/logo.png';
   }
 
-  @Output() onSelect2 = new EventEmitter();
-  onSelectHomeIcon() {
-    this.onSelect2.emit(true);
+  refresh() {
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    })
   }
 
   logout() {
@@ -42,5 +43,4 @@ export class NavbarComponent implements OnInit {
       window.location.reload();
     });
   }
-
 }
