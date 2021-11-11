@@ -38,9 +38,10 @@ export class BookdetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = params.productId;
       console.log(params);
-      this.serviceCart.addToCart(id, this.quantity).subscribe();
+      this.serviceCart.addToCart(id, this.quantity).subscribe(() => {
+        this.router.navigate(['cart']);
+      });
     })
-    this.router.navigate(['cart']);
   }
 
   getCounter(counter : number){
@@ -51,7 +52,7 @@ export class BookdetailComponent implements OnInit {
     event.target.src = '../../assets/images/Book1.jfif'
   }
 
-  
+
 
 
 

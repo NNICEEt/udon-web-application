@@ -1,10 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {
-  faTrash,
-  faShoppingCart,
-  faHome,
-  faCog,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/services/cart.service';
 import { Carts } from 'src/app/models/cart';
 
@@ -29,5 +24,14 @@ export class ProductPanelComponent implements OnInit {
       });
       this.totalPrice.emit(totalPrice);
     })
+  }
+  onDelete(cartId: string) {
+    this.service.deleteCart(cartId).subscribe();
+    this.cartlist = this.cartlist.filter(item => cartId != item._id);
+    let totalPrice = 0;
+    this.cartlist.forEach(item => {
+      totalPrice += item.totalPrice;
+    });
+    this.totalPrice.emit(totalPrice);
   }
 }
