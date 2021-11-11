@@ -17,9 +17,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule} from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
-import {MatTableModule} from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -43,6 +44,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 
 @NgModule({
 
@@ -67,7 +69,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SummaryPanelComponent,
     BookdetailComponent,
     LoginPageComponent,
-    RegistPageComponent
+    RegistPageComponent,
+    CartDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -87,8 +90,10 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     NgxMaskModule.forRoot(),
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
+  entryComponents: [CartDialogComponent],
   providers: [AuthGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

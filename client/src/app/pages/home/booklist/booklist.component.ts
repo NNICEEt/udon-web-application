@@ -14,6 +14,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/booktype';
 import { CartService } from 'src/app/services/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CartDialogComponent } from 'src/app/components/cart-dialog/cart-dialog.component';
 
 @Component({
   selector: 'app-booklist',
@@ -34,7 +36,8 @@ export class BooklistComponent implements OnInit {
     private serviceCart: CartService,
     private service: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -107,5 +110,6 @@ export class BooklistComponent implements OnInit {
     this.serviceCart.addToCart(productId, 1).subscribe(res=>{},err=>{
       this.router.navigate(['cart']);
     });
+    this.dialog.open(CartDialogComponent);
   }
 }
