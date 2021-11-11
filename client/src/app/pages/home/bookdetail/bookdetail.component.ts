@@ -40,6 +40,9 @@ export class BookdetailComponent implements OnInit {
       console.log(params);
       this.serviceCart.addToCart(id, this.quantity).subscribe(() => {
         this.router.navigate(['cart']);
+      },
+      ()=> {
+        this.router.navigate(['cart']);
       });
     })
   }
