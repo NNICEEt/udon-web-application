@@ -6,6 +6,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Book } from 'src/app/models/booktype';
+import { ProductService } from 'src/app/services/product.service';
+import { FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +18,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
-
+  constructor(private authService: AuthService, private router: Router, private service: ProductService) {}
+  booklist: Book[] = [];
+  bookname: Book[] = [];
   islogin: boolean = false;
+  myControl = new FormControl();
+  filteredOptions!: Observable<Book[]>;
+
   ngOnInit(): void {
     this.islogin = this.authService.loggedIn();
+    this.service.getBooks().subscribe((res) => {
+      this.booklist = [...res];
+      this.bookname = this.booklist;
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value)),
+      );
+    });
   }
-
+  private _filter(value: string): Book[] {
+    const filterValue = value.toLowerCase();
+    return this.bookname.filter((item, i) => item.title.toLowerCase().includes(filterValue));
+  }
   data = 1;
   faSearch = faSearch;
   faShoppingCart = faShoppingCart;
