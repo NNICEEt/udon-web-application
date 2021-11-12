@@ -5,7 +5,7 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/booktype';
 import { ProductService } from 'src/app/services/product.service';
 import { FormControl } from '@angular/forms';
@@ -18,7 +18,7 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router, private service: ProductService) {}
+  constructor(private authService: AuthService, private router: Router, private service: ProductService, private route: ActivatedRoute) {}
   booklist: Book[] = [];
   bookname: Book[] = [];
   islogin: boolean = false;
@@ -50,7 +50,10 @@ export class NavbarComponent implements OnInit {
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/logo.png';
   }
-
+  detailNavigate(productId: string) {
+    this.router.navigate([`book`, productId], { relativeTo: this.route });
+    console.log('value = ' + productId);
+  }
   refresh() {
     this.router.navigate(['']).then(() => {
       window.location.reload();
