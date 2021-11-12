@@ -13,17 +13,21 @@ $mint: #00ff90;
     min-height: 100vh;
     position: relative;
     overflow: hidden;
-    .profile-section {
-      display: flex;
-      justify-content: center;
-      margin: 2rem 0rem;
+    main {
+      .profile-section {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+        padding-bottom: 200px;
+      }
     }
+
     app-profile-panel {
       margin-right: 1rem;
     }
     app-contact {
         width: 100%;
-        position: relative;
+        position: absolute;
         bottom: 0;
     }
     @media (max-width:768px) {

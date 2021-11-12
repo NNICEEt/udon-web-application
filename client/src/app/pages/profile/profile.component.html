@@ -1,5 +1,6 @@
 <div class="container">
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
+  <main>
     <app-banner></app-banner>
     <div class="profile-section">
       <app-profile-panel (onSelect)="onChange($event)"></app-profile-panel>
@@ -7,5 +8,6 @@
       <app-secure-box *ngIf="page == 2"></app-secure-box>
       <app-myorder-box *ngIf="page == 3"></app-myorder-box>
     </div>
-    <app-contact></app-contact>
+  </main>
+  <app-contact></app-contact>
 </div>

@@ -71,7 +71,13 @@
 @media (max-width: 1024px) {
   .boxs {
     padding: 24px;
-    width: 768px;
+    width: 700px;
+    .mat-form-field {
+      width: 315px;
+      &.address {
+        width: 650px;
+      }
+    }
   }
 }
 @media (max-width: 768px) {
@@ -81,9 +87,9 @@
     margin-left: 18px;
     margin-right: 16px;
     .mat-form-field {
-      width: 341px;
+      width: 310px;
       &.address {
-        width: 697px;
+        width: 630px;
       }
     }
   }
@@ -112,27 +118,27 @@
 
     @media (max-width: 425px) {
       .mat-form-field {
-        width: 354px;
+        width: 295px;
         &.address {
-          width: 354px;
+          width: 295px;
         }
       }
     }
 
     @media (max-width: 375px) {
       .mat-form-field {
-        width: 303px;
+        width: 240px;
         &.address {
-          width: 303px;
+          width: 240px;
         }
       }
     }
 
     @media (max-width: 320px) {
       .mat-form-field {
-        width: 250px;
+        width: 190px;
         &.address {
-          width: 250px;
+          width: 190px;
         }
       }
     }
