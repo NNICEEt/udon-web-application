@@ -43,6 +43,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CartService } from './services/cart.service';
 
 @NgModule({
 

@@ -58,9 +58,10 @@
       mat-flat-button
       class="btn cart"
       color="primary"
-      matBadge="1"
+      matBadge="{{itemCart}}"
       matBadgePosition="after"
       matBadgeColor="accent"
+      [matBadgeHidden]="itemCart == 0"
       routerLink="/cart"
       routerLinkActive="active"
       *ngIf="islogin"
