@@ -17,7 +17,7 @@ export class BookdetailComponent implements OnInit {
 
 
   constructor(
-    private serviceCart: CartService,
+    private cartService: CartService,
     private service: ProductService,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -38,7 +38,7 @@ export class BookdetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = params.productId;
       console.log(params);
-      this.serviceCart.addToCart(id, this.quantity).subscribe(() => {
+      this.cartService.addToCart(id, this.quantity).subscribe(() => {
         this.router.navigate(['cart']);
       },
       ()=> {

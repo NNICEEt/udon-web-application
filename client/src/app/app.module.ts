@@ -46,6 +46,7 @@ import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
+import { CartService } from './services/cart.service';
 
 @NgModule({
 

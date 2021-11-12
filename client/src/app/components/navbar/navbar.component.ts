@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import {
   faSearch,
   faShoppingCart,
@@ -11,16 +11,18 @@ import { ProductService } from 'src/app/services/product.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router, private service: ProductService, private route: ActivatedRoute) {}
+export class NavbarComponent implements OnInit, DoCheck {
+  constructor(private authService: AuthService, private cartService: CartService, private router: Router, private service: ProductService, private route: ActivatedRoute) {}
   booklist: Book[] = [];
   bookname: Book[] = [];
+  itemCart!:number;
   islogin: boolean = false;
   myControl = new FormControl();
   filteredOptions!: Observable<Book[]>;
@@ -35,7 +37,14 @@ export class NavbarComponent implements OnInit {
         map(value => this._filter(value)),
       );
     });
+    this.cartService.getCart().subscribe((res) => {
+      this.cartService.countItem = res.length;
+    });
   }
+  ngDoCheck(): void {
+    this.itemCart = this.cartService.countItem;
+  }
+  
   private _filter(value: string): Book[] {
     const filterValue = value.toLowerCase();
     return this.bookname.filter((item, i) => item.title.toLowerCase().includes(filterValue));
@@ -55,9 +64,7 @@ export class NavbarComponent implements OnInit {
     console.log('value = ' + productId);
   }
   refresh() {
-    this.router.navigate(['']).then(() => {
-      window.location.reload();
-    })
+    this.router.navigate(['']);
   }
 
   logout() {

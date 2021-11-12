@@ -13,10 +13,10 @@ export class ProductPanelComponent implements OnInit {
   faTrash = faTrash;
   cartlist: Carts[] = [];
   @Output() totalPrice = new EventEmitter();
-  constructor(private service: CartService ) { }
+  constructor(private cartService: CartService ) { }
 
   ngOnInit(): void {
-    this.service.getCart().subscribe(res => {
+    this.cartService.getCart().subscribe(res => {
       this.cartlist = [...res];
       let totalPrice = 0;
       this.cartlist.forEach(item => {
@@ -25,8 +25,13 @@ export class ProductPanelComponent implements OnInit {
       this.totalPrice.emit(totalPrice);
     })
   }
+  
   onDelete(cartId: string) {
-    this.service.deleteCart(cartId).subscribe();
+    this.cartService.deleteCart(cartId).subscribe(()=>{
+      this.cartService.getCart().subscribe((res) => {
+        this.cartService.countItem = res.length;
+      });
+    });
     this.cartlist = this.cartlist.filter(item => cartId != item._id);
     let totalPrice = 0;
     this.cartlist.forEach(item => {
