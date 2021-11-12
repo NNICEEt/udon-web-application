@@ -1,67 +1,150 @@
-@use '../../../../styles.scss' as global;
+@use "../../../../styles.scss" as global;
 * {
-    font-family: "Kanit", sans-serif;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  font-family: "Kanit", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .boxs {
-    padding: 2rem;
-    border: global.$light-grey 1px solid;
-    border-radius: 10px;
-    min-width: 800px;
-    min-height: 950px;
-    .form {
-      margin-bottom: 5px;
+  padding: 32px;
+  border: global.$light-grey 1px solid;
+  border-radius: 10px;
+  width: 800px;
+  height: auto;
+  .form {
+    margin-bottom: 5px;
+  }
+  .head {
+    color: global.$face-blue;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    padding: 3px;
+  }
+  .sub-header {
+    color: global.$light-grey;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding: 3px;
+  }
+  .upload-section {
+    display: flex;
+    margin-bottom: 5px;
+    .updesc {
+      align-self: flex-end;
+      display: block;
+      margin-left: 15px;
+      .upload,
+      .pick {
+        margin: 5px;
+        height: 40px;
+        width: 100px;
+        border: none;
+        color: white;
+      }
+      .upload {
+        background-color: global.$face-blue;
+      }
+      .pick {
+        background-color: global.$margenta;
+      }
+      .description {
+        color: red;
+      }
     }
-    .head {
-        color: global.$face-blue;
-        font-size: 24px;
-        margin-bottom: 1rem;
+  }
+  .mat-form-field {
+    font-size: 18px;
+    width: 350px;
+    margin-right: 15px;
+    &.address {
+      width: 715px;
+    }
+  }
+  .save-section {
+    display: flex;
+    .warn {
+      margin-left: 5px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .boxs {
+    padding: 24px;
+    width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .boxs {
+    padding: 18px;
+    width: auto;
+    margin-left: 18px;
+    margin-right: 16px;
+    .mat-form-field {
+      width: 341px;
+      &.address {
+        width: 697px;
       }
-      .sub-header {
-        color: global.$light-grey;
-        font-size: 20px;
-        margin-bottom: 15px;
-      }
-      .upload-section {
-        display: flex;
-        margin-bottom: 5px;
-        .updesc {
-          align-self: flex-end;
-          display: block;
-          margin-left: 15px;
-          .upload, .pick {
-            margin: 5px;
-            height: 40px;
-            width: 100px;
-            border: none;
-            color: white;
-          }
-          .upload {
-            background-color: global.$face-blue;
-          }
-          .pick {
-            background-color: global.$margenta;
-          }
-          .description {
-            color: red;
-          }
+    }
+  }
+}
+@media (max-width: 425px) {
+  .boxs {
+    padding: 18px;
+    width: auto;
+    margin-left: 18px;
+    margin-right: 16px;
+    .upload-section {
+      flex-direction: column;
+      .updesc {
+        align-self: start;
+        margin: 0;
+        padding-top: 5px;
+        .description {
+          padding-top: 5px;
+        }
+        .pick {
+          margin: 0;
+          padding: auto;
         }
       }
+    }
+
+    @media (max-width: 425px) {
       .mat-form-field {
-        font-size: 18px;
-        width: 350px;
-        margin-right: 15px;
+        width: 354px;
         &.address {
-          width: 715px;
+          width: 354px;
         }
       }
-      .save-section {
-        display: flex;
-        .warn {
-          margin-left: 5px;
+    }
+
+    @media (max-width: 375px) {
+      .mat-form-field {
+        width: 303px;
+        &.address {
+          width: 303px;
         }
       }
+    }
+
+    @media (max-width: 320px) {
+      .mat-form-field {
+        width: 250px;
+        &.address {
+          width: 250px;
+        }
+      }
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+    .group3 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
 }

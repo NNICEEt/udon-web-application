@@ -26,4 +26,9 @@ $mint: #00ff90;
         position: relative;
         bottom: 0;
     }
+    @media (max-width:768px) {
+      .profile-section{
+        flex-direction: column;
+      }
+    }
 }
