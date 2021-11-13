@@ -95,12 +95,12 @@ export class BooklistComponent implements OnInit {
 
   addCart(productId: string) {
     this.cartService.addToCart(productId, 1).subscribe(()=>{
+      this.dialog.open(CartDialogComponent);
       this.cartService.getCart().subscribe((res) => {
         this.cartService.countItem = res.length;
       });
     },err=>{
       this.router.navigate(['cart']);
     });
-    this.dialog.open(CartDialogComponent);
   }
 }
