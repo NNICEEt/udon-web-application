@@ -12,11 +12,9 @@
     padding: 20px;
     border: global.$light-grey 1px solid;
     border-radius: 10px;
-    width: auto;
     span {
       font-size: 17px;
       cursor: pointer;
-      margin-bottom: 15px;
       &:hover {
         color: global.$margenta;
         transition: 0.2s;
@@ -28,6 +26,53 @@
     }
     .fa {
       margin-right: 10px;
+    }
+  }
+  @media (max-width: 1024px) {
+    .boxin {
+      padding: 12px;
+    }
+  }
+  @media (max-width: 768px) and (min-width: 426px) {
+    .boxin {
+      margin-left: 18px;
+      margin-bottom: 18px;
+      ul {
+        display: flex;
+        li {
+          text-align: center;
+          display: flex;
+          margin: 0;
+        }
+      }
+    }
+    strong {
+      text-align: left;
+      margin-left: 16px;
+    }
+    span {
+      width: 200px;
+    }
+  }
+  @media (max-width: 425px) {
+    .boxin {
+      margin-left: 18px;
+      margin-bottom: 18px;
+      ul {
+        li {
+          text-align: center;
+          display: flex;
+          margin: 0;
+          justify-content: center;
+        }
+      }
+    }
+    strong {
+      text-align: left;
+      margin-left: 16px;
+    }
+    span {
+      width: 200px;
     }
   }
 }

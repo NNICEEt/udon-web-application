@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -91,7 +92,8 @@ import { CartDialogComponent } from './components/cart-dialog/cart-dialog.compon
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   entryComponents: [CartDialogComponent],
   providers: [AuthGuard,{

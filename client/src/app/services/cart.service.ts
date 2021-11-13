@@ -7,6 +7,9 @@ import { Carts } from '../models/cart';
 })
 export class CartService {
 
+  public countItem:number = 0;
+  public cartList:Carts[] = [];
+
   REST_API: string = 'http://localhost:3000/api/v1/carts/';
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -31,4 +34,10 @@ export class CartService {
   deleteCart(cartId: string) {
     return this.httpClient.delete(`${this.REST_API}${cartId}`);
   }
+
+  //Delete All
+  deleteAllCart() {
+    return this.httpClient.delete(this.REST_API);
+  }
+
 }

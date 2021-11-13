@@ -11,8 +11,4 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  testCounter(value: number) {
-    console.log(value);
-  }
-
 }

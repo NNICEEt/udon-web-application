@@ -6,7 +6,12 @@
   <div class="search-section">
     <div class="search-bar">
       <fa-icon class="faSearch" [icon]="faSearch"></fa-icon>
-      <input type="text" placeholder="ค้นหา" />
+      <input type="text" placeholder="ค้นหา" matInput [matAutocomplete]="auto" [formControl]="myControl"/>
+      <mat-autocomplete #auto="matAutocomplete" >
+        <mat-option *ngFor="let product of filteredOptions | async" [value]="product.title" (click)="detailNavigate(product._id)">
+          [{{product.categories}}] {{product.title}}
+        </mat-option>
+      </mat-autocomplete>
     </div>
     <button mat-flat-button class="search-btn" color="accent">ค้นหา</button>
   </div>
@@ -58,9 +63,10 @@
       mat-flat-button
       class="btn cart"
       color="primary"
-      matBadge="1"
+      matBadge="{{itemCart}}"
       matBadgePosition="after"
       matBadgeColor="accent"
+      [matBadgeHidden]="itemCart == 0"
       routerLink="/cart"
       routerLinkActive="active"
       *ngIf="islogin"

@@ -1,17 +1,16 @@
 @use "../../../../styles.scss" as global;
 * {
   font-family: "Kanit", sans-serif;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 .boxs {
-  padding: 2rem;
+  padding: 32px;
   border: global.$light-grey 1px solid;
   border-radius: 10px;
-  min-width: 800px;
-  min-height: 950px;
+  width: 800px;
+  height: auto;
   .form {
     margin-bottom: 0.8rem;
   }
@@ -38,6 +37,39 @@
     .warn {
       margin-left: 5px;
       color: red;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .boxs {
+    padding: 24px;
+    width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .boxs {
+    padding: 18px;
+    width: auto;
+    margin-left: 18px;
+    margin-right: 16px;
+
+    @media (max-width: 375px) {
+      .mat-form-field {
+        width: 303px;
+        &.address {
+          width: 303px;
+        }
+      }
+    }
+
+    @media (max-width: 320px) {
+      .mat-form-field {
+        width: 250px;
+        &.address {
+          width: 250px;
+        }
+      }
     }
   }
 }

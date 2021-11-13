@@ -33,7 +33,7 @@ export class BooklistComponent implements OnInit {
   booklistCurrent: Book[] = [];
 
   constructor(
-    private serviceCart: CartService,
+    private cartService: CartService,
     private service: ProductService,
     private router: Router,
     private route: ActivatedRoute,
@@ -60,19 +60,6 @@ export class BooklistComponent implements OnInit {
   }
 
   filterBook(getIndex: number = 10, pageIndex: number = 1) {
-    // this.temp1.push(...this.booklist);
-    // this.booklist = [];
-    // this.booklist = this.temp1;
-    // console.log(getIndex);
-    // this.booklist = this.booklist.filter((item, index) => {
-    //   if ((pageIndex == 1)) {
-    //     return index < getIndex * pageIndex;
-    //   } else if (pageIndex > 1) {
-    //     return index < getIndex * pageIndex && index >= (getIndex * (pageIndex-1));
-    //   }
-    //   return 0;
-    // });
-
     this.booklistCurrent = this.booklist.filter((item, index) => {
       if (pageIndex == 1) {
         return index < getIndex * pageIndex;
@@ -107,9 +94,13 @@ export class BooklistComponent implements OnInit {
   }
 
   addCart(productId: string) {
-    this.serviceCart.addToCart(productId, 1).subscribe(res=>{},err=>{
+    this.cartService.addToCart(productId, 1).subscribe(()=>{
+      this.dialog.open(CartDialogComponent);
+      this.cartService.getCart().subscribe((res) => {
+        this.cartService.countItem = res.length;
+      });
+    },err=>{
       this.router.navigate(['cart']);
     });
-    this.dialog.open(CartDialogComponent);
   }
 }
