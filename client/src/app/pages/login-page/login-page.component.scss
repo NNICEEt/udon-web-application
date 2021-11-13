@@ -1,7 +1,7 @@
-@use '../../../styles.scss' as global;
+@use "../../../styles.scss" as global;
 .login-page {
-  min-width: 100vh;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   display: flex;
   background: linear-gradient(220deg, global.$face-blue, global.$margenta);
   background-size: 400% 400%;
@@ -47,23 +47,100 @@
     }
   }
 }
+
 @-webkit-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @-moz-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @-o-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .login-page {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .login-page {
+    justify-content: center;
+    align-items: center;
+    .container {
+      width: 375px;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .login-page {
+    width: 100%;
+    .container {
+      width: 335px;
+      align-items: center;
+      justify-content: center;
+      .form {
+        width: 319px;
+        .mat-form-field {
+          max-width: 287px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .login-page {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .container {
+      width: 280px;
+      .form {
+        width: 264px;
+        .mat-form-field {
+          max-width: 232px;
+        }
+      }
+    }
+  }
 }

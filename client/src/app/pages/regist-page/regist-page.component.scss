@@ -1,6 +1,6 @@
 .register-page {
-  min-width: 100vh;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   display: flex;
   background: linear-gradient(220deg, #3f51b5, #ff4081);
   background-size: 400% 400%;
@@ -38,6 +38,9 @@
       .mat-form-field {
         font-size: 1rem;
         padding: 5px;
+        &.example-full-width{
+          width: 250px;
+        }
       }
     }
     span {
@@ -65,4 +68,39 @@
   0%{background-position:0% 32%}
   50%{background-position:100% 69%}
   100%{background-position:0% 32%}
+}
+
+@media screen and (max-width: 1440px) {
+  .register-page{
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .register-page{
+    justify-content: center;
+    align-items: center;
+    .container{
+      width: 375px;
+      height: auto;
+      tr{
+        display: flex;
+        flex-direction: column;
+
+        td{
+          
+        .form{
+          
+          .mat-form-field{
+              
+            &.example-full-width{
+              width: 250px;
+            }
+          }
+        }
+      }
+    }
+    }
+  }
 }
