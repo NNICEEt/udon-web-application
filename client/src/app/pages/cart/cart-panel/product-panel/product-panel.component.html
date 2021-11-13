@@ -16,7 +16,7 @@
       />
       <span class="title">[{{product.product.categories}}] {{product.product.title}}</span>
       <span class="price">{{product.product.price}} บาท</span>
-      <app-counter [num]="product.quantity" [inputWidth]="'40px'" [counterHeight]="'30px'" [fontSize]="'14px'"></app-counter>
+      <app-counter [num]="product.quantity" (counter)="onUpdate(product._id,$event)" [inputWidth]="'40px'" [counterHeight]="'30px'" [fontSize]="'14px'"></app-counter>
       <span class="price">{{product.totalPrice}} บาท</span>
       <fa-icon class="faTrash" [icon]="faTrash" (click)="onDelete(product._id)"></fa-icon>
     </div>
