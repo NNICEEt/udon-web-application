@@ -48,7 +48,7 @@ const methods = {
     deleteAll(userId) {
         return new Promise(async (resolve, reject) => {
             try {
-                await Cart.find({ userId: userId});
+                await Cart.deleteMany({ userId: userId});
                 resolve();
             } catch (err) {
                 reject(new Error('id: not found'));

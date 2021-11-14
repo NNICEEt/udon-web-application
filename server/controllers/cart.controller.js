@@ -31,7 +31,7 @@ const methods = {
 
     async onDeleteAll(req, res) {
         try {
-            await Services.delete(req.user.id);
+            await Services.deleteAll(req.user.id);
             res.status(204).json('Product has been deleted...');
         } catch (err) {
             res.status(400).json(err.message);
