@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: #fff;
-    padding: 2rem;
+    padding: 32px;
     box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     .btn-group {
@@ -33,16 +33,16 @@
       margin-bottom: 1rem;
       align-self: center;
     }
-    .form {
-      padding: 1rem;
-      .mat-form-field {
-        font-size: 1rem;
-        padding: 5px;
-        &.example-full-width{
-          width: 250px;
-        }
+
+    .mat-form-field {
+      font-size: 1rem;
+      padding: 5px;
+
+      &.example-full-width {
+        width: 250px;
       }
     }
+
     span {
       color: red;
       align-self: center;
@@ -50,57 +50,135 @@
   }
 }
 @-webkit-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @-moz-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @-o-keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 @keyframes login-page {
-  0%{background-position:0% 32%}
-  50%{background-position:100% 69%}
-  100%{background-position:0% 32%}
+  0% {
+    background-position: 0% 32%;
+  }
+  50% {
+    background-position: 100% 69%;
+  }
+  100% {
+    background-position: 0% 32%;
+  }
 }
 
 @media screen and (max-width: 1440px) {
-  .register-page{
+  .register-page {
     justify-content: center;
     align-items: center;
   }
 }
 
 @media (max-width: 425px) {
-  .register-page{
+  .register-page {
     justify-content: center;
     align-items: center;
-    .container{
+    .container {
       width: 375px;
       height: auto;
-      tr{
-        display: flex;
-        flex-direction: column;
+      .form {
+        align-items: center;
+        justify-content: center;
+        tr {
+          display: flex;
+          flex-direction: column;
+          td {
+            height: 75px;
+            text-align: center;
+            vertical-align: middle;
+            overflow: hidden;
+            table-layout: fixed;
+          }
+        }
+      }
+      .mat-form-field {
+      }
+    }
+  }
+}
 
-        td{
-          
-        .form{
-          
-          .mat-form-field{
-              
-            &.example-full-width{
-              width: 250px;
+@media (max-width: 375px) {
+  .register-page {
+    justify-content: center;
+    align-items: center;
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+      width: 325px;
+      height: auto;
+      .form {
+        tr {
+          display: flex;
+          flex-direction: column;
+
+          td {
+            height: 75px;
+            text-align: center;
+            vertical-align: middle;
+
+            .mat-form-field {
             }
           }
         }
       }
     }
+  }
+}
+
+@media (max-width: 320px) {
+  .register-page {
+    justify-content: center;
+    align-items: center;
+    .container {
+      width: 290px;
+      height: auto;
+      .form {
+        tr {
+          display: flex;
+          flex-direction: column;
+
+          td {
+            height: 75px;
+            text-align: center;
+            vertical-align: middle;
+
+            .mat-form-field {
+            }
+          }
+        }
+      }
     }
   }
 }
