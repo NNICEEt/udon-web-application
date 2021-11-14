@@ -50,10 +50,6 @@ export class BookdetailComponent implements OnInit {
     })
   }
 
-  resetCounter() {
-    this.quantity = 1;
-  }
-
   getCounter(counter : number){
     this.quantity = counter;
   }
