@@ -121,9 +121,9 @@ const methods = {
             try {
                 const userData = await User.findOne({ username: data.username });
                 if (!userData) reject({ result: false, error: 'username' });
-                if (!await bcrypt.compare(data.password, userData.password)) reject({ result: false, error: 'password' });
+                if (!await bcrypt.compare(data.password, userData.password)) resolve({ result: false, error: 'password' });
                 const { _id, username, isAdmin } = userData;
-                if (!isAdmin) reject({ result: false, error: 'สำหรับ Admin เท่านั้น' })
+                if (!isAdmin) resolve({ result: false, error: 'สำหรับ Admin เท่านั้น' })
                 const user = { id: _id, isAdmin };
                 const accessToken = genAccessToken(user);
                 const refreshToken = genRefreshToken(user);
