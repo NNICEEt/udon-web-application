@@ -9,6 +9,9 @@ import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 import { AuthGuard } from './auth.guard';
 import { BookdetailComponent } from './pages/home/bookdetail/bookdetail.component';
 import { BooklistComponent } from './pages/home/booklist/booklist.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
+import { InsertComponent } from './pages/admin-page/components/insert/insert.component';
 
 const routes: Routes = [
   // {path: '', component: HomeComponent},
@@ -29,6 +32,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home/login', component: LoginPageComponent },
   { path: 'home/register', component: RegistPageComponent },
+  { path: 'admin', component: LoginAdminComponent },
+  { path: 'admin/page', component: AdminPageComponent },
+  { path: 'admin/insert', component: InsertComponent }
 ];
 
 @NgModule({

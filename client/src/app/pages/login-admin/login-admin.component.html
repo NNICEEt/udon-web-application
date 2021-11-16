@@ -1,0 +1,19 @@
+<div fxLayoutAlign="center center" fxFlexFill class='main-div'>
+    <mat-card fxFlex="25">
+        <mat-toolbar color='primary'>Admin Login</mat-toolbar>
+        <form [formGroup]="LoginForm" fxLayoutAlign="stretch" fxLayout='column' class='login-form'>
+            <mat-form-field>
+              <input matInput type='text' placeholder="Admin" [formControl]="$any(LoginForm).get('lUsername')" [(ngModel)]='loginBody.username'>
+
+            </mat-form-field>
+          
+            <mat-form-field>
+                <input matInput type='password' placeholder="Password" [formControl]="$any(LoginForm).get('lPassword')" [(ngModel)]='loginBody.password'>
+            </mat-form-field>
+
+            <span style="color: red;">{{NotifyMessage}}</span>
+            <button mat-raised-button type='submit' (click)='pressLogin()' [disabled]="$any(LoginForm).invalid">Login</button>
+          </form>
+          
+    </mat-card>
+</div>
