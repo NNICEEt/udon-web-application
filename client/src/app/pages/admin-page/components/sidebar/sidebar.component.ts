@@ -1,13 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-  DoCheck,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from 'src/app/services/product.service';
 import { PageEvent } from '@angular/material/paginator';
@@ -63,7 +54,7 @@ export class SidebarComponent implements OnInit{
     });
   }
 
-  
+
   filterBook(getIndex: number = 10, pageIndex: number = 1) {
     this.booklistCurrent = this.service.adminList.filter((item, index) => {
       if (pageIndex == 1) {

@@ -1,0 +1,27 @@
+@use "../../../../../styles.scss" as global;
+.chart-section {
+  display: flex;
+  justify-content: center;
+  .boxs {
+    margin-top: 1rem;
+    padding: 32px;
+    border: global.$light-grey 1px solid;
+    border-radius: 10px;
+    width: 70vw;
+    height: auto;
+    .chart-card {
+      .chart {
+        margin-bottom: 3rem;
+      }
+    }
+    mat-card-title {
+      color: global.$face-blue;
+    }
+    mat-card-subtitle {
+      color: global.$margenta;
+    }
+    .btn {
+      border-color: global.$margenta;
+    }
+  }
+}

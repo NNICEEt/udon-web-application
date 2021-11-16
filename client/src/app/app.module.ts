@@ -26,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatListModule} from '@angular/material/list';
+import { ChartModule } from 'primeng/chart';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -116,7 +117,8 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
     MatToolbarModule,
     MatSidenavModule,
     FlexLayoutModule,
-    MatListModule
+    MatListModule,
+    ChartModule
   ],
   entryComponents: [CartDialogComponent],
   providers: [AuthGuard,{
