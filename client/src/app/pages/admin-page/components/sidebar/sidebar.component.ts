@@ -19,6 +19,9 @@ export class SidebarComponent implements OnInit{
   faShoppingCart = faShoppingCart;
   imgUrl = '../../assets/images/Book1.jfif';
 
+  getIndexDelete!: number;
+  pageIndexDelete!: number;
+
   getIndex!: number;
   booklist: Book[] = [];
   booklistCurrent: Book[] = [];
@@ -56,6 +59,9 @@ export class SidebarComponent implements OnInit{
 
 
   filterBook(getIndex: number = 10, pageIndex: number = 1) {
+    this.getIndexDelete = getIndex;
+    this.pageIndexDelete = pageIndex;
+
     this.booklistCurrent = this.service.adminList.filter((item, index) => {
       if (pageIndex == 1) {
         return index < getIndex * pageIndex;
@@ -83,9 +89,11 @@ export class SidebarComponent implements OnInit{
       this.service.adminList = this.service.adminList.filter(
         (item) => productId != item._id
       );
+      this.booklistCurrent = this.service.adminList;
+      this.filterBook(this.getIndexDelete,this.pageIndexDelete)
+
     });
     this.dialog.open(DeleteDialogComponent);
-    this.reloadComponent();
     console.log("deleteTo")
   }
 
