@@ -8,6 +8,8 @@ import {
 import { MustMatch } from 'src/app/services/MustMatch';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileDialogComponent } from 'src/app/components/profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-secure-box',
@@ -17,12 +19,12 @@ import { HttpClient } from '@angular/common/http';
 export class SecureBoxComponent implements OnInit {
   newPass: string = '';
   confirmPass: string = '';
-  Notify: string = '';
   public secureForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private service: UserService,
-    private http: HttpClient
+    private http: HttpClient,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class SecureBoxComponent implements OnInit {
   }
   pressUpdate() {
     this.service.updatePassword(this.newPass).subscribe((res) => {
-      return this.Notify = 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว';
+      this.dialog.open(ProfileDialogComponent);
     })
   }
   getLengthError() {

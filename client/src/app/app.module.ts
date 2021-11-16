@@ -59,6 +59,7 @@ import { InsertComponent } from './pages/admin-page/components/insert/insert.com
 import { DashboardComponent } from './pages/admin-page/components/dashboard/dashboard.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { InsertDialogComponent } from './components/insert-dialog/insert-dialog.component';
+import { ProfileDialogComponent } from './components/profile-dialog/profile-dialog.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { InsertDialogComponent } from './components/insert-dialog/insert-dialog.
     InsertComponent,
     DashboardComponent,
     DeleteDialogComponent,
-    InsertDialogComponent
+    InsertDialogComponent,
+    ProfileDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +124,7 @@ import { InsertDialogComponent } from './components/insert-dialog/insert-dialog.
     MatListModule,
     ChartModule
   ],
-  entryComponents: [CartDialogComponent, DeleteDialogComponent, InsertDialogComponent],
+  entryComponents: [CartDialogComponent, DeleteDialogComponent, InsertDialogComponent, ProfileDialogComponent],
   providers: [AuthGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
