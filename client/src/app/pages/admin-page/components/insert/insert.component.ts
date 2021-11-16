@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { Book } from 'src/app/models/booktype';
 import { ProductService } from 'src/app/services/product.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { InsertDialogComponent } from 'src/app/components/insert-dialog/insert-dialog.component';
 
 @Component({
   selector: 'admin-insert',
@@ -38,7 +41,10 @@ export class InsertComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public fb: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.myForm = this.fb.group({
       img: [null],
@@ -85,8 +91,10 @@ export class InsertComponent implements OnInit {
 
     //upload image api
     this.productService.uploadImg(formData).subscribe((res) => {
+      this.dialog.open(InsertDialogComponent);
       this.bookBody.image = res.image;
       this.productService.addBook(this.bookBody).subscribe();
+      this.router.navigate(['/admin/page']);
     });
   }
 
