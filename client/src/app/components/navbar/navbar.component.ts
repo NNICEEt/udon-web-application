@@ -58,6 +58,9 @@ export class NavbarComponent implements OnInit, DoCheck {
     } else if (window.screen.width << 425) {
       this.isUnReadable = true;
     }
+    window.onresize = function(event: any){
+      document.location.reload();
+    }
   }
 
   ngDoCheck(): void {
