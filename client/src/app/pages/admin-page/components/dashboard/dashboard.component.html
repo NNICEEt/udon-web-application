@@ -1,0 +1,24 @@
+<admin-navbar></admin-navbar>
+<div class="chart-section">
+  <div class="boxs">
+    <mat-card class="chart-card">
+      <mat-card-title>จำนวนหนังสือภายในเว็บไซต์</mat-card-title>
+      <mat-card-content>
+        <div class="chart">
+          <p-chart type="doughnut" [data]="data" [options]="chartOptions" width="400" height="400"></p-chart>
+        </div>
+        <p>จำนวนหนังของหนังสือภายในเว็บไซต์โดยแสดงข้อมูลออกมาเป็น Doughnut Chart</p>
+        <div class="book-perclass">
+          <p>จำนวนหนังสือทั้งหมด: {{bookTotal}} เล่ม แบ่งเป็น</p>
+          <li class="list cartoon">การ์ตูน {{getLenght1}} เล่ม</li>
+          <li class="list novel">นิยาย {{getLenght2}} เล่ม</li>
+          <li class="list magazine">วารสาร {{getLenght3}} เล่ม</li>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="accent" class="btn" routerLink="/admin/page" routerLinkActive="active">กลับสู่หน้า Admin</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

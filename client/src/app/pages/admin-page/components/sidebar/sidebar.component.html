@@ -1,0 +1,42 @@
+<div class="page">
+  <div class="card-section">
+    <mat-card class="card" *ngFor="let product of booklistCurrent">
+      <img
+        mat-card-image
+        src="{{ product.image }}"
+        (error)="(doSomethingOnError)"
+        alt="{{ product.title }}"
+      />
+      <div class="bottom">
+        <mat-card-content>
+          <p class="book-name" title="{{ product.title }}">
+            [{{ product.categories }}] {{ product.title }}
+          </p>
+          <div class="price">
+            <input matInput placeholder="{{ product.price }} บาท" [disabled]='inputDisable'>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button class="btn delete" color="warn" (click)='deleteBook(product._id)'>
+            <span>Delete</span>
+          </button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+  <div class="box-footer">
+    <div class="page-ginate">
+      <mat-paginator
+        *ngIf="pageEvent"
+        class="pginator"
+        [length]="length"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event"
+        aria-label="Select page"
+        (page)="filterBook(pageEvent.pageSize, pageEvent.pageIndex + 1)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+

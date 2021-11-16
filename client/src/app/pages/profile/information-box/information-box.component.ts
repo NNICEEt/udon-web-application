@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileDialogComponent } from 'src/app/components/profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-information-box',
@@ -37,7 +39,8 @@ export class InformationBoxComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog
   ) {
     this.myForm = this.fb.group({
       img: [null],
@@ -98,7 +101,9 @@ export class InformationBoxComponent implements OnInit {
     formData.append('file', this.images);
 
     //upload image api
-    this.userService.updateUser(this.user).subscribe();
+    this.userService.updateUser(this.user).subscribe(() => {
+      this.dialog.open(ProfileDialogComponent);
+    });
     if (this.images) this.userService.uploadImg(formData).subscribe();
   }
 

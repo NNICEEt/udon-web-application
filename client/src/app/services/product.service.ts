@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Book } from '../models/booktype';
+import { Book, ImageURL } from '../models/booktype';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  public adminList:Book[] = [];
+
   pageBookList: string = 'false';
 
   limit:number = 10;
   page:number = 1;
   category:any = "";
+  
 
 
   REST_API: string = 'http://localhost:3000/api/v1/products/';
+  
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,4 +30,20 @@ export class ProductService {
   bookDetail(productId : string) {
     return this.httpClient.get<Book>(`${this.REST_API}${productId}`);
   }
+
+  //deleteBook
+  deleteBook(productId : string) {
+    return this.httpClient.delete(`${this.REST_API}${productId}`);
+  } 
+
+  //addBook
+  addBook(data: object) {
+    return this.httpClient.post(this.REST_API, data);
+  }
+
+  uploadImg(file: FormData) {
+    const API_URL = `${this.REST_API}/file`;
+    return this.httpClient.post<ImageURL>(API_URL, file);
+  }
+  
 }

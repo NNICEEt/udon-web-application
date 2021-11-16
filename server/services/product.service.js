@@ -8,7 +8,7 @@ const methods = {
             try {
                 const productObj = new Product(data);
                 await productObj.save();
-                resolve();
+                resolve(productObj);
             } catch (err) {
                 reject(err);
             }
@@ -28,11 +28,10 @@ const methods = {
         });
     },
 
-    upload(productId, file) {
+    upload(file) {
         return new Promise(async (resolve, reject) => {
             try {
-                await Product.findByIdAndUpdate(productId, { image: `${__basedir}/users/${file.filename}` });
-                resolve();
+                resolve({ image: `${__basedir}/users/${file.filename}`});
             } catch (err) {
                 reject(err);
             }
