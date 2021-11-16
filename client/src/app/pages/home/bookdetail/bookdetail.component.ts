@@ -3,6 +3,8 @@ import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CartDialogComponent } from 'src/app/components/cart-dialog/cart-dialog.component';
 
 @Component({
   selector: 'app-bookdetail',
@@ -20,7 +22,8 @@ export class BookdetailComponent implements OnInit {
     private cartService: CartService,
     private service: ProductService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,7 +34,6 @@ export class BookdetailComponent implements OnInit {
         console.log(this.bookdetail);
       });
     })
-
   }
 
   addCart(){
@@ -39,10 +41,11 @@ export class BookdetailComponent implements OnInit {
       const id = params.productId;
       console.log(params);
       this.cartService.addToCart(id, this.quantity).subscribe(() => {
-        this.router.navigate(['cart']);
-      },
-      ()=> {
-        this.router.navigate(['cart']);
+        this.dialog.open(CartDialogComponent);
+        this.cartService.getCart().subscribe((res) => {
+          this.cartService.countItem = res.length;
+        });
+        this.router.navigate(['']);
       });
     })
   }
@@ -54,9 +57,4 @@ export class BookdetailComponent implements OnInit {
   doSomethingOnError(event: any) {
     event.target.src = '../../assets/images/Book1.jfif'
   }
-
-
-
-
-
 }
