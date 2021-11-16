@@ -24,9 +24,12 @@ export class AdminNavbarComponent implements OnInit {
   insert(){
     this.router.navigate(['admin/insert']);
   }
+  dashBoard() {
+    this.router.navigate(['admin/dashboard']);
+  }
 
   refresh() {
     this.router.navigate(['admin/page']);
   }
-  
+
 }

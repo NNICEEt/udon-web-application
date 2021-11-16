@@ -13,6 +13,7 @@ import { BooklistComponent } from './pages/home/booklist/booklist.component';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { InsertComponent } from './pages/admin-page/components/insert/insert.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { DashboardComponent } from './pages/admin-page/components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,7 @@ const routes: Routes = [
     component: InsertComponent,
     canActivate: [AuthAdminGuard],
   },
+  { path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthAdminGuard] }
 ];
 
 @NgModule({
