@@ -36,6 +36,11 @@ export class ProductService {
     return this.httpClient.delete(`${this.REST_API}${productId}`);
   } 
 
+  //addBook
+  addBook(data: object) {
+    return this.httpClient.post(this.REST_API, data);
+  }
+
   uploadImg(file: FormData) {
     const API_URL = `${this.REST_API}/file`;
     return this.httpClient.post<ImageURL>(API_URL, file);

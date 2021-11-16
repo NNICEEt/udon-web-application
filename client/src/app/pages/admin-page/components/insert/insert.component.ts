@@ -6,7 +6,6 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { Book } from 'src/app/models/booktype';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -38,8 +37,7 @@ export class InsertComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public fb: FormBuilder,
-    private userService: UserService,
-    private service: ProductService
+    private productService: ProductService
   ) {
     this.myForm = this.fb.group({
       img: [null],
@@ -85,8 +83,10 @@ export class InsertComponent implements OnInit {
     formData.append('file', this.images);
 
     //upload image api
-    this.userService.updateUser(this.bookBody).subscribe();
-    if (this.images) this.userService.uploadImg(formData).subscribe();
+    this.productService.uploadImg(formData).subscribe((res) => {
+      this.bookBody.image = res.image;
+      this.productService.addBook(this.bookBody).subscribe();
+    });
   }
 
   getRequiredError() {

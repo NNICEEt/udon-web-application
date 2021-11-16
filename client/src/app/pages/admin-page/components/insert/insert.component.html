@@ -82,7 +82,7 @@
         class="save-button"
         color="warn"
         style="width: 100px; font-size: 20px"
-        [disabled]="(insertBookForm).invalid"
+        [disabled]="(insertBookForm).invalid || imgUrl === ''"
         (click)="onSubmit()"
       >
         บันทึก
