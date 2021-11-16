@@ -4,7 +4,7 @@
     <div class="head">เพิ่มหนังสือ</div>
     <div class="upload-section">
       <form [formGroup]="myForm" class="book-pic">
-        <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" width="200"/>
+        <img [src]="imgUrl || defaultImgUrl" (error)="(doSomethingOnError)" height="200" width="200"/>
       </form>
       <div class="updesc">
         <input

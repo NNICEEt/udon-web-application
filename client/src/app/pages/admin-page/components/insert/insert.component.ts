@@ -22,6 +22,7 @@ export class InsertComponent implements OnInit {
 
   title = 'fileUpload';
   images: any = null;
+  defaultImgUrl: string = '../../../../../assets/images/no_image.png'
   imgUrl: string = '';
   myForm: FormGroup;
   public insertBookForm!: FormGroup;
