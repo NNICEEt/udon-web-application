@@ -89,7 +89,7 @@ nav {
   @media (max-width: 768px) {
     .search-bar {
       input {
-        max-width: 300px;
+        max-width: 200px;
       }
     }
     .btn {
@@ -98,5 +98,27 @@ nav {
     }
   }
   @media (max-width: 425px) {
+    img {
+      height: 25px;
+    }
+    .search-bar {
+      input {
+        max-width: 90px;
+      }
+      .btn {
+        max-width: 40px;
+        padding: 0;
+      }
+    }
+  }
+  @media (max-width: 425px) {
+    img {
+      height: 25px;
+    }
+    .hamberger, .hamlogin {
+      position: absolute;
+      right:0;
+      margin-right: 5px;
+    }
   }
 }

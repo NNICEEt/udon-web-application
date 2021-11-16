@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DoCheck,
+  HostListener
+} from '@angular/core';
 import {
   faSearch,
   faShoppingCart,
@@ -9,8 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/booktype';
 import { ProductService } from 'src/app/services/product.service';
 import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -19,13 +24,21 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, DoCheck {
-  constructor(private authService: AuthService, private cartService: CartService, private router: Router, private service: ProductService, private route: ActivatedRoute) {}
+  constructor(
+    private authService: AuthService,
+    private cartService: CartService,
+    private router: Router,
+    private service: ProductService,
+    private route: ActivatedRoute
+  ) {}
   booklist: Book[] = [];
   bookname: Book[] = [];
-  itemCart!:number;
+  itemCart!: number;
   islogin: boolean = false;
   myControl = new FormControl();
   filteredOptions!: Observable<Book[]>;
+  isMobile: boolean = false;
+  isUnReadable: boolean = false;
 
   ngOnInit(): void {
     this.islogin = this.authService.loggedIn();
@@ -34,20 +47,28 @@ export class NavbarComponent implements OnInit, DoCheck {
       this.bookname = this.booklist;
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value)),
+        map((value) => this._filter(value))
       );
     });
     this.cartService.getCart().subscribe((res) => {
       this.cartService.countItem = res.length;
     });
+    if (window.screen.width < 768) {
+      this.isMobile = true;
+    } else if (window.screen.width << 425) {
+      this.isUnReadable = true;
+    }
   }
+
   ngDoCheck(): void {
     this.itemCart = this.cartService.countItem;
   }
-  
+
   private _filter(value: string): Book[] {
     const filterValue = value.toLowerCase();
-    return this.bookname.filter((item, i) => item.title.toLowerCase().includes(filterValue));
+    return this.bookname.filter((item, i) =>
+      item.title.toLowerCase().includes(filterValue)
+    );
   }
   data = 1;
   faSearch = faSearch;
