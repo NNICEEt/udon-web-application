@@ -22,6 +22,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatListModule} from '@angular/material/list';
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -46,6 +50,14 @@ import { RegistPageComponent } from './pages/regist-page/regist-page.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { SidebarComponent } from './pages/admin-page/components/sidebar/sidebar.component';
+import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
+import { AdminNavbarComponent } from './pages/admin-page/components/navbar/navbar.component';
+import { InsertComponent } from './pages/admin-page/components/insert/insert.component';
+import { DashboardComponent } from './pages/admin-page/components/dashboard/dashboard.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+
 
 @NgModule({
 
@@ -71,7 +83,14 @@ import { CartDialogComponent } from './components/cart-dialog/cart-dialog.compon
     BookdetailComponent,
     LoginPageComponent,
     RegistPageComponent,
-    CartDialogComponent
+    CartDialogComponent,
+    AdminPageComponent,
+    SidebarComponent,
+    LoginAdminComponent,
+    AdminNavbarComponent,
+    InsertComponent,
+    DashboardComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +112,11 @@ import { CartDialogComponent } from './components/cart-dialog/cart-dialog.compon
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    FlexLayoutModule,
+    MatListModule
   ],
   entryComponents: [CartDialogComponent],
   providers: [AuthGuard,{

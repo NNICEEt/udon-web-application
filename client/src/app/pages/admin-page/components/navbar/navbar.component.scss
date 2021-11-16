@@ -1,0 +1,16 @@
+.logo {
+    width: 75px;
+    height: 46px;
+    &:hover {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+span {
+    padding-right: 1rem;
+}

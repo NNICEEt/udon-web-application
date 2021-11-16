@@ -8,4 +8,8 @@ export interface Book {
     createdAt: string;
     updatedAt: string;
     __v: number;
-  }
+}
+
+export interface ImageURL {
+  image: string;
+}
