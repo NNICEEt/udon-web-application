@@ -1,0 +1,15 @@
+@use '../../../styles.scss' as global;
+.dialog {
+  text-align: center;
+  .header {
+    color: global.$mint;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  mat-divider {
+    margin-bottom: 1rem;
+  }
+  .btn {
+    margin: 0 auto;
+  }
+}
