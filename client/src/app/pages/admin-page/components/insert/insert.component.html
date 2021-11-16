@@ -1,0 +1,95 @@
+<admin-navbar></admin-navbar>
+<div class="insert-section">
+  <div class="boxs">
+    <div class="head">เพิ่มหนังสือ</div>
+    <div class="upload-section">
+      <form [formGroup]="myForm" class="book-pic">
+        <img [src]="imgUrl" (error)="(doSomethingOnError)" height="200" width="200"/>
+      </form>
+      <div class="updesc">
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          multiple
+          (change)="selectImage($event)"
+          style="display: none"
+          #fileInput
+        />
+        <button mat-stroked-button class="pick" (click)="fileInput.click()">
+          เลือกไฟล์
+        </button>
+        <div class="description">Acceptable formats: jpg, png only</div>
+      </div>
+    </div>
+    <div class="sub-header">รายละเอียดหนังสือ</div>
+    <form class="form" [formGroup]="insertBookForm">
+      <table class="group1" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field name="bookType" appearance="fill">
+              <mat-label>ประเภทของหนังสือ</mat-label>
+              <input matInput type="text" [matAutocomplete]="auto" [formControl]="$any(insertBookForm).get('bookCategory')" [(ngModel)]="bookBody.categories" required/>
+              <mat-error *ngIf=" bookCt.bookCategory.touched && bookCt.bookCategory.invalid">{{ getRequiredError() }}</mat-error>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let category of category" [value]="category">
+                  {{category}}
+                </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field name="bookName" appearance="fill">
+              <mat-label>ชื่อหนังสือ</mat-label>
+              <input matInput type="text" [formControl]="$any(insertBookForm).get('bookTitle')" [(ngModel)]="bookBody.title" required/>
+              <mat-error *ngIf=" bookCt.bookTitle.touched && bookCt.bookTitle.invalid">{{ getRequiredError() }}</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="group2" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="bookPrice" appearance="fill">
+              <mat-label>ราคา</mat-label>
+              <input matInput
+              type="text"
+              [formControl]="$any(insertBookForm).get('bookPrice')"
+              [(ngModel)]="bookBody.price"
+              required/>
+              <mat-error *ngIf=" bookCt.bookPrice.touched && bookCt.bookPrice.invalid">{{ getRequiredError() }}</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <div class="sub-header">คำอธิบาย/เรื่องย่อ</div>
+      <p>
+        <mat-form-field class="address" appearance="fill">
+          <textarea
+            matInput
+            type="text"
+            [formControl]="$any(insertBookForm).get('bookDesc')" [(ngModel)]="bookBody.description"
+            required
+          >
+        </textarea>
+        </mat-form-field>
+        <mat-error *ngIf=" bookCt.bookDesc.touched && bookCt.bookDesc.invalid">{{ getRequiredError() }}</mat-error>
+      </p>
+    </form>
+    <div class="save-section">
+      <button
+        mat-flat-button
+        class="save-button"
+        color="warn"
+        style="width: 100px; font-size: 20px"
+        [disabled]="(insertBookForm).invalid"
+        (click)="onSubmit()"
+      >
+        บันทึก
+      </button>
+      <div class="warn" style="color: red">* กรุณากรอกข้อมูลที่จำเป็น</div>
+    </div>
+  </div>
+</div>
+
+  

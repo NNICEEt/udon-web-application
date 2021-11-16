@@ -8,6 +8,6 @@ router.get('/:productId', controllers.onGetProduct);
 router.post('/', authAdmin, controllers.onInsert);
 router.put('/:productId', auth, controllers.onUpdate);
 router.delete('/:productId', authAdmin, controllers.onDelete);
-router.post('/:productId/file', authAdmin, productUpload, controllers.onUpload);
+router.post('/file', authAdmin, productUpload, controllers.onUpload);
 
 module.exports = router;

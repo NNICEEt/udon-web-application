@@ -1,0 +1,17 @@
+<mat-toolbar class='navbar'>
+    <img class='logo' src="../../../../../assets/images/logo.png" alt="" (click)="refresh()"> 
+    <div>
+        <span>
+            <button mat-button (click)='insert()'>
+                Insert
+            </button>
+            <button mat-button >
+                Dashboard
+            </button>
+            <button mat-button (click)='logout()'>
+                Log Out
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </span>
+    </div>
+</mat-toolbar>

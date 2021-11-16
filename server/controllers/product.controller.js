@@ -22,8 +22,8 @@ const methods = {
 
     async onUpload(req,res) {
         try {
-            await Services.upload(req.params.productId, req.file);
-            res.json('OK');
+            const result = await Services.upload(req.file);
+            res.status(201).json(result);
         } catch (err) {
             res.json(err);
         }
