@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Register, Login } from '../models/auth';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  REST_API: string = 'http://localhost:3000/api/v1/users';
+  REST_API: string = `${environment.service}/api/v1/users`;
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient) {}
@@ -44,11 +45,7 @@ export class AuthService {
   refrestAccessToken(token: string) {
     const API_URL = `${this.REST_API}/login-admin`;
     let newToken;
-    this.httpClient.post(
-      API_URL,
-      { token },
-      { headers: this.httpHeaders }
-    );
+    this.httpClient.post(API_URL, { token }, { headers: this.httpHeaders });
     return newToken;
   }
 
@@ -56,8 +53,6 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-
-  
   getToken() {
     return localStorage.getItem('token');
   }

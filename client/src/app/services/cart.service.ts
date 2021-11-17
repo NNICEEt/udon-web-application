@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Carts } from '../models/cart';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class CartService {
   public countItem:number = 0;
   public cartList:Carts[] = [];
 
-  REST_API: string = 'http://localhost:3000/api/v1/carts/';
+  REST_API: string = `${environment.service}/api/v1/carts`;
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient) {}

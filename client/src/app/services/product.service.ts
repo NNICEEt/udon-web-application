@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book, ImageURL } from '../models/booktype';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class ProductService {
   
 
 
-  REST_API: string = 'http://localhost:3000/api/v1/products/';
+  REST_API: string = `${environment.service}/api/v1/products`;
   
 
   constructor(private httpClient: HttpClient) {}
